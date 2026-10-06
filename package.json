@@ -1,0 +1,1 @@
+{"name":"memora","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","check":"node --check worker/api.mjs"}}

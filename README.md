@@ -1,38 +1,34 @@
-# Memora — dealership memory demo
+# Memora · 二手车行记忆与 AI 助理
 
-A working browser demo of a small dealership’s operational memory and assistant.
+中文版演示，包含 80 位虚构客户、18 辆车、160 条沟通记录与 8 笔成交。客户档案、库存、沟通历史与经营图表相互关联。数据仍保存在当前浏览器，不是共享数据库。
 
-## Run
+## OpenAI 接入
 
-Open `index.html` in a modern browser, or serve this repository with any static web host. No dependencies or API keys are required.
+后端使用 Responses API，默认模型 `gpt-4.1-mini`，可通过服务端 `OPENAI_MODEL` 修改。API 密钥只能放在运行环境的秘密变量 `OPENAI_API_KEY` 中；不要放入 HTML、浏览器存储或 Git 仓库。
 
-## Included
+- `GET /api/status`：只返回是否已配置密钥及模型名称，不返回密钥。
+- `POST /api/chat`：接收当前演示数据快照、问题和最近六条对话。AI 通过只读 `query_memory` 工具查询客户、库存、沟通和成交记录。筛选、统计、收入及毛利润由代码计算；图表只使用真实工具结果，AI 不生成图表数字。
+- `POST /api/extract`：使用结构化输出提取意向车辆、月供、置换估值、跟进日期、销售阶段和顾虑；未提及字段保持空值，必须在页面检查并确认后才保存。
 
-- 80 fictional customers, 18 vehicles, 160 linked interactions and 8 sales.
-- Dashboard with calculated pipeline counts, follow-up queue, revenue and gross vehicle profit.
-- Searchable customer memories and inventory, buyer matching, conversation history.
-- Memora assistant: Chinese or English demo queries for follow-ups, vehicle demand, recorded objections, matching, customer details, revenue and profit charts.
-- Conversation capture: text or optional browser speech recognition, editable extraction preview and confirmation before saving.
-- Browser-local changes and reset.
+每次聊天最多四轮模型请求，最多八次查询；限制输入数据体积、记录数量与输出 token。客户端显示本次 token 用量。OpenAI 请求使用 `store: false`。错误会明确显示，不会悄悄换成演示回答。
 
-## Demo limits
+尚未配置密钥时，页面明确显示“未配密钥”，保留离线规则演示。是否配置密钥不代表实时调用已经验证；真实测试还需要有效 API 账户和额度。ChatGPT 会员与 API 账单分别管理。
 
-The assistant uses deterministic rules, not a language model. Unsupported questions return an explicit limitation. Field extraction is rule based and requires review. Data is fictional and stored in this browser’s localStorage, not a server database; it does not sync across devices or users. Voice support depends on browser support, permission and the browser’s speech service.
+## 文件和构建
 
-All relative dates are evaluated against the fixed demo date **October 6, 2026**. Currency is CAD. Demand charts count conversations, not unique customers. Pipeline charts show current stages, not conversion rates. Gross vehicle profit subtracts acquisition cost only. Matching uses brand, body type, budget and recorded interest; no predictive probability or external market pricing is provided. Completed sales are seeded examples; this version does not record new financial transactions. Capturing a note does not send a message to the customer.
+- `web/index.html`：中文界面源文件。
+- `worker/api.mjs`：服务端 API、查询工具及数据检查。
+- `scripts/build.mjs`：把页面和后端打包为 Cloudflare Worker。
+- `.env.example`：运行环境变量名称示例，不含真实密钥。
 
-Demo data uses fictional names, example.com email addresses and 555 telephone numbers.
+构建：`node scripts/build.mjs`，输出 `dist/server/index.js`，导出 `fetch(request, env, ctx)`。
 
-## Suggested walkthrough
+GitHub 根目录的 `index.html` 是同一界面的镜像，可独立查看离线演示。GitHub Pages 本身不会运行此后端；真实 AI 需要部署 Worker 并配置服务端密钥。正式网站使用项目已绑定的 Sites 发布。
 
-1. Open Overview and review the follow-up shortlist.
-2. Open Alex Chen’s customer memory.
-3. Ask Memora: `我今天应该联系谁？`
-4. Ask: `BMW X3 为什么卖不掉？`
-5. Ask: `最近一个月销售收入，按销售员出图`
-6. Capture a memory, choose **Use example**, review and save.
-7. Ask: `Alex Chen 的情况怎么样？` to see the updated note.
+## 演示口径
 
-## Next implementation
+固定日期为 2026 年 10 月 6 日，金额为加元。需求统计按沟通次数；阶段图是当前阶段分布；车辆毛利润仅扣除购入成本。仅有虚构内部记录，没有实时市场价格、外部数据、预测成交率或消息发送功能。语音输入仍使用浏览器语音识别。
 
-Replace local demo storage with a shared database, add server-side OpenAI queries and transcription, then authentication and team permissions. Preserve the visible capture → review → save → query workflow.
+## 检查
+
+已用模拟 OpenAI 响应检查：工具调用循环、分组计算、饼图渲染、提取预览、无密钥提示、额度错误、数据关联和跨站请求拒绝。真实 OpenAI 调用需在配置密钥后验证。
