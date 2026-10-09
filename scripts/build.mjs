@@ -1,5 +1,9 @@
 import { readFile,writeFile,mkdir,rm } from 'node:fs/promises';
-const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
+let html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
+for (const name of ['catalog','runtime']) {
+  const script=await readFile(new URL(`../i18n/${name}.js`,import.meta.url),'utf8');
+  html=html.replace(new RegExp(`<script src="[^"]*i18n/${name}\\.js[^"]*"></script>`),()=>`<script>${script.replaceAll('</script','<\\/script')}</script>`);
+}
 const api=await readFile(new URL('../worker/api.mjs',import.meta.url),'utf8');
 await rm(new URL('../dist',import.meta.url),{recursive:true,force:true});
 await mkdir(new URL('../dist/server',import.meta.url),{recursive:true});
