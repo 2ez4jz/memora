@@ -53,3 +53,14 @@ export async function activeMemories(request,env){
  const owner=request.headers.get('oai-authenticated-user-id');if(!owner||!env.DB)return [];
  const result=await env.DB.prepare("SELECT id,content,version FROM memora_memory WHERE owner=? AND status='active' ORDER BY updated DESC LIMIT 20").bind(owner).all();return result.results;
 }
+
+// Browser history cannot certify that an AI card was actually executed.
+export async function verifiedProposalHistory(request,env,history){
+ const owner=request.headers.get('oai-authenticated-user-id');
+ const messages=Array.isArray(history)?history.slice(-20):[];
+ const ids=[...new Set(messages.flatMap(m=>Array.isArray(m.proposals)?m.proposals.slice(0,8).map(p=>p?.id).filter(id=>typeof id==='string'&&id.length<=100):[]))].slice(0,80);
+ const receipts=new Map();
+ if(owner&&env.DB&&ids.length){const rows=await env.DB.prepare("SELECT id,snapshot FROM memora_audit WHERE owner=? AND action LIKE 'crm.%' AND id IN ("+ids.map(()=>'?').join(',')+")").bind(owner,...ids).all();for(const row of rows.results){const snapshot=JSON.parse(row.snapshot);if(snapshot.command)receipts.set(row.id,JSON.parse(snapshot.command));}}
+ const stable=value=>JSON.stringify(value,(_k,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x);
+ return messages.map(m=>({...m,proposals:Array.isArray(m.proposals)?m.proposals.slice(0,8).filter(p=>p&&typeof p==='object').map(p=>{const receipt=receipts.get(p.id);return {...p,saved:!!receipt&&receipt.action===p.action&&stable(receipt.payload)===stable(p.payload)};}):[]}));
+}

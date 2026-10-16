@@ -1,6 +1,6 @@
 import {audioUpload} from './audio-format.mjs';
 import {selectSkills} from './skills.mjs';
-import {storageAPI,activeMemories} from './storage.mjs';
+import {storageAPI,activeMemories,verifiedProposalHistory} from './storage.mjs';
 import {crmAPI,applyCRMCommand} from './crm-api.mjs';
 import {crmState,duplicateGroups,customerTimeline,dailyDigest} from './crm-core.mjs';
 const DATE = '2026-10-16';
@@ -103,7 +103,7 @@ export async function handleAPI(request,env){
   }
   if(storage){if(path==='/api/crm'){const r=await crmAPI(request,env,body);return json(r.body,r.status||200)}if(path==='/api/workspace'&&request.method==='POST')cleanData(body.payload?.data);const result=await storageAPI(request,env,body);return json(result.body,result.status||200)}
   if(!env.OPENAI_API_KEY)throw new ApiError('后端未配置 OpenAI API。',503);
-  if(path==='/api/chat')body.confirmedMemories=await activeMemories(request,env);
+  if(path==='/api/chat'){body.confirmedMemories=await activeMemories(request,env);body.history=await verifiedProposalHistory(request,env,body.history);}
   return json(path==='/api/chat'?await chat(env,body):await extract(env,body));
  }catch(e){return json({error:e instanceof ApiError?e.message:'处理失败，请稍后重试。'},e instanceof ApiError?e.status:500)}
 }
