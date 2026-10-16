@@ -1,6 +1,6 @@
 # MEMORA / SCULPY V3.0 首轮候选版交付报告
 
-日期：2026-10-16。**本轮已实际开发、测试并准备发布；完整 V3.0 尚未完成，也不宣称已达到 HubSpot 全部成熟度。**
+日期：2026-10-16。**本轮已实际开发、测试并准备发布；完整 V3.0 尚未完成，尚有明确的后续验收范围。**
 
 ## 本轮交付
 
@@ -54,9 +54,9 @@ SCULPY 全部公开业务表已有 RLS。Supabase 顾问仍报告既有 SECURITY
 
 临时真实模型评测函数已关闭：410 响应并重新开启 JWT 验证，不再调用模型或访问数据库。
 
-## 工具研究和复用
+## 技术更新
 
-详细适配、维护状态、许可、成本、安全与集成判断见 `V3_BENCHMARK.md`。本轮复用 OpenAI Responses 工具调用/结构化输出、现有 Agents SDK、Supabase 事务/RLS、D1、Node 测试、PGlite、PostgreSQL CI 与 Playwright。研究了 Twenty、Frappe CRM、Trigger.dev、Supabase Queues/Cron、TanStack Table、Chart.js、HubSpot API/SDK/Agent CLI；未复制未授权代码或素材，未新增付费服务。
+保留既有模型接口、结构化输出、数据库事务、权限校验与测试框架，补充客户操作工具、请求重试、数据质量和审计能力。未新增付费服务。功能清单与边界见 `V3_BENCHMARK.md`。
 
 ## 提交、演示与发布
 
