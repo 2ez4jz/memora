@@ -8,10 +8,12 @@ for (const name of ['catalog','runtime']) {
 html=html.replace('<script>/* Presentation-only',()=>'<script>'+extraTranslations+'</script><script>/* Presentation-only');
 const portCSS=await readFile(new URL('../web/upgrade.css',import.meta.url),'utf8');
 html=html.replace('</style>',()=> '\n'+portCSS+'</style>');
-const upgrade=(await readFile(new URL('../web/audio-format.js',import.meta.url),'utf8')).replaceAll('export ','')+'\n'+await readFile(new URL('../web/upgrade.js',import.meta.url),'utf8');
+const crmBrowser=(await readFile(new URL('../worker/crm-core.mjs',import.meta.url),'utf8')).replaceAll('export ','');
+const upgrade=crmBrowser+'\n'+(await readFile(new URL('../web/audio-format.js',import.meta.url),'utf8')).replaceAll('export ','')+'\n'+await readFile(new URL('../web/upgrade.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/crm.js',import.meta.url),'utf8');
 html=html.replace('/*UPGRADE_SCRIPT*/',()=>upgrade);
 let api=await readFile(new URL('../worker/api.mjs',import.meta.url),'utf8');
-for(const file of ['audio-format','skills','storage']){const module=await readFile(new URL('../worker/'+file+'.mjs',import.meta.url),'utf8');api=api.replace(new RegExp('import \{[^}]+\} from [^;]+;'),()=>module);}
+const modules=[];for(const file of ['audio-format','skills','storage','crm-core','crm-api']){modules.push((await readFile(new URL('../worker/'+file+'.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,''));}
+api=modules.join('\n')+'\n'+api.replace(/^import .*;\n/gm,'');
 await rm(new URL('../dist',import.meta.url),{recursive:true,force:true});
 await mkdir(new URL('../dist/server',import.meta.url),{recursive:true});
 const entry=`const PAGE=${JSON.stringify(html)};\n${api}\nexport default {async fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname.startsWith('/api/'))return handleAPI(request,env);if(url.pathname!=='/'&&url.pathname!=='/index.html'&&url.pathname!=='/demo.html')return new Response('页面不存在',{status:404});if(!['GET','HEAD'].includes(request.method))return new Response('不支持的请求方法',{status:405});return new Response(request.method==='HEAD'?null:PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'}})}};\n`;

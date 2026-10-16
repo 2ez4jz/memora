@@ -1,1 +1,13 @@
-{"name":"memora","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","check":"node --check worker/api.mjs","test":"node --test scripts/port.test.mjs"}}
+{
+  "name": "memora",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node --check worker/api.mjs",
+    "test": "node scripts/build.mjs && node --test scripts/*.test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.61.1"
+  }
+}

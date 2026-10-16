@@ -28,3 +28,7 @@ GitHub Pages 不运行服务器 API，离线页面明确标注，并提供已连
 - [移植工作日志](docs/MEMORA_SCULP_PORT_2026-10-16.md)。
 
 成交收入不等于到账；车辆毛利只扣购入成本，不是净利润。虚构演示不提供市场估值或可靠成交预测。
+
+## V3 release candidate
+
+New source surfaces: `#pipeline`, `#tasks`, `#workflows`, `#quality` and enhanced customer timeline. AI can propose customer updates and internal tasks; the separate confirm button performs a canonical, version-checked server command. Workflows currently run on explicit confirmation and create internal tasks only. The application is still a fictional, owner-private demo; team roles and unattended scheduling are not implemented. See [benchmark and status](docs/V3_BENCHMARK.md).
