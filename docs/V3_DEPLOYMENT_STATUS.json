@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-16",
+  "release": "V3.0 first preview increment; full V3 not complete",
+  "memora": {
+    "siteVersion": 7,
+    "status": "succeeded",
+    "url": "https://memora-dealer-demo.museycyk.chatgpt.site",
+    "sourceCommit": "775bb34e8058c357caab1dd1a7fe3997044bcf45",
+    "githubMerge": "afb9fd5a7538b2fcf46f4d1f3e3c27ff1d0e027e",
+    "ciRun": 38966161967,
+    "audience": "unchanged owner-private custom",
+    "postcheck": "page/status/chat passed; CRM rejects sessionless bypass with 401; real signed-in write acceptance remains unverified"
+  },
+  "sculpy": {
+    "edgeFunctionVersion": 36,
+    "githubMerge": "3b33a68b7b172c5b95b4b1700ffe8f7047eb3b6d",
+    "ciRun": 38965788964,
+    "pages": "published successfully, existing page layout preserved",
+    "taskMigration": "not applied to production",
+    "pagesRun": 38966198664
+  },
+  "evaluationEndpoint": "disabled, JWT verification enabled, 410 handler",
+  "newPaidServices": false,
+  "productionOrderWrites": false,
+  "nextMajorMigration": "personal snapshot to team data; approval required"
+}

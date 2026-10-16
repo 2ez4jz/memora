@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-16T21:01:49.356Z",
+  "productionBusinessWrites": false,
+  "results": [
+    {
+      "path": "/api/status",
+      "status": 200,
+      "output": {
+        "configured": true,
+        "model": "gpt-6-sol",
+        "storage": true,
+        "signedIn": false,
+        "release": "memora-v3-rc1"
+      }
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "output": {
+        "html": true,
+        "hasV3Footer": true,
+        "hasCRM": true
+      }
+    },
+    {
+      "path": "/api/crm",
+      "status": 401,
+      "output": {
+        "error": "请登录后使用 CRM / Sign in to use CRM"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "status": 200,
+      "output": {
+        "answer": "已为 Alex Chen（c0）生成内部任务确认卡：**“确认需求”**，到期日 **2026-10-20**。目前待确认，**尚未保存或执行**。",
+        "proposals": [
+          {
+            "id": "1df99390-55f8-40f8-b83f-ded033694181",
+            "action": "create_task",
+            "payload": {
+              "customerId": "c0",
+              "title": "确认需求",
+              "dueDate": "2026-10-20"
+            },
+            "customerName": "Alex Chen",
+            "status": "pending"
+          }
+        ],
+        "model": "gpt-6-sol"
+      }
+    },
+    {
+      "path": "/api/crm-after",
+      "status": 401,
+      "output": {
+        "error": "请登录后使用 CRM / Sign in to use CRM"
+      }
+    }
+  ]
+}
