@@ -1,3 +1,4 @@
+import {csvRows} from './csv-parser.mjs';
 // Framework-neutral CRM rules. No network, storage, model calls or business side effects.
 export const CRM_VERSION = '3.0-rc1';
 export const industryTemplates = Object.freeze({
@@ -77,11 +78,8 @@ export function dailyDigest(db,today=businessDate()) {
 export const csvCell=v=>'"'+String(v??'').replace(/^[\s\u0000-\u001f]*[=+@-]/,m=>"'"+m).replaceAll('"','""')+'"';
 export function parseCSV(source,{maxRows=1000}={}) {
   if(typeof source!=='string'||source.length>1000000)throw Error('CSV too large');
-  const rows=[];let row=[],cell='',quoted=false;
-  for(let i=0;i<source.length;i++){const c=source[i];if(c==='"'){if(quoted&&source[i+1]==='"'){cell+='"';i++;}else if(quoted)quoted=false;else if(!cell)quoted=true;else throw Error('Invalid CSV quote');}
-    else if(!quoted&&(c===','||c==='\n'||c==='\r')){row.push(cell);cell='';if(c!==','){if(c==='\r'&&source[i+1]==='\n')i++;if(row.some(x=>x.trim()))rows.push(row);row=[];if(rows.length>maxRows+1)throw Error('Too many CSV rows');}}else cell+=c;}
-  if(quoted)throw Error('Unclosed CSV quote');row.push(cell);if(row.some(x=>x.trim()))rows.push(row);
-  if(rows.length>maxRows+1)throw Error('Too many CSV rows');
+  if(!Number.isInteger(maxRows)||maxRows<0||maxRows>10000)throw Error('Invalid CSV row limit');
+  const rows=csvRows(source,maxRows);
   if(!rows.length)return [];
   const headers=rows.shift().map(s=>s.replace(/^\ufeff/,'').trim());if(new Set(headers).size!==headers.length||headers.some(h=>!h||['__proto__','constructor','prototype'].includes(h)))throw Error('Invalid or duplicate CSV headers');
   return rows.map((r,i)=>{if(r.length!==headers.length)throw Error('CSV column mismatch on row '+(i+2));return Object.fromEntries(headers.map((h,j)=>[h,r[j]]));});

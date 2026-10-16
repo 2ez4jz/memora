@@ -9,6 +9,20 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
 mkdirSync('qa-screens',{recursive:true});
 try{for(const width of [390,768,1440]){const page=await browser.newPage({viewport:{width,height:900}});page.on('pageerror',e=>errors.push(e.message));await page.goto('http://127.0.0.1:4174/?lang=zh#tasks');await page.waitForFunction(()=>cloudReady);await page.locator('#crm-task-form input[name=title]').fill('Browser QA '+width);await page.locator('#crm-task-form input[name=dueDate]').fill('2026-10-20');await page.locator('#crm-task-form button').click();await page.waitForFunction(()=>crmBusy===false&&db.crm?.tasks?.some(t=>t.title.startsWith('Browser QA')));await page.locator('#crm-task-form input[name=title]').fill('');
  for(const route of ['tasks','pipeline','workflows','quality']){await page.evaluate(r=>navigate(r),route);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width+' '+route);await page.screenshot({path:'qa-screens/'+width+'-'+route+'.png',fullPage:true});}
+ if(width===390){
+  await page.evaluate(()=>navigate('quality'));
+  const vehicleId=await page.evaluate(()=>db.vehicles.find(v=>!v.sold).id);
+  await page.locator('#crm-import').setInputFiles({name:'malformed.csv',mimeType:'text/csv',buffer:Buffer.from('name,vehicleId\n"Alex"trailing,'+vehicleId)});
+  await page.waitForFunction(()=>document.querySelector('#toast').textContent.includes('CSV'));
+  assert.equal(await page.evaluate(()=>importPreview),null,'invalid CSV never reaches preview');
+  const csv='name,email,vehicleId,notes\r\n"CSV Acceptance, Example",csv-acceptance@example.test,'+vehicleId+',"first\nsecond ""quoted"""';
+  await page.locator('#crm-import').setInputFiles({name:'valid.csv',mimeType:'text/csv',buffer:Buffer.from(csv)});
+  await page.waitForFunction(()=>importPreview?.rows?.length===1);
+  assert.equal(await page.evaluate(()=>importPreview.errors.length),0);
+  await page.locator('[data-crm-import]').click();
+  await page.waitForFunction(()=>!crmBusy&&db.customers.some(c=>c.email==='csv-acceptance@example.test'));
+  assert.equal(await page.evaluate(()=>db.customers.find(c=>c.email==='csv-acceptance@example.test').notes),'first\nsecond "quoted"');
+ }
  await page.evaluate(()=>navigate('workflows'));await page.locator('[data-crm-run]').click();await page.waitForFunction(()=>!crmBusy&&db.crm?.runs?.length>0);const count=await page.evaluate(()=>db.crm.tasks.length);await page.locator('[data-crm-run]').click();await page.waitForFunction(()=>!crmBusy);assert.equal(await page.evaluate(()=>db.crm.tasks.length),count,'workflow duplicate');
  await page.evaluate(()=>navigate('pipeline'));await page.locator('.crm-deal').first().click();await page.locator('#crm-customer-form input[name=email]').fill('browser-qa@example.test');await page.locator('#crm-customer-form button').click();await page.waitForFunction(()=>!crmBusy&&db.customers.some(c=>c.email==='browser-qa@example.test'));assert(await page.locator('.crm-profile .timelineitem').count()>0);await page.locator('#closedetail').click();await page.close();}
  const fresh=await browser.newPage({viewport:{width:390,height:900},extraHTTPHeaders:{'x-qa-owner':'fresh-owner'}});await fresh.goto('http://127.0.0.1:4174/?lang=zh#tasks');await fresh.waitForFunction(()=>cloudReady&&cloudRevision>0);await fresh.locator('#crm-task-form input[name=title]').fill('First task in a new workspace');await fresh.locator('#crm-task-form button').click();await fresh.waitForFunction(()=>!crmBusy&&db.crm?.tasks?.length===1);await fresh.close();

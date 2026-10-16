@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "playwright": "1.61.1"
+  },
+  "dependencies": {
+    "papaparse": "5.7.0"
   }
 }
