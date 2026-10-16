@@ -40,9 +40,9 @@ export function customerTimeline(db,customerId) {
   return events.sort((a,b)=>(b.date||'').localeCompare(a.date||'')||a.id.localeCompare(b.id));
 }
 export function crmState(db){return {tasks:[],runs:[],fields:[],...db.crm};}
-export function workflowCandidates(db,{today=businessDate(),staleDays=14}={}) {
+export function workflowCandidates(db,{today=businessDate(),staleDays=14,industry='dealer'}={}) {
   if(!validISODate(today)||!Number.isInteger(staleDays)||staleDays<1||staleDays>365)throw Error('Invalid workflow scope');
-  const result=[],terminal=new Set(industryTemplates.dealer.terminal);
+  const result=[],terminal=new Set((industryTemplates[industry]||industryTemplates.dealer).terminal);
   for(const c of db.customers){
     if(terminal.has(c.stage))continue;
     if(validISODate(c.followUp)&&c.followUp<=today)result.push({key:'followup:'+c.id+':'+c.followUp,rule:'followup_due',customerId:c.id,dueDate:c.followUp,title:'跟进客户 · '+c.name,reason:'已记录的跟进日期已到',evidence:{followUp:c.followUp,stage:c.stage}});

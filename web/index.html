@@ -11,7 +11,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const day=n=>{const d=new Date(TODAY+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
 const age=d=>Math.round((new Date(TODAY+'T12:00:00Z')-new Date(d+'T12:00:00Z'))/86400000);
 const dateLabel=d=>new Date(d+'T12:00:00Z').toLocaleDateString('zh-CN',{month:'short',day:'numeric',timeZone:'UTC'});
-const stages=['New lead','Contacted','Appointment','Test drive','Negotiation','Sold'];
+let stages=['New lead','Contacted','Appointment','Test drive','Negotiation','Sold'];
 
 const labels={'vehicleModel':'车型','vehicleMake':'车辆品牌','vehicleType':'车身类型','owner':'负责销售','source':'客户来源','reason':'客户顾虑','stage':'销售阶段','type':'车身类型','date':'日期','color':'颜色','make':'品牌','model':'车型','All':'全部','Due today':'今日待跟进','New lead':'新线索','Contacted':'已联系','Appointment':'已预约','Test drive':'已试驾','Negotiation':'洽谈中','Sold':'已成交','SUV':'SUV','Sedan':'轿车','Truck':'皮卡','Wagon':'旅行车','Hatchback':'两厢车','30+ days':'在库30天以上','AWD':'全轮驱动','FWD':'前轮驱动','4WD':'四轮驱动','Grey':'灰色','Black':'黑色','White':'白色','Red':'红色','Silver':'银色','Blue':'蓝色','Green':'绿色','Not white':'不要白色','Flexible':'颜色不限','None':'无','Referral':'转介绍','Website':'网站','Walk-in':'到店咨询','Phone':'电话','Message':'消息','Sales note':'销售记录','Price':'价格偏高','Monthly payment':'月供超预算','Interior preference':'内饰偏好','Trade-in value':'置换估值','Timing':'购车时机','Not recorded':'未记录顾虑','Facebook Marketplace':'Facebook 交易平台'};
 const label=s=>labels[s]||s;

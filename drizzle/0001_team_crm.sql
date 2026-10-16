@@ -29,3 +29,5 @@ CREATE TABLE crm_files (workspace_id TEXT NOT NULL, id TEXT NOT NULL, customer_i
 CREATE INDEX crm_files_customer ON crm_files(workspace_id,customer_id,status);
 --> statement-breakpoint
 CREATE TABLE crm_join_requests (workspace_id TEXT NOT NULL, user_id TEXT NOT NULL, display_name TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'pending', updated TEXT NOT NULL, PRIMARY KEY(workspace_id,user_id));
+--> statement-breakpoint
+CREATE TABLE crm_scheduler_runs (id TEXT PRIMARY KEY NOT NULL, started TEXT NOT NULL, finished TEXT NOT NULL, checked INTEGER NOT NULL, results TEXT NOT NULL);
