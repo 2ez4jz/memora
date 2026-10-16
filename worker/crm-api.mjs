@@ -15,6 +15,7 @@ export function applyCRMCommand(data,action,payload,{today=businessDate()}={}) {
       if(key==='stage'&&(!crmStages.includes(value)||(value==='Sold'&&!next.sales.some(s=>s.customerId===c.id))||(c.stage==='Sold'&&value!=='Sold')))throw Error('成交阶段须与成交记录一致 / Sale record required');
       if(key==='followUp'&&value!==null&&!validISODate(value))throw Error('跟进日期无效 / Invalid follow-up date');
       if(key==='budget'&&value!==null&&(typeof value!=='number'||!Number.isFinite(value)||value<0||value>1000000))throw Error('预算无效 / Invalid budget');
+      if(key==='email'&&value&&(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())))throw Error('邮箱格式无效 / Invalid email');
       if(['email','phone','notes'].includes(key)&&(typeof value!=='string'||value.length>(key==='notes'?3000:200)))throw Error('文字字段过长 / Text is too long');
       if(key==='custom'){
         if(!value||Array.isArray(value)||typeof value!=='object')throw Error('自定义字段无效 / Invalid custom fields');

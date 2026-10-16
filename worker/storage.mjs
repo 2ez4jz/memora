@@ -25,7 +25,7 @@ export async function storageAPI(request,env,body){
   const log=env.DB.prepare('INSERT INTO memora_audit(id,owner,memory_id,action,snapshot,created) SELECT ?,?,?,?,?,? WHERE changes()=1').bind(crypto.randomUUID(),owner,'workspace','crm.workspace_save',JSON.stringify({changes:changes.slice(0,100),changedCount:changes.length,beforeRevision:expected,afterRevision:expected+1}),now);
   r=(await env.DB.batch([r,log]))[0];
   if(!r.meta.changes)return {status:409,body:{error:'数据版本冲突，请刷新。'}};
-  return {body:{revision:expected+1,updated:now}};
+  return {body:{revision:expected+1,updated:now,customerVersions:Object.fromEntries(guarded.data.customers.map(c=>[c.id,c.crmVersion||0]))}};
  }
  if(path==='/api/memories'){
   if(request.method==='GET'){
