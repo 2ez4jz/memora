@@ -1,0 +1,22 @@
+{
+  "groups": 50,
+  "rawRequests": 253,
+  "versions": {
+    "baseline": {
+      "turns": 100,
+      "http200": 100,
+      "contractPassed": 96
+    },
+    "candidate": {
+      "turns": 100,
+      "http200": 100,
+      "contractPassed": 100
+    }
+  },
+  "manualFixes": [
+    "M12",
+    "M13"
+  ],
+  "humanNaturalnessScore": null,
+  "crossDayPersistence": "unverified"
+}

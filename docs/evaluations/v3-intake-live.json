@@ -1,0 +1,98 @@
+{
+  "fictionalOnly": true,
+  "results": [
+    {
+      "raw": "Alex wants a follow-up next week but has not decided which day.",
+      "expect": null,
+      "status": 200,
+      "output": {
+        "warnings": [
+          "跟进日期未确定，请选择具体日期 / Choose a specific follow-up date"
+        ],
+        "customerId": "c0",
+        "raw": "Alex wants a follow-up next week but has not decided which day.",
+        "vehicleId": "v0",
+        "payment": 600,
+        "tradeValue": 8000,
+        "followUp": null,
+        "stage": "Test drive",
+        "reason": "Price",
+        "model": "gpt-6-sol",
+        "usage": {
+          "input_tokens": 2863,
+          "input_tokens_details": {
+            "cache_write_tokens": 2860,
+            "cached_tokens": 0
+          },
+          "output_tokens": 815,
+          "output_tokens_details": {
+            "reasoning_tokens": 772
+          },
+          "total_tokens": 3678
+        }
+      },
+      "passed": true
+    },
+    {
+      "raw": "Alex wants us to follow up tomorrow.",
+      "expect": "2026-10-17",
+      "status": 200,
+      "output": {
+        "warnings": [],
+        "customerId": "c0",
+        "raw": "Alex wants us to follow up tomorrow.",
+        "vehicleId": "v0",
+        "payment": 600,
+        "tradeValue": 8000,
+        "followUp": "2026-10-17",
+        "stage": "Test drive",
+        "reason": "Price",
+        "model": "gpt-6-sol",
+        "usage": {
+          "input_tokens": 2857,
+          "input_tokens_details": {
+            "cache_write_tokens": 2854,
+            "cached_tokens": 0
+          },
+          "output_tokens": 207,
+          "output_tokens_details": {
+            "reasoning_tokens": 159
+          },
+          "total_tokens": 3064
+        }
+      },
+      "passed": true
+    },
+    {
+      "raw": "Alex plans a test drive tomorrow but has not driven the car yet.",
+      "expect": "2026-10-17",
+      "forbidStage": "Test drive",
+      "status": 200,
+      "output": {
+        "warnings": [],
+        "customerId": "c0",
+        "raw": "Alex plans a test drive tomorrow but has not driven the car yet.",
+        "vehicleId": "v0",
+        "payment": null,
+        "tradeValue": null,
+        "followUp": "2026-10-17",
+        "stage": "Negotiation",
+        "reason": "Not recorded",
+        "model": "gpt-6-sol",
+        "usage": {
+          "input_tokens": 2863,
+          "input_tokens_details": {
+            "cache_write_tokens": 2860,
+            "cached_tokens": 0
+          },
+          "output_tokens": 429,
+          "output_tokens_details": {
+            "reasoning_tokens": 384
+          },
+          "total_tokens": 3292
+        }
+      },
+      "passed": true
+    }
+  ]
+}

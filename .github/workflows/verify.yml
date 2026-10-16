@@ -1,0 +1,26 @@
+name: Verify MEMORA CRM
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  crm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install Chinese fonts
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+      - run: npm ci
+      - run: npm test
+      - run: node scripts/crm-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: memora-v3-browser
+          path: qa-screens/

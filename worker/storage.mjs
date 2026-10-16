@@ -10,14 +10,22 @@ export async function storageAPI(request,env,body){
   }
   const payload=body?.payload;
   if(!payload||!Array.isArray(payload.chat)||payload.chat.length>120||!payload.data||JSON.stringify(payload).length>1500000)return {status:400,body:{error:'工作区数据无效或过大。'}};
-  const old=await env.DB.prepare('SELECT revision FROM memora_workspace WHERE owner=?').bind(owner).first();
+  const old=await env.DB.prepare('SELECT payload, revision FROM memora_workspace WHERE owner=?').bind(owner).first();
   const expected=Number(body.revision);
   if((old?.revision||0)!==expected)return {status:409,body:{error:'其他设备已更新数据，请刷新后重试。'}};
-  const value=JSON.stringify(payload);let r;
-  if(old)r=await env.DB.prepare('UPDATE memora_workspace SET payload=?, revision=revision+1, updated=? WHERE owner=? AND revision=?').bind(value,now,owner,expected).run();
-  else r=await env.DB.prepare('INSERT OR IGNORE INTO memora_workspace(owner,payload,revision,updated) VALUES(?,?,1,?)').bind(owner,value,now).run();
+  const previous=old?JSON.parse(old.payload):null;
+  // CRM workflow/field state has one command path; whole-workspace saves cannot reset it.
+  const guarded=structuredClone(payload),prior=previous?.data;
+  guarded.data.crm=prior?.crm||{tasks:[],runs:[],fields:[]};
+  const changes=[];
+  for(const c of guarded.data.customers){const p=prior?.customers?.find(x=>x.id===c.id);if(p){for(const key of ['email','phone','custom']){if(p[key]===undefined)delete c[key];else c[key]=p[key];}c.crmVersion=p.crmVersion||0;const keys=['name','stage','vehicleId','budget','followUp','lastContact','notes'];if(keys.some(k=>JSON.stringify(c[k])!==JSON.stringify(p[k]))){changes.push({id:c.id,before:Object.fromEntries(keys.map(k=>[k,p[k]])),after:Object.fromEntries(keys.map(k=>[k,c[k]]))});c.crmVersion++;}}else{c.crmVersion=0;changes.push({id:c.id,type:'created'});}}
+  const value=JSON.stringify(guarded);let r;
+  if(old)r=env.DB.prepare('UPDATE memora_workspace SET payload=?, revision=revision+1, updated=? WHERE owner=? AND revision=?').bind(value,now,owner,expected);
+  else r=env.DB.prepare('INSERT OR IGNORE INTO memora_workspace(owner,payload,revision,updated) VALUES(?,?,1,?)').bind(owner,value,now);
+  const log=env.DB.prepare('INSERT INTO memora_audit(id,owner,memory_id,action,snapshot,created) SELECT ?,?,?,?,?,? WHERE changes()=1').bind(crypto.randomUUID(),owner,'workspace','crm.workspace_save',JSON.stringify({changes:changes.slice(0,100),changedCount:changes.length,beforeRevision:expected,afterRevision:expected+1}),now);
+  r=(await env.DB.batch([r,log]))[0];
   if(!r.meta.changes)return {status:409,body:{error:'数据版本冲突，请刷新。'}};
-  return {body:{revision:expected+1,updated:now}};
+  return {body:{revision:expected+1,updated:now,customerVersions:Object.fromEntries(guarded.data.customers.map(c=>[c.id,c.crmVersion||0]))}};
  }
  if(path==='/api/memories'){
   if(request.method==='GET'){
@@ -44,4 +52,15 @@ export async function storageAPI(request,env,body){
 export async function activeMemories(request,env){
  const owner=request.headers.get('oai-authenticated-user-id');if(!owner||!env.DB)return [];
  const result=await env.DB.prepare("SELECT id,content,version FROM memora_memory WHERE owner=? AND status='active' ORDER BY updated DESC LIMIT 20").bind(owner).all();return result.results;
+}
+
+// Browser history cannot certify that an AI card was actually executed.
+export async function verifiedProposalHistory(request,env,history){
+ const owner=request.headers.get('oai-authenticated-user-id');
+ const messages=Array.isArray(history)?history.slice(-20):[];
+ const ids=[...new Set(messages.flatMap(m=>Array.isArray(m.proposals)?m.proposals.slice(0,8).map(p=>p?.id).filter(id=>typeof id==='string'&&id.length<=100):[]))].slice(0,80);
+ const receipts=new Map();
+ if(owner&&env.DB&&ids.length){const rows=await env.DB.prepare("SELECT id,snapshot FROM memora_audit WHERE owner=? AND action LIKE 'crm.%' AND id IN ("+ids.map(()=>'?').join(',')+")").bind(owner,...ids).all();for(const row of rows.results){const snapshot=JSON.parse(row.snapshot);if(snapshot.command)receipts.set(row.id,JSON.parse(snapshot.command));}}
+ const stable=value=>JSON.stringify(value,(_k,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x);
+ return messages.map(m=>({...m,proposals:Array.isArray(m.proposals)?m.proposals.slice(0,8).filter(p=>p&&typeof p==='object').map(p=>{const receipt=receipts.get(p.id);return {...p,saved:!!receipt&&receipt.action===p.action&&stable(receipt.payload)===stable(p.payload)};}):[]}));
 }
