@@ -1,0 +1,417 @@
+[
+  {
+    "question": "按销售员画今年成交收入柱状图。",
+    "status": 200,
+    "seconds": 11.81,
+    "response": {
+      "answer": "今年截至 10 月 16 日，按销售员统计的成交收入如下：Daniel：CAD 848,600；Priya：CAD 838,400；Jason：CAD 614,200。合计 CAD 2,301,200。",
+      "chart": {
+        "id": "q1",
+        "title": "owner",
+        "metric": "sum",
+        "unit": "CAD",
+        "data": [
+          {
+            "label": "Daniel",
+            "value": 848600,
+            "sampleSize": 25
+          },
+          {
+            "label": "Priya",
+            "value": 838400,
+            "sampleSize": 24
+          },
+          {
+            "label": "Jason",
+            "value": 614200,
+            "sampleSize": 18
+          }
+        ],
+        "total": 2301200,
+        "partial": false,
+        "type": "bar"
+      },
+      "customerIds": [],
+      "sourceNote": "虚构演示浏览器快照；按成交日期统计 2026-01-01 至 2026-10-16 的成交价，非到账金额。",
+      "queries": [
+        {
+          "entity": "sales",
+          "count": 67,
+          "queryId": "q1"
+        }
+      ],
+      "sources": [
+        {
+          "queryId": "q1",
+          "entity": "sales",
+          "count": 67,
+          "metric": "sum",
+          "groupBy": "owner",
+          "valueField": "price",
+          "chartId": "q1",
+          "chart": {
+            "id": "q1",
+            "title": "owner",
+            "metric": "sum",
+            "unit": "CAD",
+            "data": [
+              {
+                "label": "Daniel",
+                "value": 848600,
+                "sampleSize": 25
+              },
+              {
+                "label": "Priya",
+                "value": 838400,
+                "sampleSize": 24
+              },
+              {
+                "label": "Jason",
+                "value": 614200,
+                "sampleSize": 18
+              }
+            ],
+            "total": 2301200,
+            "partial": false
+          },
+          "rows": [
+            {
+              "label": "Daniel",
+              "value": 848600,
+              "sampleSize": 25
+            },
+            {
+              "label": "Priya",
+              "value": 838400,
+              "sampleSize": 24
+            },
+            {
+              "label": "Jason",
+              "value": 614200,
+              "sampleSize": 18
+            }
+          ]
+        }
+      ],
+      "skills": [
+        "finance"
+      ],
+      "usage": {
+        "input_tokens": 8188,
+        "output_tokens": 224
+      },
+      "model": "gpt-6-sol"
+    }
+  },
+  {
+    "question": "改成平均成交价，附样本数。",
+    "status": 200,
+    "seconds": 12.69,
+    "response": {
+      "answer": "已改为按销售员统计的**平均成交价**柱状图（括号内为成交样本数）：Priya CAD 34,933.33（24 笔）；Jason CAD 34,122.22（18 笔）；Daniel CAD 33,944.00（25 笔）。",
+      "chart": {
+        "id": "q1",
+        "title": "owner",
+        "metric": "average",
+        "unit": "CAD",
+        "data": [
+          {
+            "label": "Priya",
+            "value": 34933.33,
+            "sampleSize": 24
+          },
+          {
+            "label": "Jason",
+            "value": 34122.22,
+            "sampleSize": 18
+          },
+          {
+            "label": "Daniel",
+            "value": 33944,
+            "sampleSize": 25
+          }
+        ],
+        "total": null,
+        "partial": false,
+        "type": "bar"
+      },
+      "customerIds": [],
+      "sourceNote": "浏览器演示快照；按成交日期统计 2026-01-01 至 2026-10-16 的 67 笔销售。",
+      "queries": [
+        {
+          "entity": "sales",
+          "count": 67,
+          "queryId": "q1"
+        }
+      ],
+      "sources": [
+        {
+          "queryId": "q1",
+          "entity": "sales",
+          "count": 67,
+          "metric": "average",
+          "groupBy": "owner",
+          "valueField": "price",
+          "chartId": "q1",
+          "chart": {
+            "id": "q1",
+            "title": "owner",
+            "metric": "average",
+            "unit": "CAD",
+            "data": [
+              {
+                "label": "Priya",
+                "value": 34933.33,
+                "sampleSize": 24
+              },
+              {
+                "label": "Jason",
+                "value": 34122.22,
+                "sampleSize": 18
+              },
+              {
+                "label": "Daniel",
+                "value": 33944,
+                "sampleSize": 25
+              }
+            ],
+            "total": null,
+            "partial": false
+          },
+          "rows": [
+            {
+              "label": "Priya",
+              "value": 34933.33,
+              "sampleSize": 24
+            },
+            {
+              "label": "Jason",
+              "value": 34122.22,
+              "sampleSize": 18
+            },
+            {
+              "label": "Daniel",
+              "value": 33944,
+              "sampleSize": 25
+            }
+          ]
+        }
+      ],
+      "skills": [],
+      "usage": {
+        "input_tokens": 8197,
+        "output_tokens": 249
+      },
+      "model": "gpt-6-sol"
+    }
+  },
+  {
+    "question": "给今年每月成交收入柱状图。",
+    "status": 200,
+    "seconds": 11.52,
+    "response": {
+      "answer": "这是今年截至 10 月 16 日的**每月成交收入柱状图**。10 月仅统计至 16 日，不是完整月份。",
+      "chart": {
+        "id": "q1",
+        "title": "month",
+        "metric": "sum",
+        "unit": "CAD",
+        "data": [
+          {
+            "label": "2026-01",
+            "value": 203400,
+            "sampleSize": 6
+          },
+          {
+            "label": "2026-02",
+            "value": 243300,
+            "sampleSize": 7
+          },
+          {
+            "label": "2026-03",
+            "value": 126600,
+            "sampleSize": 4
+          },
+          {
+            "label": "2026-04",
+            "value": 252300,
+            "sampleSize": 7
+          },
+          {
+            "label": "2026-05",
+            "value": 211400,
+            "sampleSize": 6
+          },
+          {
+            "label": "2026-06",
+            "value": 193400,
+            "sampleSize": 6
+          },
+          {
+            "label": "2026-07",
+            "value": 312100,
+            "sampleSize": 9
+          },
+          {
+            "label": "2026-08",
+            "value": 175500,
+            "sampleSize": 5
+          },
+          {
+            "label": "2026-09",
+            "value": 214300,
+            "sampleSize": 7
+          },
+          {
+            "label": "2026-10",
+            "value": 368900,
+            "sampleSize": 10
+          }
+        ],
+        "total": 2301200,
+        "partial": false,
+        "type": "bar"
+      },
+      "customerIds": [],
+      "sourceNote": "虚构演示浏览器快照；按成交日期统计 2026-01-01 至 2026-10-16，金额单位 CAD。",
+      "queries": [
+        {
+          "entity": "sales",
+          "count": 67,
+          "queryId": "q1"
+        }
+      ],
+      "sources": [
+        {
+          "queryId": "q1",
+          "entity": "sales",
+          "count": 67,
+          "metric": "sum",
+          "groupBy": "month",
+          "valueField": "price",
+          "chartId": "q1",
+          "chart": {
+            "id": "q1",
+            "title": "month",
+            "metric": "sum",
+            "unit": "CAD",
+            "data": [
+              {
+                "label": "2026-01",
+                "value": 203400,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-02",
+                "value": 243300,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-03",
+                "value": 126600,
+                "sampleSize": 4
+              },
+              {
+                "label": "2026-04",
+                "value": 252300,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-05",
+                "value": 211400,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-06",
+                "value": 193400,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-07",
+                "value": 312100,
+                "sampleSize": 9
+              },
+              {
+                "label": "2026-08",
+                "value": 175500,
+                "sampleSize": 5
+              },
+              {
+                "label": "2026-09",
+                "value": 214300,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-10",
+                "value": 368900,
+                "sampleSize": 10
+              }
+            ],
+            "total": 2301200,
+            "partial": false
+          },
+          "rows": [
+            {
+              "label": "2026-01",
+              "value": 203400,
+              "sampleSize": 6
+            },
+            {
+              "label": "2026-02",
+              "value": 243300,
+              "sampleSize": 7
+            },
+            {
+              "label": "2026-03",
+              "value": 126600,
+              "sampleSize": 4
+            },
+            {
+              "label": "2026-04",
+              "value": 252300,
+              "sampleSize": 7
+            },
+            {
+              "label": "2026-05",
+              "value": 211400,
+              "sampleSize": 6
+            },
+            {
+              "label": "2026-06",
+              "value": 193400,
+              "sampleSize": 6
+            },
+            {
+              "label": "2026-07",
+              "value": 312100,
+              "sampleSize": 9
+            },
+            {
+              "label": "2026-08",
+              "value": 175500,
+              "sampleSize": 5
+            },
+            {
+              "label": "2026-09",
+              "value": 214300,
+              "sampleSize": 7
+            },
+            {
+              "label": "2026-10",
+              "value": 368900,
+              "sampleSize": 10
+            }
+          ]
+        }
+      ],
+      "skills": [
+        "finance"
+      ],
+      "usage": {
+        "input_tokens": 8776,
+        "output_tokens": 209
+      },
+      "model": "gpt-6-sol"
+    }
+  }
+]

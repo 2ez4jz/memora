@@ -1,0 +1,218 @@
+[
+  {
+    "question": "今年截至今天与全部记录的成交收入相差多少？用工具计算。",
+    "status": 200,
+    "seconds": 11.79,
+    "response": {
+      "answer": "今年截至今天（2026 年 1 月 1 日至 10 月 16 日）的成交收入为 CAD 2,301,200；全部已记录历史的成交收入为 CAD 2,745,800。**相差 CAD 444,600**，即历史记录中今年以前的成交收入。",
+      "chart": null,
+      "customerIds": [],
+      "sourceNote": "虚构演示浏览器快照；按成交日期统计，全部历史为 2025-11-02 至 2026-10-16，差额由工具计算。",
+      "queries": [
+        {
+          "entity": "sales",
+          "count": 81,
+          "queryId": "q1"
+        },
+        {
+          "entity": "sales"
+        }
+      ],
+      "sources": [
+        {
+          "queryId": "q1",
+          "entity": "sales",
+          "count": 81,
+          "metric": "count",
+          "value": 81,
+          "rows": [
+            {
+              "id": "s144",
+              "customerId": "c144",
+              "vehicleId": "sold-s144",
+              "date": "2025-11-02",
+              "price": 32900,
+              "cost": 28700,
+              "owner": "Priya",
+              "vehicleModel": "RAV4",
+              "vehicleMake": "Toyota",
+              "vehicleType": "SUV",
+              "vehiclePrice": 32900,
+              "customerName": "Cameron Brown 144",
+              "source": "AutoTrader",
+              "customerCreated": "2025-11-02",
+              "profit": 4200
+            }
+          ],
+          "truncated": true
+        },
+        {
+          "entity": "sales",
+          "metric": "sum",
+          "valueField": "price",
+          "current": {
+            "from": "2025-11-02",
+            "to": "2026-10-16",
+            "count": 81,
+            "value": 2745800
+          },
+          "prior": {
+            "from": "2026-01-01",
+            "to": "2026-10-16",
+            "count": 67,
+            "value": 2301200
+          },
+          "difference": 444600,
+          "growthPercent": 19.32
+        }
+      ],
+      "skills": [
+        "finance"
+      ],
+      "usage": {
+        "input_tokens": 12382,
+        "output_tokens": 352
+      },
+      "model": "gpt-6-sol"
+    }
+  },
+  {
+    "question": "2020年比今年收入增长百分之几？基期为零怎么说？",
+    "status": 200,
+    "seconds": 14.9,
+    "response": {
+      "answer": "如果你是问**从 2020 年增长到今年**：2020 年没有记录到成交收入（CAD 0），今年截至 10 月 16 日为 CAD 2,301,200。由于基期为零，增长百分比**无法计算**，不能说“增长了多少百分之几”；可以说“增加了 CAD 2,301,200”。\n\n如果按字面问“**2020 年比今年**”：以今年为基期，2020 年的成交收入低 **100%**。两者比较方向不同，而且今年尚未结束。",
+      "chart": null,
+      "customerIds": [],
+      "sourceNote": "浏览器演示快照；按成交日期比较 2020 全年与 2026-01-01 至 2026-10-16，金额为 CAD。",
+      "queries": [
+        {
+          "entity": "sales"
+        },
+        {
+          "entity": "sales"
+        }
+      ],
+      "sources": [
+        {
+          "entity": "sales",
+          "metric": "sum",
+          "valueField": "price",
+          "current": {
+            "from": "2026-01-01",
+            "to": "2026-10-16",
+            "count": 67,
+            "value": 2301200
+          },
+          "prior": {
+            "from": "2020-01-01",
+            "to": "2020-12-31",
+            "count": 0,
+            "value": 0
+          },
+          "difference": 2301200,
+          "growthPercent": null
+        },
+        {
+          "entity": "sales",
+          "metric": "sum",
+          "valueField": "price",
+          "current": {
+            "from": "2020-01-01",
+            "to": "2020-12-31",
+            "count": 0,
+            "value": 0
+          },
+          "prior": {
+            "from": "2026-01-01",
+            "to": "2026-10-16",
+            "count": 67,
+            "value": 2301200
+          },
+          "difference": -2301200,
+          "growthPercent": -100
+        }
+      ],
+      "skills": [
+        "finance"
+      ],
+      "usage": {
+        "input_tokens": 12842,
+        "output_tokens": 558
+      },
+      "model": "gpt-6-sol"
+    }
+  },
+  {
+    "question": "记住以后报价前必须确认车况。现在长期生效了吗？",
+    "status": 200,
+    "seconds": 6.8,
+    "response": {
+      "answer": "这个对话里我会参考“报价前先确认车况”，但它**现在还没有长期生效**。要让它长期生效，请到「经营记忆」提出这条规则并点击确认。",
+      "chart": null,
+      "customerIds": [],
+      "sourceNote": "当前浏览器的演示数据快照",
+      "queries": [],
+      "sources": [],
+      "skills": [],
+      "usage": {
+        "input_tokens": 4057,
+        "output_tokens": 79
+      },
+      "model": "gpt-6-sol"
+    }
+  },
+  {
+    "question": "用English回答今年成交笔数。",
+    "status": 200,
+    "seconds": 8.84,
+    "response": {
+      "answer": "There have been 67 recorded sales this year through October 16, 2026.",
+      "chart": null,
+      "customerIds": [],
+      "sourceNote": "Fictional browser snapshot; sales dated January 1–October 16, 2026.",
+      "queries": [
+        {
+          "entity": "sales",
+          "count": 67,
+          "queryId": "q1"
+        }
+      ],
+      "sources": [
+        {
+          "queryId": "q1",
+          "entity": "sales",
+          "count": 67,
+          "metric": "count",
+          "value": 67,
+          "rows": [
+            {
+              "id": "s0",
+              "customerId": "c4",
+              "vehicleId": "sold-s0",
+              "date": "2026-10-15",
+              "price": 29900,
+              "cost": 26300,
+              "owner": "Priya",
+              "vehicleModel": "CX-5",
+              "vehicleMake": "Mazda",
+              "vehicleType": "SUV",
+              "vehiclePrice": 29900,
+              "customerName": "Sarah Patel",
+              "source": "AutoTrader",
+              "customerCreated": "2026-10-02",
+              "profit": 3600
+            }
+          ],
+          "truncated": true
+        }
+      ],
+      "skills": [],
+      "usage": {
+        "input_tokens": 8462,
+        "output_tokens": 151
+      },
+      "model": "gpt-6-sol"
+    }
+  }
+]

@@ -11,8 +11,8 @@
   const native = window.DEMO_NATIVE_TRANSLATIONS || {};
   const key = 'memora-demo-language';
   const query = new URLSearchParams(location.search).get('lang');
-  let language = query === 'zh' || query === 'en' ? query : 'en';
-  if (!query) { try { language = localStorage.getItem(key) === 'zh' ? 'zh' : 'en'; } catch {} }
+  let language = query === 'zh' || query === 'en' ? query : 'zh';
+  if (!query) { try { language = localStorage.getItem(key) === 'zh' ? 'zh' : 'zh'; } catch {} }
   const escape = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const keys = Object.keys(catalog).filter(Boolean).sort((a,b) => b.length-a.length);
   const pattern = new RegExp(keys.map(escape).join('|'), 'g');
@@ -82,7 +82,7 @@
       control.setAttribute('aria-label','Language / 语言');
       for (const [lang, label] of [['en','English'],['zh','中文']]) {
         const button = document.createElement('button');
-        button.type = 'button'; button.textContent = label; button.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        button.type = 'button'; button.textContent = label; button.lang = lang === 'zh' ? 'zh-CN' : 'zh';
         button.dataset.language = lang;
         button.addEventListener('click', () => setLanguage(lang));
         control.append(button);
@@ -101,7 +101,7 @@
   }
   function apply() {
     observer.disconnect();
-    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'zh';
     localize(document.documentElement);
     mount();
     observe();
@@ -114,6 +114,6 @@
     window.dispatchEvent(new CustomEvent('demo-language-change', {detail:{language:lang}}));
   }
   window.DemoI18n = {text,apply,setLanguage,get language(){return language},get locale(){return language==='zh'?'zh-CN':'en-CA'}};
-  document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+  document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'zh';
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',apply,{once:true}); else apply();
 })();

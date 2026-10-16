@@ -1,0 +1,26 @@
+✔ fresh dataset: 300 customers, coherent historical stock, 12 months (1.221228ms)
+✔ sales totals and acquisition-cost gross profit reconcile (0.765215ms)
+✔ period boundaries 2026-10-01 (0.269584ms)
+✔ period boundaries 2026-01-01 (0.205497ms)
+✔ period boundaries 2026-08-01 (0.157245ms)
+✔ period boundaries 2020-01-01 (0.219379ms)
+✔ average is not a summed total and has sample sizes (0.472257ms)
+✔ sales join customer source; unknown average is null (0.423163ms)
+✔ invalid date and broken associations rejected (4.248772ms)
+✔ persistent workspace isolation, revisions and concurrent conflict (7.267981ms)
+✔ memory pending -> confirm -> edit/reconfirm -> revoke and audit (3.033572ms)
+✔ iPhone MP4 bytes override incorrect cached webm MIME (0.976132ms)
+✔ HTTP API status, origin, method, content-type and size boundaries (5.581306ms)
+✔ bilingual prompt, previous turns, tool loop and figures (9.183009ms)
+✔ browser scripts compile; default Chinese and phone viewport styles present (4.087409ms)
+✔ all app views execute, references stay stable and sold units are hidden (56.645213ms)
+✔ period comparison uses exact values and no fabricated zero-base growth (1.592682ms)
+✔ monthly sales aggregate chronologically and reconcile totals (0.931964ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.962262

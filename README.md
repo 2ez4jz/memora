@@ -1,39 +1,30 @@
-# Memora · 二手车行记忆与 AI 助理
+# Memora · 客户记忆与 AI 助手
 
-默认英文、可切换中文的演示，包含 80 位虚构客户、18 辆车、160 条沟通记录与 8 笔成交。客户档案、库存、沟通历史与经营图表相互关联。数据仍保存在当前浏览器，不是共享数据库。
+现有演示站：https://memora-dealer-demo.museycyk.chatgpt.site/?lang=zh#assistant
 
-## OpenAI 接入
+公司官网：https://trymemora.ca 。公司首页的 CRM 按钮进入已连接 AI 的演示站；`demo.html` 保留独立离线演示。
 
-后端使用 Responses API，默认模型 `gpt-4.1-mini`，可通过服务端 `OPENAI_MODEL` 修改。API 密钥只能放在运行环境的秘密变量 `OPENAI_API_KEY` 中；不要放入 HTML、浏览器存储或 Git 仓库。
+默认中文，可切换 English。近12个月300条虚构客户记录、18辆当前库存、历史成交与沟通记录关联。旧浏览器修改保留，重置演示数据后使用新版种子。
 
-- `GET /api/status`：只返回是否已配置密钥及模型名称，不返回密钥。
-- `POST /api/chat`：接收当前演示数据快照、问题和最近六条对话。AI 通过只读 `query_memory` 工具查询客户、库存、沟通和成交记录。筛选、统计、收入及毛利润由代码计算；图表只使用真实工具结果，AI 不生成图表数字。
-- `POST /api/extract`：使用结构化输出提取意向车辆、月供、置换估值、跟进日期、销售阶段和顾虑；未提及字段保持空值，必须在页面检查并确认后才保存。
+## 本轮移植
 
-每次聊天最多四轮模型请求，最多八次查询；限制输入数据体积、记录数量与输出 token。客户端显示本次 token 用量。OpenAI 请求使用 `store: false`。错误会明确显示，不会悄悄换成演示回答。
+自然聊天及多轮查询、商业/财务/获客按需提示、按代码计算的金额与图表；独立 Dashboard 日期范围与三图；手机聊天布局；语音转写后编辑再提交；六位客户编号及成交CSV导出。
 
-尚未配置密钥时，页面明确显示“未配密钥”，保留离线规则演示。是否配置密钥不代表实时调用已经验证；真实测试还需要有效 API 账户和额度。ChatGPT 会员与 API 账单分别管理。
+通过 Sites 部署的 Worker 使用服务器 `OPENAI_API_KEY`，默认 `gpt-6-sol`，可用 `OPENAI_MODEL` 调整。已有线上密钥复用，代码不含密钥。音频转写模型为 `gpt-4o-mini-transcribe`。
 
-## 文件和构建
+D1 通过 `DB` 绑定保存工作区和对话，按 Sites 用户隔离。经营记忆提出后待确认，确认才用于后续回答；修改须重新确认，撤销不再检索，审计保留。没有团队共享角色系统。
 
-- `web/index.html`：Worker 演示界面源文件。
-- `i18n/catalog.js` / `i18n/runtime.js`：双语文案与展示层切换，不修改原始演示记录。
-- `worker/api.mjs`：服务端 API、查询工具及数据检查。
-- `scripts/build.mjs`：把页面和后端打包为 Cloudflare Worker。
-- `.env.example`：运行环境变量名称示例，不含真实密钥。
+GitHub Pages 不运行服务器 API，离线页面明确标注，并提供已连接演示入口；保持现有域名和邮件配置。
 
-构建：`node scripts/build.mjs`，输出 `dist/server/index.js`，导出 `fetch(request, env, ctx)`。
+## 开发
 
-GitHub 根目录的 `index.html` 是公司首页，`demo.html` 是可独立打开的 CRM 离线演示。GitHub Pages 本身不会运行此后端；真实 AI 需要部署 Worker 并配置服务端密钥。正式网站使用项目已绑定的 Sites 发布。
+`npm run build` 生成单文件 Worker；`npm test` 执行计算、SQL权限隔离、记忆生命周期、录音格式和界面脚本测试。
 
-## 演示口径
+- `web/index.html`：原有 CRM 页面和种子。
+- `web/upgrade.js` / `web/upgrade.css`：移植后的交互与手机界面。
+- `worker/api.mjs`：Responses API、只读查询、结构化录入和语音转写。
+- `worker/storage.mjs`：用户隔离、版本冲突和记忆审计。
+- `drizzle/`：D1 schema-only 迁移；运行时不建表。
+- [移植工作日志](docs/MEMORA_SCULP_PORT_2026-10-16.md)。
 
-固定日期为 2026 年 10 月 6 日，金额为加元。需求统计按沟通次数；阶段图是当前阶段分布；车辆毛利润仅扣除购入成本。仅有虚构内部记录，没有实时市场价格、外部数据、预测成交率或消息发送功能。语音输入仍使用浏览器语音识别。
-
-## 检查
-
-已用模拟 OpenAI 响应检查：工具调用循环、分组计算、饼图渲染、提取预览、无密钥提示、额度错误、数据关联和跨站请求拒绝。真实 OpenAI 调用需在配置密钥后验证。
-
-## 双语演示
-
-首次打开默认 English，顶部 English / 中文 按钮保存当前浏览器的语言偏好，也可用 `?lang=en` 或 `?lang=zh` 指定语言。客户备注、沟通示例、渠道、偏好与离线回答均提供双语展示。切换不重建页面，不改记录 ID、金额、日期、草稿或存储中的数据。Worker 构建会内嵌双语资源。线上 AI 动态回答由现有服务端提示词控制，本次没有修改或部署后端。
+成交收入不等于到账；车辆毛利只扣购入成本，不是净利润。虚构演示不提供市场估值或可靠成交预测。
