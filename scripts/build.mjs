@@ -8,11 +8,14 @@ for (const name of ['catalog','runtime']) {
 html=html.replace('<script>/* Presentation-only',()=>'<script>'+extraTranslations+'</script><script>/* Presentation-only');
 const portCSS=await readFile(new URL('../web/upgrade.css',import.meta.url),'utf8');
 html=html.replace('</style>',()=> '\n'+portCSS+'</style>');
-const crmBrowser=(await readFile(new URL('../worker/crm-core.mjs',import.meta.url),'utf8')).replaceAll('export ','');
-const upgrade=crmBrowser+'\n'+(await readFile(new URL('../web/audio-format.js',import.meta.url),'utf8')).replaceAll('export ','')+'\n'+await readFile(new URL('../web/upgrade.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/crm.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/team.js',import.meta.url),'utf8');
+const parserSource=await readFile(new URL('../node_modules/papaparse/papaparse.min.js',import.meta.url),'utf8');
+const parserRuntime='const csvParserRuntime=(()=>{const module={exports:{}};const exports=module.exports;const define=undefined;\n'+parserSource+'\nreturn module.exports;})();';
+const parserAdapter=(await readFile(new URL('../worker/csv-parser.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
+const crmBrowser=(await readFile(new URL('../worker/crm-core.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replaceAll('export ','');
+const upgrade=parserRuntime+'\n'+parserAdapter.replaceAll('export ','')+'\n'+crmBrowser+'\n'+(await readFile(new URL('../web/audio-format.js',import.meta.url),'utf8')).replaceAll('export ','')+'\n'+await readFile(new URL('../web/upgrade.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/crm.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/team.js',import.meta.url),'utf8');
 html=html.replace('/*UPGRADE_SCRIPT*/',()=>upgrade);
 let api=await readFile(new URL('../worker/api.mjs',import.meta.url),'utf8');
-const modules=[];for(const file of ['audio-format','skills','crm-core','crm-api','business-core','team-store','team-knowledge','team-files','team-jobs','storage']){modules.push((await readFile(new URL('../worker/'+file+'.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,''));}
+const modules=[parserRuntime,parserAdapter];for(const file of ['audio-format','skills','crm-core','crm-api','business-core','team-store','team-knowledge','team-files','team-jobs','storage']){modules.push((await readFile(new URL('../worker/'+file+'.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,''));}
 api=modules.join('\n')+'\n'+api.replace(/^import .*;\n/gm,'');
 await rm(new URL('../dist',import.meta.url),{recursive:true,force:true});
 await mkdir(new URL('../dist/server',import.meta.url),{recursive:true});
