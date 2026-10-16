@@ -1,4 +1,4 @@
-// SCULPY interaction patterns adapted for a dealership workspace.
+// Conversation, dashboard, voice and cloud workspace UI.
 labels.month='月份';
 let dashboardPeriod;try{dashboardPeriod=JSON.parse(localStorage.getItem('memora-period'))}catch{}
 dashboardPeriod ||= {from:'2025-10-17',to:TODAY};
