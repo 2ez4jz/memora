@@ -1,0 +1,245 @@
+{
+  "checks": [
+    {
+      "name": "Chinese nav 390",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 team",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 business",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 services",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 files",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 workflows",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 quality",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 390 assistant",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "Chinese nav 768",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 team",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 business",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 services",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 files",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 workflows",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 quality",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 768 assistant",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "Chinese nav 1440",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 team",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 business",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 services",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 files",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 workflows",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 quality",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "no overflow 1440 assistant",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "mobile menu opens",
+      "actual": "true",
+      "expected": "true",
+      "passed": true
+    },
+    {
+      "name": "business excludes seed customers",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "business excludes seed sales",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "partial payment cents",
+      "actual": 3000,
+      "expected": 3000,
+      "passed": true
+    },
+    {
+      "name": "invoice cents",
+      "actual": 11300,
+      "expected": 11300,
+      "passed": true
+    },
+    {
+      "name": "balance cents",
+      "actual": 8300,
+      "expected": 8300,
+      "passed": true
+    },
+    {
+      "name": "service state notification task",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "file correction",
+      "actual": "人工纠正",
+      "expected": "人工纠正",
+      "passed": true
+    },
+    {
+      "name": "shared memory scope",
+      "actual": "team",
+      "expected": "team",
+      "passed": true
+    },
+    {
+      "name": "background writer exercised",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "durable success readback",
+      "actual": "succeeded",
+      "expected": "succeeded",
+      "passed": true
+    },
+    {
+      "name": "viewer read",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "viewer finance redacted",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "viewer finance denied",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "cross-account denied",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "browser runtime errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "errors": []
+}

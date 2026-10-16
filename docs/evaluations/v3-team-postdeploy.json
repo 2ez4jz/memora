@@ -1,0 +1,95 @@
+{
+  "at": "2026-10-16T21:37:32.393Z",
+  "scope": "Published site using supported service access, not a signed-in visitor. Only scheduler health metadata written; no customer/order/payment data modified.",
+  "schedulerRun": {
+    "id": "c35ca7fd-80db-4e0a-abbc-a1314c7ad070",
+    "checked": 0,
+    "results": []
+  },
+  "checks": [
+    {
+      "name": "Published page",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Chinese navigation",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Mobile menu exists",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Release",
+      "actual": "memora-v3.0",
+      "expected": "memora-v3.0",
+      "passed": true
+    },
+    {
+      "name": "Existing model configured",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Service access has no visitor identity",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "/api/workspace requires identity",
+      "actual": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "/api/team requires identity",
+      "actual": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "/api/finance requires identity",
+      "actual": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "/api/files requires identity",
+      "actual": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "Unattended writer HTTP",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Unattended write persisted",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "No business workspace enrolled without consent",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Invalid JSON envelope",
+      "actual": 400,
+      "expected": 400,
+      "passed": true
+    }
+  ]
+}

@@ -1,4 +1,9 @@
-# Memora · 客户记忆与 AI 助手
+# MEMORA V3.0
+
+通用小团队业务工作区：客户、活动、任务、报价、发票、人工收款、服务、经营记忆和附件。中文优先，保留英文功能。演示与真实业务工作区独立保存。
+
+发布和验收说明见 [V3 最终报告](docs/V3_FINAL_REPORT_ZH.md)，[工作日志](docs/V3_WORKLOG.md)，[50 组多轮测试](docs/evaluations/v3-team/README.md)。
+
 
 现有演示站：https://memora-dealer-demo.museycyk.chatgpt.site/?lang=zh#assistant
 
