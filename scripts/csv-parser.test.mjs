@@ -23,6 +23,7 @@ test('CSV rejects excess rows, duplicate/prototype headers and mismatched column
 });
 test('built browser and Worker use the same parser without external runtime imports',()=>{
   const built=readFileSync(new URL('../dist/server/index.js',import.meta.url),'utf8'),page=JSON.parse(built.match(/^const PAGE=(.+);\n/)[1]);
+  assert(built.includes('Copyright (c) 2015 Matthew Holt'));
   assert(!built.includes("from 'papaparse'"));assert(!page.includes("from './csv-parser.mjs'"));
   const code=page.match(/<script>\n'use strict';([\s\S]*?)<\/script>/)[1];
   const begin=code.indexOf('const csvParserRuntime='),end=code.indexOf('// Conversation, dashboard, voice and cloud workspace UI.');

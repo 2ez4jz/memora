@@ -9,7 +9,8 @@ html=html.replace('<script>/* Presentation-only',()=>'<script>'+extraTranslation
 const portCSS=await readFile(new URL('../web/upgrade.css',import.meta.url),'utf8');
 html=html.replace('</style>',()=> '\n'+portCSS+'</style>');
 const parserSource=await readFile(new URL('../node_modules/papaparse/papaparse.min.js',import.meta.url),'utf8');
-const parserRuntime='const csvParserRuntime=(()=>{const module={exports:{}};const exports=module.exports;const define=undefined;\n'+parserSource+'\nreturn module.exports;})();';
+const parserLicense=await readFile(new URL('../LICENSES/csv-parser.txt',import.meta.url),'utf8');
+const parserRuntime='/*\n'+parserLicense+'\n*/\nconst csvParserRuntime=(()=>{const module={exports:{}};const exports=module.exports;const define=undefined;\n'+parserSource+'\nreturn module.exports;})();';
 const parserAdapter=(await readFile(new URL('../worker/csv-parser.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
 const crmBrowser=(await readFile(new URL('../worker/crm-core.mjs',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replaceAll('export ','');
 const upgrade=parserRuntime+'\n'+parserAdapter.replaceAll('export ','')+'\n'+crmBrowser+'\n'+(await readFile(new URL('../web/audio-format.js',import.meta.url),'utf8')).replaceAll('export ','')+'\n'+await readFile(new URL('../web/upgrade.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/crm.js',import.meta.url),'utf8')+'\n'+await readFile(new URL('../web/team.js',import.meta.url),'utf8');
