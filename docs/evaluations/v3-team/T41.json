@@ -1,0 +1,172 @@
+{
+  "id": "T41",
+  "name": "报价缺税",
+  "messages": [
+    "给Alex Chen（ID c0）报个价，金额和税率都没确定。",
+    "先不要猜金额或税率。"
+  ],
+  "check": "ambiguous",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）报个价，金额和税率都没确定。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6568,
+        "errors": [],
+        "output": {
+          "answer": "找到 Alex Chen（c0），意向车是 Toyota RAV4。档案中的车辆标价为 CAD 32,900，但**不能把标价当作已确定的报价**。请确认拟报金额、适用税率（或交易所在地），以及是否要计入置换和其他费用；确认前我无法给出含税总价，也不能替你发送报价。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "虚构演示浏览器快照；客户 c0，查询于 2026-10-16。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8776,
+            "output_tokens": 388
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先不要猜金额或税率。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1808,
+        "errors": [],
+        "output": {
+          "answer": "好的，不猜金额或税率。等你确定这两项后，我再帮你整理报价；目前不会计算含税总价或发送给客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4273,
+            "output_tokens": 69
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）报个价，金额和税率都没确定。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3273,
+        "errors": [],
+        "output": {
+          "answer": "可以。给 c0 报价前，请确认要报的车辆（车型或车辆 ID）、报价金额（CAD）和税率；这些我不能代填。信息齐全后，我会先生成待确认的报价草稿，不会直接发送。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4430,
+            "output_tokens": 158
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先不要猜金额或税率。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2708,
+        "errors": [],
+        "output": {
+          "answer": "好的，不会猜金额或税率，也不会生成报价草稿。等你确定车辆、报价金额（CAD）和税率后，我再准备待确认的报价卡片。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4503,
+            "output_tokens": 109
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

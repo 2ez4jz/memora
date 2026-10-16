@@ -1,0 +1,194 @@
+{
+  "id": "T19",
+  "name": "重复候选",
+  "messages": [
+    "检查重复客户候选。",
+    "同名就直接删除一份可以吗？先别操作。"
+  ],
+  "check": "duplicates",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "检查重复客户候选。",
+        "expected": {
+          "check": "duplicates",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3231,
+        "errors": [],
+        "output": {
+          "answer": "发现 1 组重复客户候选：c79 和 c80，邮箱同为 buyer80@example.com。建议核对两条客户记录后再决定是否合并；目前只是候选提示，未做合并。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c79",
+            "c80"
+          ],
+          "sourceNote": "来源：虚构演示的浏览器快照；重复候选仅供人工核对。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "fictional_demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": []
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8438,
+            "output_tokens": 127
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "同名就直接删除一份可以吗？先别操作。",
+        "expected": {
+          "check": "duplicates",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2716,
+        "errors": [],
+        "output": {
+          "answer": "不建议只凭同名就删除一份：不同客户可能同名，重复记录也可能各自有沟通、任务或成交历史。可以先核对邮箱、电话及时间线，再决定是否需要合并或清理。按你的要求，我不会操作。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4229,
+            "output_tokens": 91
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "检查重复客户候选。",
+        "expected": {
+          "check": "duplicates",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4085,
+        "errors": [],
+        "output": {
+          "answer": "发现 1 组重复客户候选：c79 和 c80 使用同一邮箱 buyer80@example.com。建议核对两人的资料与联系记录；目前只是待审核候选，未合并客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c79",
+            "c80"
+          ],
+          "sourceNote": "来源：CRM 重复候选检查；截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": []
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8956,
+            "output_tokens": 121
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "同名就直接删除一份可以吗？先别操作。",
+        "expected": {
+          "check": "duplicates",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3577,
+        "errors": [],
+        "output": {
+          "answer": "不建议仅凭同名就删除一份。不同客户可能同名；即使资料重复，两份记录也可能各有重要的沟通或交易历史。应先核对邮箱、电话及记录，再决定如何处理。你说了先别操作，我不会做任何更改。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4486,
+            "output_tokens": 95
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

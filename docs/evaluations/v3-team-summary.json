@@ -1,0 +1,12 @@
+{
+  "baseline": {
+    "turns": 100,
+    "passed": 95,
+    "failed": 5
+  },
+  "candidate": {
+    "turns": 100,
+    "passed": 100,
+    "failed": 0
+  }
+}

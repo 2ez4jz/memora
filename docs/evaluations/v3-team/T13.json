@@ -1,0 +1,356 @@
+{
+  "id": "T13",
+  "name": "渠道回报",
+  "messages": [
+    "查询哪个来源客户最多。",
+    "没有广告费用时能算广告ROI吗？"
+  ],
+  "check": "roi",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询哪个来源客户最多。",
+        "expected": {
+          "check": "roi",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3266,
+        "errors": [],
+        "output": {
+          "answer": "没有单一最多的来源：Facebook Marketplace、Referral、Website、Walk-in 和 AutoTrader 并列第一，各有 60 位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "浏览器快照；按全部已记录客户的来源统计。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Referral",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Website",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 60,
+                    "sampleSize": 60
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Referral",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Website",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 60,
+                  "sampleSize": 60
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8577,
+            "output_tokens": 123
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "没有广告费用时能算广告ROI吗？",
+        "expected": {
+          "check": "roi",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3538,
+        "errors": [],
+        "output": {
+          "answer": "不能可靠地算广告 ROI。缺少广告费用，就没有投入成本；即使知道某来源的客户数或成交额，也不能把它当作 ROI。建议先按渠道记录广告花费，并把成交与来源对应起来；还要明确用成交毛利还是其他收益口径，再计算。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "growth"
+          ],
+          "usage": {
+            "input_tokens": 4265,
+            "output_tokens": 98
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询哪个来源客户最多。",
+        "expected": {
+          "check": "roi",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7138,
+        "errors": [],
+        "output": {
+          "answer": "按客户人数统计，**今年截至 10 月 16 日，Referral（转介绍）最多，共 50 位**，Website 紧随其后，为 49 位。若看全部已记录历史，五个来源并列第一，各 60 位。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "客户记录；按创建日期统计，今年为 2026-01-01 至 2026-10-16，历史截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 243,
+              "queryId": "q1"
+            },
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 243,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Referral",
+                    "value": 50,
+                    "sampleSize": 50
+                  },
+                  {
+                    "label": "Website",
+                    "value": 49,
+                    "sampleSize": 49
+                  },
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 48,
+                    "sampleSize": 48
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 48,
+                    "sampleSize": 48
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 48,
+                    "sampleSize": 48
+                  }
+                ],
+                "total": 243,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Referral",
+                  "value": 50,
+                  "sampleSize": 50
+                },
+                {
+                  "label": "Website",
+                  "value": 49,
+                  "sampleSize": 49
+                },
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 48,
+                  "sampleSize": 48
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 48,
+                  "sampleSize": 48
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 48,
+                  "sampleSize": 48
+                }
+              ]
+            },
+            {
+              "queryId": "q2",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q2",
+              "chart": {
+                "id": "q2",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Referral",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Website",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 60,
+                    "sampleSize": 60
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Referral",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Website",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 60,
+                  "sampleSize": 60
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14169,
+            "output_tokens": 290
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "没有广告费用时能算广告ROI吗？",
+        "expected": {
+          "check": "roi",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2711,
+        "errors": [],
+        "output": {
+          "answer": "不能可靠地算广告 ROI。缺少广告费用，就没有投入额作为分母；而且成交收入也不能直接当利润。可以先记录各渠道的广告花费，并将同一批线索与对应成交、毛利按一致的观察窗口关联，再计算回报。现阶段可以看线索量或成交情况，但不要称为 ROI。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "growth"
+          ],
+          "usage": {
+            "input_tokens": 4551,
+            "output_tokens": 110
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

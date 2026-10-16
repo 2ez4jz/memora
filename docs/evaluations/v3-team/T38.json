@@ -1,0 +1,120 @@
+{
+  "id": "T38",
+  "name": "语音纠错",
+  "messages": [
+    "语音把15号识别成50号，我应该先检查什么？",
+    "你已经修改订单了吗？"
+  ],
+  "check": "chat",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "语音把15号识别成50号，我应该先检查什么？",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3434,
+        "errors": [],
+        "output": {
+          "answer": "先核对语音转写原文和上下文，确认“15号”指的是客户、车源编号，还是日期。再用姓名、车型或完整编号交叉核实；在确认前，别按“50号”更新记录或安排跟进。如果你把相关原话发我，我可以帮你判断哪里容易听错。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4166,
+            "output_tokens": 153
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "你已经修改订单了吗？",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2113,
+        "errors": [],
+        "output": {
+          "answer": "没有。我没有修改订单；刚才只是建议先核对“15号”和“50号”，没有执行任何写入操作。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4258,
+            "output_tokens": 60
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "语音把15号识别成50号，我应该先检查什么？",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3278,
+        "errors": [],
+        "output": {
+          "answer": "先核对原始语音和上下文，确认说的是“15号”还是“50号”，以及这个“号”指日期、车号还是客户编号。再检查转写记录有没有把同一句话里的车型、姓名等线索识别错。确认前，别按“50号”修改记录或安排事项。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4426,
+            "output_tokens": 154
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "你已经修改订单了吗？",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1958,
+        "errors": [],
+        "output": {
+          "answer": "没有。我没有修改订单，也没有提交任何更改；刚才只是建议先核对语音和上下文。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4515,
+            "output_tokens": 57
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

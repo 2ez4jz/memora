@@ -1,0 +1,288 @@
+{
+  "id": "T39",
+  "name": "服务建立",
+  "messages": [
+    "给Alex Chen（ID c0）建立内部服务“交车准备”，安排2026-10-22，先给卡片。",
+    "我还没确认，服务已经建好了吗？"
+  ],
+  "check": "service",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）建立内部服务“交车准备”，安排2026-10-22，先给卡片。",
+        "expected": {
+          "check": "service",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5861,
+        "errors": [
+          "expected review card create_service"
+        ],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成内部任务「交车准备」的待确认卡片，日期为 2026-10-22。**尚未保存**，请在卡片上确认。",
+          "proposals": [
+            {
+              "id": "ce204c4c-fc72-408c-bc56-8f772d04e847",
+              "action": "create_task",
+              "payload": {
+                "customerId": "c0",
+                "title": "交车准备",
+                "dueDate": "2026-10-22"
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户身份来自演示数据浏览器快照；任务仅为待确认草稿。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "ce204c4c-fc72-408c-bc56-8f772d04e847",
+                "action": "create_task",
+                "payload": {
+                  "customerId": "c0",
+                  "title": "交车准备",
+                  "dueDate": "2026-10-22"
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "requiresConfirmation": true,
+              "saved": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 13381,
+            "output_tokens": 274
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我还没确认，服务已经建好了吗？",
+        "expected": {
+          "check": "service",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2606,
+        "errors": [],
+        "output": {
+          "answer": "还没有。此前生成的是「交车准备」的待确认卡片，并非已建立的服务任务；你确认并保存后才会生效。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4295,
+            "output_tokens": 124
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）建立内部服务“交车准备”，安排2026-10-22，先给卡片。",
+        "expected": {
+          "check": "service",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6302,
+        "errors": [],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成内部服务「交车准备」的确认卡，安排在 2026-10-22。**尚未保存**，请核对卡片后确认。",
+          "proposals": [
+            {
+              "id": "8538d69a-5ab2-4170-b8fd-ea6e0da7ed9f",
+              "action": "create_service",
+              "payload": {
+                "customerId": "c0",
+                "title": "交车准备",
+                "scheduledDate": "2026-10-22"
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户档案及待确认服务草稿。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "8538d69a-5ab2-4170-b8fd-ea6e0da7ed9f",
+                "action": "create_service",
+                "payload": {
+                  "customerId": "c0",
+                  "title": "交车准备",
+                  "scheduledDate": "2026-10-22"
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "saved": false,
+              "requiresConfirmation": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14224,
+            "output_tokens": 321
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我还没确认，服务已经建好了吗？",
+        "expected": {
+          "check": "service",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2743,
+        "errors": [],
+        "output": {
+          "answer": "还没有。之前生成的是「交车准备」的待确认卡片，状态为 pending_confirmation；你确认前，内部服务不会保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4557,
+            "output_tokens": 104
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

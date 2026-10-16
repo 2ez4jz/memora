@@ -1,1 +1,1 @@
-{"version":"7","dialect":"sqlite","entries":[{"idx":0,"version":"6","when":1792124100000,"tag":"0000_memora","breakpoints":true}]}
+{"version": "7", "dialect": "sqlite", "entries": [{"idx": 0, "version": "6", "when": 1792124100000, "tag": "0000_memora", "breakpoints": true}, {"idx": 1, "version": "6", "when": 1792190000000, "tag": "0001_team_crm", "breakpoints": true}]}

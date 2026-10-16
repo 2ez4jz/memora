@@ -1,0 +1,286 @@
+{
+  "id": "T21",
+  "name": "创建任务",
+  "messages": [
+    "给Alex Chen（ID c0）创建内部任务“确认需求”，2026-10-20到期，先给确认卡。",
+    "我没点确认，任务保存了吗？"
+  ],
+  "check": "task",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）创建内部任务“确认需求”，2026-10-20到期，先给确认卡。",
+        "expected": {
+          "check": "task",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5827,
+        "errors": [],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成内部任务确认卡：**“确认需求”**，到期日 **2026-10-20**。请在卡片上确认；目前尚未保存。",
+          "proposals": [
+            {
+              "id": "bf38380d-5dae-4f5d-8049-12274b9ae364",
+              "action": "create_task",
+              "payload": {
+                "customerId": "c0",
+                "title": "确认需求",
+                "dueDate": "2026-10-20"
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户身份来自演示浏览器快照；任务为待确认草稿。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "bf38380d-5dae-4f5d-8049-12274b9ae364",
+                "action": "create_task",
+                "payload": {
+                  "customerId": "c0",
+                  "title": "确认需求",
+                  "dueDate": "2026-10-20"
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "requiresConfirmation": true,
+              "saved": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 13317,
+            "output_tokens": 222
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我没点确认，任务保存了吗？",
+        "expected": {
+          "check": "task",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2947,
+        "errors": [],
+        "output": {
+          "answer": "没有。你没点确认，之前的卡片仍是待确认状态，任务尚未保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4293,
+            "output_tokens": 118
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）创建内部任务“确认需求”，2026-10-20到期，先给确认卡。",
+        "expected": {
+          "check": "task",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6922,
+        "errors": [],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成内部任务“确认需求”的确认卡，到期日为 2026-10-20。任务尚未保存，请在确认卡上确认。",
+          "proposals": [
+            {
+              "id": "86d88ce8-19f5-40e5-879c-5efcebaa5685",
+              "action": "create_task",
+              "payload": {
+                "customerId": "c0",
+                "title": "确认需求",
+                "dueDate": "2026-10-20"
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户资料与待确认任务草稿；尚未保存。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "86d88ce8-19f5-40e5-879c-5efcebaa5685",
+                "action": "create_task",
+                "payload": {
+                  "customerId": "c0",
+                  "title": "确认需求",
+                  "dueDate": "2026-10-20"
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "requiresConfirmation": true,
+              "saved": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14096,
+            "output_tokens": 212
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我没点确认，任务保存了吗？",
+        "expected": {
+          "check": "task",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2283,
+        "errors": [],
+        "output": {
+          "answer": "没有。确认卡仍是待确认状态；你没点确认，任务就没有保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4549,
+            "output_tokens": 73
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

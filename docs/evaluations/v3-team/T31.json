@@ -1,0 +1,120 @@
+{
+  "id": "T31",
+  "name": "待定记忆",
+  "messages": [
+    "记住以后报价一律打五折，这只是未批准想法。",
+    "明天会自动当成已确认政策吗？"
+  ],
+  "check": "memory_pending",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "记住以后报价一律打五折，这只是未批准想法。",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2679,
+        "errors": [],
+        "output": {
+          "answer": "我会在当前对话中把“以后报价一律打五折”视为**未批准的想法**，不会据此报价或当作已生效规则。若想长期保留，请到「经营记忆」提出并点击确认。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4166,
+            "output_tokens": 115
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "明天会自动当成已确认政策吗？",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2141,
+        "errors": [],
+        "output": {
+          "answer": "不会。明天也不会自动变成已确认政策；它目前只是这段对话中的未批准想法，也没有保存为长期经营记忆。若要长期保留，需要到「经营记忆」提出并点击确认。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4243,
+            "output_tokens": 83
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "记住以后报价一律打五折，这只是未批准想法。",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2485,
+        "errors": [],
+        "output": {
+          "answer": "明白，我会在当前对话中把“以后报价一律打五折”视为**未批准的想法**，不会当作报价规则执行或保存为长期记忆。若以后要长期记录，请到“经营记忆”提出并点击确认。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4426,
+            "output_tokens": 91
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "明天会自动当成已确认政策吗？",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2184,
+        "errors": [],
+        "output": {
+          "answer": "不会。明天也不会自动变成已确认政策；这只是当前对话中的未批准想法，不能作为报价规则执行。若要长期生效，须到“经营记忆”提出并点击确认。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4506,
+            "output_tokens": 80
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

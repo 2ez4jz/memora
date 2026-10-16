@@ -1,0 +1,233 @@
+{
+  "id": "T07",
+  "name": "车辆毛利",
+  "messages": [
+    "查全部历史车辆毛利润。",
+    "可以当成公司净利润吗？"
+  ],
+  "check": "profit",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查全部历史车辆毛利润。",
+        "expected": {
+          "check": "profit",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5783,
+        "errors": [],
+        "output": {
+          "answer": "截至 2026 年 10 月 16 日，全部已记录成交的车辆毛利润合计为 **CAD 349,000**（81 笔）。这里的车辆毛利润是成交价减车辆购入成本，未扣整备、工资、佣金、租金或税费，不等于净利润。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；按成交日期统计截至 2026-10-16 的全部已记录成交。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 349000,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 8711,
+            "output_tokens": 239
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "可以当成公司净利润吗？",
+        "expected": {
+          "check": "profit",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3932,
+        "errors": [],
+        "output": {
+          "answer": "不能。车辆毛利润只计算成交价减车辆购入成本；还没扣除整备、工资、佣金、租金、税费等费用，所以不能当作公司净利润。快照也没有收付款和退款流水，不能据此判断实际到账金额。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 4318,
+            "output_tokens": 171
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查全部历史车辆毛利润。",
+        "expected": {
+          "check": "profit",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7171,
+        "errors": [],
+        "output": {
+          "answer": "全部已记录的 81 笔成交，车辆毛利润合计 **CAD 349,000**。这里的车辆毛利润仅指成交价减去车辆购入成本，未扣除整备、工资、佣金、租金或税费，不是净利润。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "截至 2026-10-16；已记录成交数据，按成交日期统计。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 349000,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 9218,
+            "output_tokens": 208
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "可以当成公司净利润吗？",
+        "expected": {
+          "check": "profit",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5712,
+        "errors": [],
+        "output": {
+          "answer": "不能。全部历史已记录成交的 **CAD 349,000** 是车辆毛利润（成交价减车辆购入成本），不是公司净利润。它还未扣除整备、工资、佣金、租金、税费等费用；也不能据此判断款项是否已到账。要算公司净利润，还需要完整的费用和其他收入记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "截至 2026-10-16；已记录的 81 笔成交，按成交日期统计。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 349000,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 9412,
+            "output_tokens": 268
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

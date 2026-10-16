@@ -1,27 +1,25 @@
-# Next release gate: MEMORA team CRM architecture
+# MEMORA V3 团队工作区迁移与恢复
 
-This proposal is reviewable but is not applied to production. The user's V3 authorization requires confirmation before a major architecture migration or sensitive permission changes.
+本次团队数据架构开发与分阶段发布已获授权。实际成员仍由工作区所有者审核，不自动邀请任何人，网站现有访问范围保持不变。
 
-## Current state and exact gap
+## 已实现
 
-The existing D1 workspace key is a Sites user ID. This enforces owner-private data but cannot represent a business with an owner, manager and multiple staff members. A browser role dropdown or a model's claim is not access control. Converting personal snapshots into shared enterprise records changes the trust boundary and must be staged separately.
+保留现有 Worker 与数据库，增加独立的工作区、成员、规范化业务记录、操作审计、个人会话、经营记忆、任务队列、附件元数据及加入申请表。所有记录按工作区键隔离，权限取自服务器上的当前有效成员记录。
 
-## Proposed target
+旧个人快照首次由其登录用户打开时，以事务复制到仅该用户拥有的演示工作区。原快照保持不变，完整原文、版本、SHA-256 与数量/金额清单一并归档。迁移后核对客户、产品、活动、成交、报价、发票、收款、服务数量及金额。新真实业务工作区从空白开始，不导入演示资料。
 
-Keep the existing Worker and D1 service. Add `crm_workspaces(id,name,industry,created_by)`, `crm_memberships(workspace_id,user_id,role,active,revision)` and normalized `crm_customers`, `crm_interactions`, `crm_tasks`, `crm_attachments` and `crm_commands` keyed by workspace ID. Roles: owner (membership and full business access), manager (business operations, no membership grants), staff (assigned customers/tasks and own attachments), viewer (explicit scoped reads). Every server query uses the verified Sites user ID and a current membership lookup. No role or workspace supplied by the model/client grants access.
+角色：所有者管理成员与设置；管理员处理业务与财务；员工只处理分配客户；只读成员查看非财务资料。停用、角色修改和重新分配在后续请求重新验证。旧权限版本不能确认新的修改。
 
-## Safe rollout
+## 隔离恢复验证
 
-1. Build and test the new tables and repository behind a disabled feature flag, including cross-workspace denial, inactive-member denial, staff financial redaction, reassignment and stale-approval tests.
-2. Obtain a D1 backup/export and record the existing live Site version. Rehearse restoration in an isolated test database. Do not include real data in public GitHub artifacts.
-3. Copy each existing personal snapshot to a new private workspace whose only member is the same owner. Verify counts, relationships, cents-based financial totals and attachments before any cutover. Do not overwrite or delete the original snapshot.
-4. Start read comparison with no shared member access. Enable the new read/write repository for the owner after acceptance, then freeze the old snapshot as rollback material.
-5. Add real team members only after the owner identifies recipients and confirms their roles; preserve the existing Site audience until that separate sensitive access decision.
+测试将工作区导出的记录、成员、会话、知识、操作、任务、附件元数据和原迁移归档恢复到新的独立数据库，并逐项比较业务记录及归档哈希。文件内容保存在私有对象存储，需通过已登录且有客户访问权限的下载接口另行备份。未把元数据恢复说成已恢复全部文件字节。
 
-## Rollback and risks
+## 生产回退
 
-Rollback disables the team-repository flag and returns to the untouched personal snapshot. Any writes after cutover must be exported and reconciled before rollback; blindly restoring old data would lose new work. Main risks are inconsistent dual writes, stale membership caches, exposing money/contact information to staff, and attachment URLs bypassing membership. No production schema conversion, team invitation, paid service, or audience change is included in the current candidate.
+先暂停业务写入，并由所有者导出当前团队工作区及附件。需要临时回到旧个人快照时，将服务端 `MEMORA_TEAM_MODE` 设为 `legacy_readonly`，保留新增表与全部审计；读取旧个人数据，拒绝业务写入。恢复新版前核对归档哈希并对照导出的团队记录。不要直接覆盖数据库或删除迁移表，不要把迁移后的新修改丢弃。
 
-## Approval needed
+恢复到此前的页面版本时也必须保留维护设置与数据表，避免旧版写入路径覆盖已归档状态。附加迁移不可反向删除；采用只读回退和后续修复迁移。
 
-Authorize development and staged rollout of this personal-to-team data architecture. The production cutover and actual team grants should follow the verified staging result and named role assignments. This is a separate gate from publishing the current fictional V3 candidate.
+## 仍需现场验收
+
+真实同事的首次登录、网站访问授权、加入申请和角色分配，需要实际人员在场完成。自动化测试使用独立数据库和合成身份；不等同于已经邀请或验证真实同事。实体手机麦克风和真实跨天会话也需人工验收。

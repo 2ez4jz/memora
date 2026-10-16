@@ -1,0 +1,312 @@
+{
+  "id": "T15",
+  "name": "发票总额",
+  "messages": [
+    "查询已经开票的金额。",
+    "含税金额和净利润有什么区别？"
+  ],
+  "check": "finance",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询已经开票的金额。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6145,
+        "errors": [],
+        "output": {
+          "answer": "目前无法查询“已开票金额”：这份浏览器快照有成交价，但没有发票状态或开票金额字段，不能把成交额当作已开票金额。你有发票记录可供核对吗？也请告诉我想查询的时间范围。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；已检查成交记录，未见开票字段。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "value": 81,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                },
+                {
+                  "id": "s1",
+                  "customerId": "c5",
+                  "vehicleId": "sold-s1",
+                  "date": "2026-10-13",
+                  "price": 44200,
+                  "cost": 39700,
+                  "owner": "Daniel",
+                  "month": "2026-10",
+                  "vehicleModel": "X3",
+                  "vehicleMake": "BMW",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 44700,
+                  "customerName": "Daniel Park",
+                  "source": "Facebook Marketplace",
+                  "customerCreated": "2026-10-01",
+                  "profit": 4500
+                },
+                {
+                  "id": "s2",
+                  "customerId": "c6",
+                  "vehicleId": "sold-s2",
+                  "date": "2026-10-11",
+                  "price": 29900,
+                  "cost": 26900,
+                  "owner": "Jason",
+                  "month": "2026-10",
+                  "vehicleModel": "CR-V",
+                  "vehicleMake": "Honda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 30900,
+                  "customerName": "Emily Wilson",
+                  "source": "Referral",
+                  "customerCreated": "2026-09-30",
+                  "profit": 3000
+                },
+                {
+                  "id": "s165",
+                  "customerId": "c165",
+                  "vehicleId": "sold-s165",
+                  "date": "2026-10-11",
+                  "price": 33900,
+                  "cost": 29300,
+                  "owner": "Daniel",
+                  "month": "2026-10",
+                  "vehicleModel": "Model 3",
+                  "vehicleMake": "Tesla",
+                  "vehicleType": "Sedan",
+                  "vehiclePrice": 33900,
+                  "customerName": "Taylor Brown 165",
+                  "source": "Facebook Marketplace",
+                  "customerCreated": "2026-01-04",
+                  "profit": 4600
+                },
+                {
+                  "id": "s3",
+                  "customerId": "c7",
+                  "vehicleId": "sold-s3",
+                  "date": "2026-10-09",
+                  "price": 46900,
+                  "cost": 41600,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Ryan Lee",
+                  "source": "Website",
+                  "customerCreated": "2026-09-29",
+                  "profit": 5300
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8951,
+            "output_tokens": 251
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "含税金额和净利润有什么区别？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3353,
+        "errors": [],
+        "output": {
+          "answer": "**含税金额**是交易金额加上适用税费后，买方需支付的总额；它不是利润。\n\n**净利润**是收入扣除车辆购入成本，以及整备、工资、佣金、租金等费用和相关税费后的剩余金额。销售税通常是代收代缴，不能直接算作收入。\n\n这份浏览器快照没有完整的税费、费用和收付款记录，因此不能据此算出含税金额或净利润。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 4309,
+            "output_tokens": 197
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询已经开票的金额。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3945,
+        "errors": [],
+        "output": {
+          "answer": "已开票金额共 **CAD 113.00**（含税，1 张发票）。其中人工登记收款 CAD 30.00，未结余额 CAD 83.00；登记收款不代表银行已到账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "截至 2026-10-16 的已登记发票与人工收款记录。",
+          "queries": [
+            {
+              "entity": "finance",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "finance",
+              "queryId": "q1",
+              "summary": {
+                "currency": "CAD",
+                "invoiceCount": 1,
+                "invoicedCents": 11300,
+                "receivedCents": 3000,
+                "outstandingCents": 8300,
+                "note": "发票与人工登记收款；不代表净利润或银行对账 / Invoices and manually recorded receipts"
+              },
+              "invoices": [
+                {
+                  "id": "df14f456-aacd-41fe-9ced-caf080841d8a",
+                  "customerId": "c0",
+                  "quoteId": "5a67525b-d5a1-4553-9300-2e1bfce2bcdb",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "issued",
+                  "issuedDate": "2026-10-16",
+                  "dueDate": "2026-10-25",
+                  "version": 2,
+                  "paidCents": 3000,
+                  "balanceCents": 8300
+                }
+              ],
+              "quotes": [
+                {
+                  "id": "5a67525b-d5a1-4553-9300-2e1bfce2bcdb",
+                  "customerId": "c0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "accepted",
+                  "expiresDate": null,
+                  "version": 1,
+                  "createdDate": "2026-10-16",
+                  "createdBy": "fixture"
+                }
+              ],
+              "payments": [
+                {
+                  "id": "d09aacd1-f55a-4893-b971-6b29606f8aa1",
+                  "customerId": "c0",
+                  "invoiceId": "df14f456-aacd-41fe-9ced-caf080841d8a",
+                  "currency": "CAD",
+                  "amountCents": 3000,
+                  "date": "2026-10-16",
+                  "reference": "FICTIONAL-RECEIPT",
+                  "status": "succeeded",
+                  "method": "other",
+                  "recordedBy": "fixture",
+                  "version": 1
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9332,
+            "output_tokens": 133
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "含税金额和净利润有什么区别？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3621,
+        "errors": [],
+        "output": {
+          "answer": "**含税金额**是发票向客户收取的总额，包含商品或服务价款和税；它不是利润。\n\n**净利润**是收入扣除相关成本、费用和税费后的经营结果。即使发票已开，含税金额也不能直接当作净利润；还需区分是否已收款。当前记录不足以据此算出净利润。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 4558,
+            "output_tokens": 170
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "id": "T01",
+  "name": "闲聊",
+  "messages": [
+    "今天很累，不想谈工作。",
+    "就陪我聊两句。"
+  ],
+  "check": "chat",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "今天很累，不想谈工作。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 8964,
+        "errors": [],
+        "output": {
+          "answer": "那就不谈工作。辛苦了，先歇一会儿吧。想随便聊聊，还是安静待着都可以。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4158,
+            "output_tokens": 64
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "就陪我聊两句。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3074,
+        "errors": [],
+        "output": {
+          "answer": "好呀，我在。今天先不用想该做什么，就让自己松一口气。你想聊点轻松的，还是我给你讲个无聊的小笑话？",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4207,
+            "output_tokens": 72
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "今天很累，不想谈工作。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2312,
+        "errors": [],
+        "output": {
+          "answer": "那就先不谈工作。辛苦了，今晚可以歇一歇。想随便聊聊，还是安静待会儿都好。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4418,
+            "output_tokens": 66
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "就陪我聊两句。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2801,
+        "errors": [],
+        "output": {
+          "answer": "好呀。我在这儿陪你聊聊。今天有没有一件小事，哪怕只是喝到一口好喝的东西，让你觉得还不错？",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4469,
+            "output_tokens": 67
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

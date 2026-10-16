@@ -1,0 +1,242 @@
+{
+  "id": "T14",
+  "name": "欠款事实",
+  "messages": [
+    "查询发票和已登记收款，说明未结余额。",
+    "能把成交收入减收款认定为欠款吗？"
+  ],
+  "check": "finance",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询发票和已登记收款，说明未结余额。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5492,
+        "errors": [],
+        "output": {
+          "answer": "目前无法核对未结余额：这份演示快照有成交记录，但没有发票或已登记收款明细。成交价不能直接当作发票金额，也不能据此推算已收款。\n\n请提供发票清单及对应的收款记录（含发票号、金额、收款金额和日期）；我才能逐张核对并说明未结余额。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "来源：虚构演示浏览器快照；已查看截至 2026-10-16 的成交记录，未获得发票及收款明细。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "value": 81,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8599,
+            "output_tokens": 319
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "能把成交收入减收款认定为欠款吗？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3017,
+        "errors": [],
+        "output": {
+          "answer": "不能。成交收入减收款不能直接认定为欠款：成交价不一定等于已开票或到期应收金额，还可能涉及税费、订金、退款或调整。当前演示快照也没有发票和收款流水，因此无法计算未结余额。要核实欠款，应按每张发票核对到期应收金额、对应收款及调整记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "依据演示快照的数据范围；无发票及收付款流水。",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 4346,
+            "output_tokens": 136
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询发票和已登记收款，说明未结余额。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4760,
+        "errors": [],
+        "output": {
+          "answer": "目前有 1 张已开具发票，含税金额 **CAD 113.00**；已人工登记收款 **CAD 30.00**，**未结余额 CAD 83.00**。发票到期日为 2026-10-25。这些是登记记录，不代表银行款项已到账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "截至 2026-10-16 的已登记发票与人工收款记录。",
+          "queries": [
+            {
+              "entity": "finance",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "finance",
+              "queryId": "q1",
+              "summary": {
+                "currency": "CAD",
+                "invoiceCount": 1,
+                "invoicedCents": 11300,
+                "receivedCents": 3000,
+                "outstandingCents": 8300,
+                "note": "发票与人工登记收款；不代表净利润或银行对账 / Invoices and manually recorded receipts"
+              },
+              "invoices": [
+                {
+                  "id": "f630581c-b59f-4388-a6b8-bc239bcdf8fa",
+                  "customerId": "c0",
+                  "quoteId": "2114b6fd-1843-44ea-ba7b-73a616eec7c6",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "issued",
+                  "issuedDate": "2026-10-16",
+                  "dueDate": "2026-10-25",
+                  "version": 2,
+                  "paidCents": 3000,
+                  "balanceCents": 8300
+                }
+              ],
+              "quotes": [
+                {
+                  "id": "2114b6fd-1843-44ea-ba7b-73a616eec7c6",
+                  "customerId": "c0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "accepted",
+                  "expiresDate": null,
+                  "version": 1,
+                  "createdDate": "2026-10-16",
+                  "createdBy": "fixture"
+                }
+              ],
+              "payments": [
+                {
+                  "id": "6fe3ed66-de1e-484c-be63-8832da5b51be",
+                  "customerId": "c0",
+                  "invoiceId": "f630581c-b59f-4388-a6b8-bc239bcdf8fa",
+                  "currency": "CAD",
+                  "amountCents": 3000,
+                  "date": "2026-10-16",
+                  "reference": "FICTIONAL-RECEIPT",
+                  "status": "succeeded",
+                  "method": "other",
+                  "recordedBy": "fixture",
+                  "version": 1
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9337,
+            "output_tokens": 148
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "能把成交收入减收款认定为欠款吗？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5607,
+        "errors": [],
+        "output": {
+          "answer": "不能。成交收入是按成交日期统计的销售额，已登记收款是收款记录，两者不一定对应同一批交易；直接相减不能认定为欠款。未结余额应以已开具发票的应收金额，扣除对应的已登记收款及适用调整后核对。人工登记收款也不等于银行已到账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 4592,
+            "output_tokens": 197
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

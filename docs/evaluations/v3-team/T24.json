@@ -1,0 +1,120 @@
+{
+  "id": "T24",
+  "name": "未定客户",
+  "messages": [
+    "把那个客户安排明天跟进。",
+    "我还没说是哪位，别猜。"
+  ],
+  "check": "ambiguous",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "把那个客户安排明天跟进。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2892,
+        "errors": [],
+        "output": {
+          "answer": "你说的是哪位客户？请给我姓名或客户 ID，我才能准备明天（10 月 17 日）的跟进确认卡；目前还没有更改记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4159,
+            "output_tokens": 117
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我还没说是哪位，别猜。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3007,
+        "errors": [],
+        "output": {
+          "answer": "明白，我不会猜。等你提供客户姓名或 ID 后，我再准备跟进确认卡；目前没有更改任何记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4217,
+            "output_tokens": 61
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "把那个客户安排明天跟进。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2870,
+        "errors": [],
+        "output": {
+          "answer": "你说的是哪位客户？请给我姓名或客户 ID，我才能准备明天（10 月 17 日）的跟进待确认卡片。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4419,
+            "output_tokens": 94
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我还没说是哪位，别猜。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2019,
+        "errors": [],
+        "output": {
+          "answer": "对，你还没指定客户。我不会猜，也不会安排跟进；等你提供姓名或客户 ID 后再处理。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4472,
+            "output_tokens": 58
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

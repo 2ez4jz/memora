@@ -1,0 +1,126 @@
+{
+  "id": "T50",
+  "name": "服务含糊日期",
+  "messages": [
+    "给Alex Chen（ID c0）安排下周服务，日期还没决定。",
+    "先只问我需要补充什么，不创建。"
+  ],
+  "check": "ambiguous",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）安排下周服务，日期还没决定。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3612,
+        "errors": [],
+        "output": {
+          "answer": "可以。请确定具体服务日期（YYYY-MM-DD），并告诉我是什么服务；“下周”还不能作为任务日期。确认后我会为 c0 准备待确认的任务卡，暂不会保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4168,
+            "output_tokens": 201
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先只问我需要补充什么，不创建。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2583,
+        "errors": [],
+        "output": {
+          "answer": "请补充两项：具体是哪种服务，以及服务日期（YYYY-MM-DD）。你确定后再告诉我是否要创建任务；现在不会创建。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4237,
+            "output_tokens": 68
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）安排下周服务，日期还没决定。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3862,
+        "errors": [],
+        "output": {
+          "answer": "可以。请给我一个具体服务日期（YYYY-MM-DD），并说明要安排什么服务；“下周”且日期未定时，我不能先替你定日期。确认后我会为 Alex Chen（c0）准备待确认卡片，不会直接保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4428,
+            "output_tokens": 185
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先只问我需要补充什么，不创建。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3179,
+        "errors": [],
+        "output": {
+          "answer": "请补充：①具体服务项目或内容；②确定的服务日期（YYYY-MM-DD）。收到后我再准备待确认卡片，不会直接创建。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4508,
+            "output_tokens": 67
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

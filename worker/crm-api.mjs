@@ -3,7 +3,7 @@ const canonical=v=>JSON.stringify(v,(_k,x)=>x&&typeof x==='object'&&!Array.isArr
 const fail=(error,status=400)=>({status,body:{error}});
 const uuid=v=>typeof v==='string'&&/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(v);
 const crmStages=['New lead','Contacted','Appointment','Test drive','Negotiation','Sold'];
-export function applyCRMCommand(data,action,payload,{today=businessDate()}={}) {
+export function applyCRMCommand(data,action,payload,{today=businessDate(),allowedStages=crmStages,industry='dealer'}={}) {
   const next=structuredClone(data),p=payload||{};next.crm=crmState(next);
   let before=null,after=null;
   if(action==='update_customer'){
@@ -12,7 +12,7 @@ export function applyCRMCommand(data,action,payload,{today=businessDate()}={}) {
     if(!p.patch||Object.keys(p.patch).some(k=>!['stage','followUp','email','phone','notes','budget','custom'].includes(k)))throw Error('不支持的客户字段 / Unsupported customer field');
     before=structuredClone(c);
     for(const [key,value] of Object.entries(p.patch)){
-      if(key==='stage'&&(!crmStages.includes(value)||(value==='Sold'&&!next.sales.some(s=>s.customerId===c.id))||(c.stage==='Sold'&&value!=='Sold')))throw Error('成交阶段须与成交记录一致 / Sale record required');
+      if(key==='stage'&&(!allowedStages.includes(value)||(value==='Sold'&&!next.sales.some(s=>s.customerId===c.id))||(c.stage==='Sold'&&value!=='Sold')))throw Error('成交阶段须与成交记录一致 / Sale record required');
       if(key==='followUp'&&value!==null&&!validISODate(value))throw Error('跟进日期无效 / Invalid follow-up date');
       if(key==='budget'&&value!==null&&(typeof value!=='number'||!Number.isFinite(value)||value<0||value>1000000))throw Error('预算无效 / Invalid budget');
       if(key==='email'&&value&&(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())))throw Error('邮箱格式无效 / Invalid email');
@@ -31,26 +31,26 @@ export function applyCRMCommand(data,action,payload,{today=businessDate()}={}) {
     const t=next.crm.tasks.find(t=>t.id===p.id);if(!t||t.version!==p.version)throw Error('任务版本已变化 / Task version changed');
     if(!['open','done','dismissed'].includes(p.status))throw Error('任务状态无效 / Invalid task status');before=structuredClone(t);t.status=p.status;t.version++;after=t;
   } else if(action==='run_workflows'){
-    const result=runWorkflows(next,{today});next.crm=result.crm;after={created:result.created,candidates:result.candidates};
+    const result=runWorkflows(next,{today,industry});next.crm=result.crm;after={created:result.created,candidates:result.candidates};
   } else if(action==='define_field'){
     if(next.crm.fields.length>=30||next.crm.fields.some(f=>f.key===p.key)||typeof p.label!=='string'||!p.label.trim()||p.label.length>80)throw Error('字段已存在或达到上限 / Field exists or limit reached');
     validateCustomValue(p,null);
     if(p.type==='select'&&(!Array.isArray(p.options)||!p.options.length||p.options.length>30||p.options.some(o=>typeof o!=='string'||!o||o.length>100)||new Set(p.options).size!==p.options.length))throw Error('选项无效 / Invalid options');
     after={key:p.key,label:p.label.trim(),type:p.type,...(p.type==='select'?{options:p.options}:{})};next.crm.fields.push(after);
   } else if(action==='import_customers'){
-    const preview=previewImport(next,p.rows);if(preview.errors.length)throw Error('导入有错误，请先修正 / Fix import errors before confirming');
+    const preview=previewImport(next,p.rows,{allowedStages});if(preview.errors.length)throw Error('导入有错误，请先修正 / Fix import errors before confirming');
     const items=preview.rows.map(r=>({...r,id:crypto.randomUUID(),created:today,lastContact:null,followUp:null,payment:null,tradeIn:null,tradeValue:null,crmVersion:1}));
     next.customers.push(...items);after={imported:items.length,ids:items.map(c=>c.id)};
   } else throw Error('操作不受支持 / Unsupported action');
   if(next.crm.tasks.length>2000||next.crm.runs.length>4000)throw Error('任务容量已满 / Task capacity reached');
   return {data:next,before,after};
 }
-export function previewImport(data,rows){
+export function previewImport(data,rows,{allowedStages=crmStages,industry='dealer'}={}){
   if(!Array.isArray(rows)||!rows.length||rows.length>300||data.customers.length+rows.length>1000)throw Error('一次导入 1–300 位客户 / Import 1–300 customers at a time');
   const errors=[],valid=[];
   for(const [i,r] of rows.entries()){
-    const row={name:String(r.name||'').trim(),email:String(r.email||'').trim(),phone:String(r.phone||'').trim(),vehicleId:String(r.vehicleId||'').trim(),stage:r.stage||'New lead',source:r.source||'Import',owner:r.owner||'Unassigned',budget:r.budget===''||r.budget==null?null:Number(r.budget),notes:String(r.notes||'')};
-    if(!row.name||row.name.length>200||row.email.length>200||row.phone.length>200||row.notes.length>3000||!data.vehicles.some(v=>v.id===row.vehicleId)||!crmStages.includes(row.stage)||row.stage==='Sold'||row.budget!==null&&(!Number.isFinite(row.budget)||row.budget<0||row.budget>1000000))errors.push({row:i+2,error:'姓名、车辆、阶段或预算无效 / Invalid name, vehicle, stage or budget'});
+    const row={name:String(r.name||'').trim(),email:String(r.email||'').trim(),phone:String(r.phone||'').trim(),vehicleId:String(r.vehicleId||'').trim(),stage:r.stage||allowedStages[0],source:r.source||'Import',owner:r.owner||'Unassigned',budget:r.budget===''||r.budget==null?null:Number(r.budget),notes:String(r.notes||'')};
+    if(!row.name||row.name.length>200||row.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(row.email)||row.owner.length>100||row.source.length>100||row.email.length>200||row.phone.length>200||row.notes.length>3000||!data.vehicles.some(v=>v.id===row.vehicleId)||!allowedStages.includes(row.stage)||row.stage==='Sold'||row.budget!==null&&(!Number.isFinite(row.budget)||row.budget<0||row.budget>1000000))errors.push({row:i+2,error:'姓名、车辆、阶段或预算无效 / Invalid name, vehicle, stage or budget'});
     valid.push({...row,id:'import:'+i});
   }
   const duplicates=duplicateGroups([...data.customers,...valid]).filter(g=>g.ids.some(id=>id.startsWith('import:')));

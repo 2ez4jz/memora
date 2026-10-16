@@ -1,0 +1,524 @@
+{
+  "id": "T18",
+  "name": "客户历史",
+  "messages": [
+    "查询Alex Chen（ID c0）的活动时间线。",
+    "记录里写的计划都已经完成了吗？"
+  ],
+  "check": "timeline",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询Alex Chen（ID c0）的活动时间线。",
+        "expected": {
+          "check": "timeline",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4669,
+        "errors": [],
+        "output": {
+          "answer": "Alex Chen（c0）的活动时间线（由近到远）：\n\n- **2026-10-16｜电话沟通**：记录称他试驾过灰色 RAV4，觉得价格偏高；预计本月奖金到账后再决定，希望月供低于 CAD 600。负责人：Jason。\n- **2026-10-06｜客户档案建立**：档案备注记录了上述购车考虑。\n- **2026-09-22｜电话沟通**：记录内容与 10 月 16 日的电话记录相同。负责人：Jason。\n\n两次电话记录文字相同；这里按原记录展示，不推断两次沟通的具体内容是否完全一致。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "虚构演示浏览器快照；客户 c0 的 CRM 时间线。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "fictional_demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": [
+                {
+                  "id": "i0",
+                  "type": "interaction",
+                  "date": "2026-10-16",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                },
+                {
+                  "id": "created:c0",
+                  "type": "created",
+                  "date": "2026-10-06",
+                  "title": "客户建立 / Customer created",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。"
+                },
+                {
+                  "id": "i80",
+                  "type": "interaction",
+                  "date": "2026-09-22",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8630,
+            "output_tokens": 231
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "记录里写的计划都已经完成了吗？",
+        "expected": {
+          "check": "timeline",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 9321,
+        "errors": [],
+        "output": {
+          "answer": "没有证据表明记录里的计划都已完成。**试驾**在备注中写为已经做过；“本月奖金到账后再决定”和“月供低于 CAD 600”是当时的打算或要求，记录没有确认奖金已到账、月供方案已落实或他已作出决定。目前客户阶段仍是 Negotiation，未查到 Alex Chen 的成交记录。时间线里也没有已完成的相关任务。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "虚构演示浏览器快照；核对 c0 客户档案、活动时间线及截至 2026-10-16 的成交记录。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            },
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q2"
+            },
+            {
+              "entity": "sales",
+              "count": 0,
+              "queryId": "q3"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "fictional_demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": [
+                {
+                  "id": "i0",
+                  "type": "interaction",
+                  "date": "2026-10-16",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                },
+                {
+                  "id": "created:c0",
+                  "type": "created",
+                  "date": "2026-10-06",
+                  "title": "客户建立 / Customer created",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。"
+                },
+                {
+                  "id": "i80",
+                  "type": "interaction",
+                  "date": "2026-09-22",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                }
+              ]
+            },
+            {
+              "queryId": "q2",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "queryId": "q3",
+              "entity": "sales",
+              "count": 0,
+              "metric": "count",
+              "value": 0,
+              "rows": [],
+              "truncated": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 19159,
+            "output_tokens": 416
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询Alex Chen（ID c0）的活动时间线。",
+        "expected": {
+          "check": "timeline",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5542,
+        "errors": [],
+        "output": {
+          "answer": "Alex Chen（c0）的活动时间线（按时间倒序）：\n\n| 日期 | 活动 |\n|---|---|\n| 2026-10-16 | 电话沟通：试驾过灰色 RAV4，觉得价格偏高；预计本月奖金到账后再决定，希望月供低于 CAD 600。负责人：Jason。 |\n| 2026-10-16 | 报价状态为已接受；发票状态为已开具；另有一笔状态为“成功”的收款记录。时间线未提供这些记录的金额单位或银行结算信息。 |\n| 2026-10-06 | 建立客户档案。 |\n| 2026-09-22 | 电话沟通：记录了同样的 RAV4 试驾、价格及月供顾虑。负责人：Jason。 |",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "来源：c0 的 CRM 活动时间线；截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": [
+                {
+                  "id": "26a8186d-a347-47a9-97d0-1d6a12db81cf",
+                  "type": "payment",
+                  "date": "2026-10-16",
+                  "title": "收款",
+                  "status": "succeeded",
+                  "amount": 30
+                },
+                {
+                  "id": "99eb4136-d3f1-4cf3-b131-871e18155dba",
+                  "type": "quote",
+                  "date": "2026-10-16",
+                  "title": "报价",
+                  "status": "accepted",
+                  "amount": 113
+                },
+                {
+                  "id": "cf699433-bc3a-476e-8e68-10b98b8c9a1e",
+                  "type": "invoice",
+                  "date": "2026-10-16",
+                  "title": "发票",
+                  "status": "issued",
+                  "amount": 113
+                },
+                {
+                  "id": "i0",
+                  "type": "interaction",
+                  "date": "2026-10-16",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                },
+                {
+                  "id": "created:c0",
+                  "type": "created",
+                  "date": "2026-10-06",
+                  "title": "客户建立",
+                  "text": ""
+                },
+                {
+                  "id": "i80",
+                  "type": "interaction",
+                  "date": "2026-09-22",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9273,
+            "output_tokens": 353
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "记录里写的计划都已经完成了吗？",
+        "expected": {
+          "check": "timeline",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 9061,
+        "errors": [],
+        "output": {
+          "answer": "不能说都完成了。Alex 的记录写的是“等本月奖金到账后再决定”，并希望月供低于 CAD 600；目前没有记录证实奖金已到账，或月供要求已满足。客户仍处于 **Negotiation（洽谈）** 阶段，今天（10 月 16 日）是登记的跟进日期，未查到已完成的跟进任务或成交记录。\n\n时间线里确有“报价已接受、发票已开具、收款记录状态为成功”，但这些状态不能单独证明上述计划都已完成。下一步宜向 Alex 核实奖金和月供条件，再更新跟进结果。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "截至 2026-10-16；客户档案、CRM 时间线与任务、成交记录。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            },
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q2"
+            },
+            {
+              "entity": "sales",
+              "count": 0,
+              "queryId": "q3"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": [
+                {
+                  "id": "3415b447-3fc4-40bb-a927-cb2506d2eef9",
+                  "type": "invoice",
+                  "date": "2026-10-16",
+                  "title": "发票",
+                  "status": "issued",
+                  "amount": 113
+                },
+                {
+                  "id": "d1a9d539-2c2b-446f-b531-e74aec7793d3",
+                  "type": "payment",
+                  "date": "2026-10-16",
+                  "title": "收款",
+                  "status": "succeeded",
+                  "amount": 30
+                },
+                {
+                  "id": "fdc7acf8-a397-42a8-9e9e-303384dfe524",
+                  "type": "quote",
+                  "date": "2026-10-16",
+                  "title": "报价",
+                  "status": "accepted",
+                  "amount": 113
+                },
+                {
+                  "id": "i0",
+                  "type": "interaction",
+                  "date": "2026-10-16",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                },
+                {
+                  "id": "created:c0",
+                  "type": "created",
+                  "date": "2026-10-06",
+                  "title": "客户建立",
+                  "text": ""
+                },
+                {
+                  "id": "i80",
+                  "type": "interaction",
+                  "date": "2026-09-22",
+                  "title": "Phone",
+                  "text": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "owner": "Jason"
+                }
+              ]
+            },
+            {
+              "queryId": "q2",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "queryId": "q3",
+              "entity": "sales",
+              "count": 0,
+              "metric": "count",
+              "value": 0,
+              "rows": [],
+              "truncated": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 20603,
+            "output_tokens": 476
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

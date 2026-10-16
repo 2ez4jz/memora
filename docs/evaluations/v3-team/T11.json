@@ -1,0 +1,266 @@
+{
+  "id": "T11",
+  "name": "跨月比较",
+  "messages": [
+    "比较2026年8月和9月成交金额、差额和增长率。",
+    "哪个月金额更高？"
+  ],
+  "check": "compare",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "比较2026年8月和9月成交金额、差额和增长率。",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4974,
+        "errors": [],
+        "output": {
+          "answer": "2026年8月成交金额为 CAD 175,500（5笔），9月为 CAD 214,300（7笔）。9月比8月增加 CAD 38,800，增长 22.11%。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；按成交日期统计2026年8月与9月，金额单位为CAD。",
+          "queries": [
+            {
+              "entity": "sales"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "sales",
+              "metric": "sum",
+              "valueField": "price",
+              "current": {
+                "from": "2026-09-01",
+                "to": "2026-09-30",
+                "count": 7,
+                "value": 214300
+              },
+              "prior": {
+                "from": "2026-08-01",
+                "to": "2026-08-31",
+                "count": 5,
+                "value": 175500
+              },
+              "difference": 38800,
+              "growthPercent": 22.11
+            }
+          ],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 8629,
+            "output_tokens": 188
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "哪个月金额更高？",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3993,
+        "errors": [],
+        "output": {
+          "answer": "2026年9月成交金额更高：CAD 214,300，比8月的 CAD 175,500 高 CAD 38,800。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；按成交日期统计2026年8月与9月。",
+          "queries": [
+            {
+              "entity": "sales"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "sales",
+              "metric": "sum",
+              "valueField": "price",
+              "current": {
+                "from": "2026-09-01",
+                "to": "2026-09-30",
+                "count": 7,
+                "value": 214300
+              },
+              "prior": {
+                "from": "2026-08-01",
+                "to": "2026-08-31",
+                "count": 5,
+                "value": 175500
+              },
+              "difference": 38800,
+              "growthPercent": 22.11
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8641,
+            "output_tokens": 167
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "比较2026年8月和9月成交金额、差额和增长率。",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 10105,
+        "errors": [],
+        "output": {
+          "answer": "2026年8月成交金额为 **CAD 175,500**，9月为 **CAD 214,300**。9月比8月增加 **CAD 38,800**，环比增长 **22.11%**。这里的成交金额是销售记录中的成交价合计，不代表已收款。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "2026年8月与9月成交记录；按 sales.date 统计成交价。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 12,
+              "queryId": "q1"
+            },
+            {
+              "entity": "sales"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 12,
+              "metric": "sum",
+              "groupBy": "month",
+              "valueField": "price",
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "month",
+                "metric": "sum",
+                "unit": "CAD",
+                "data": [
+                  {
+                    "label": "2026-08",
+                    "value": 175500,
+                    "sampleSize": 5
+                  },
+                  {
+                    "label": "2026-09",
+                    "value": 214300,
+                    "sampleSize": 7
+                  }
+                ],
+                "total": 389800,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "2026-08",
+                  "value": 175500,
+                  "sampleSize": 5
+                },
+                {
+                  "label": "2026-09",
+                  "value": 214300,
+                  "sampleSize": 7
+                }
+              ]
+            },
+            {
+              "entity": "sales",
+              "metric": "sum",
+              "valueField": "price",
+              "current": {
+                "from": "2026-09-01",
+                "to": "2026-09-30",
+                "count": 7,
+                "value": 214300
+              },
+              "prior": {
+                "from": "2026-08-01",
+                "to": "2026-08-31",
+                "count": 5,
+                "value": 175500
+              },
+              "difference": 38800,
+              "growthPercent": 22.11
+            }
+          ],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 14141,
+            "output_tokens": 297
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "哪个月金额更高？",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3453,
+        "errors": [],
+        "output": {
+          "answer": "**2026年9月**成交金额更高：CAD 214,300；8月为 CAD 175,500。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "2026年8月与9月销售记录的成交价合计；非已收款。",
+          "queries": [
+            {
+              "entity": "sales"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "sales",
+              "metric": "sum",
+              "valueField": "price",
+              "current": {
+                "from": "2026-09-01",
+                "to": "2026-09-30",
+                "count": 7,
+                "value": 214300
+              },
+              "prior": {
+                "from": "2026-08-01",
+                "to": "2026-08-31",
+                "count": 5,
+                "value": 175500
+              },
+              "difference": 38800,
+              "growthPercent": 22.11
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9203,
+            "output_tokens": 160
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

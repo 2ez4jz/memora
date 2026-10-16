@@ -1,0 +1,294 @@
+{
+  "id": "T22",
+  "name": "修改日期",
+  "messages": [
+    "把Alex Chen（ID c0）跟进日改为2026-10-21，生成确认卡。",
+    "先不要执行，我还要看一下。"
+  ],
+  "check": "update",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "把Alex Chen（ID c0）跟进日改为2026-10-21，生成确认卡。",
+        "expected": {
+          "check": "update",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7244,
+        "errors": [],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成确认卡：跟进日拟改为 2026-10-21。**尚未保存**，请在卡片上确认。",
+          "proposals": [
+            {
+              "id": "fddb5dd7-bc3a-48c4-9767-222501ceb7f2",
+              "action": "update_customer",
+              "payload": {
+                "customerId": "c0",
+                "version": 0,
+                "patch": {
+                  "followUp": "2026-10-21"
+                }
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户信息来自虚构演示的浏览器快照。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "fddb5dd7-bc3a-48c4-9767-222501ceb7f2",
+                "action": "update_customer",
+                "payload": {
+                  "customerId": "c0",
+                  "version": 0,
+                  "patch": {
+                    "followUp": "2026-10-21"
+                  }
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "requiresConfirmation": true,
+              "saved": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 13303,
+            "output_tokens": 211
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先不要执行，我还要看一下。",
+        "expected": {
+          "check": "update",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4512,
+        "errors": [],
+        "output": {
+          "answer": "好的，先不保存。Alex Chen（c0）的跟进日修改确认卡仍待确认，你看好后再决定是否确认。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4283,
+            "output_tokens": 92
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "把Alex Chen（ID c0）跟进日改为2026-10-21，生成确认卡。",
+        "expected": {
+          "check": "update",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5476,
+        "errors": [],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成确认卡：跟进日拟从 2026-10-16 改为 2026-10-21。**尚未保存**，请在确认卡上确认。",
+          "proposals": [
+            {
+              "id": "5f331816-65cd-4e58-803d-be2f2ad6626e",
+              "action": "update_customer",
+              "payload": {
+                "customerId": "c0",
+                "version": 0,
+                "patch": {
+                  "followUp": "2026-10-21"
+                }
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户记录及待确认草稿；截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "5f331816-65cd-4e58-803d-be2f2ad6626e",
+                "action": "update_customer",
+                "payload": {
+                  "customerId": "c0",
+                  "version": 0,
+                  "patch": {
+                    "followUp": "2026-10-21"
+                  }
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "requiresConfirmation": true,
+              "saved": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14054,
+            "output_tokens": 210
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先不要执行，我还要看一下。",
+        "expected": {
+          "check": "update",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2475,
+        "errors": [],
+        "output": {
+          "answer": "好的，先不保存。Alex Chen（c0）的跟进日修改确认卡仍待确认，你可以先查看；不点击确认就不会生效。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4551,
+            "output_tokens": 94
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

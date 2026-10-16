@@ -1,0 +1,321 @@
+{
+  "id": "T17",
+  "name": "部分收款",
+  "messages": [
+    "查询发票未结余额。",
+    "部分付款后还需要核对什么？"
+  ],
+  "check": "finance",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询发票未结余额。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4791,
+        "errors": [],
+        "output": {
+          "answer": "目前无法查询发票未结余额：这份演示快照有成交记录，但没有发票、已付款或欠款字段，不能用成交价推算余额。如果你提供发票明细及已付款金额，我可以帮你核算。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；已检查截至2026-10-16的成交记录字段。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "value": 81,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8590,
+            "output_tokens": 243
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "部分付款后还需要核对什么？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4053,
+        "errors": [],
+        "output": {
+          "answer": "部分付款后，建议核对这几项：\n1. **款项是否实际到账**：核对银行入账金额、日期和交易参考号，不只看付款截图。\n2. **是否对应正确发票**：确认付款人、发票号，以及这笔钱分配到了哪一笔应收款。\n3. **未结余额**：用发票应付总额减去已确认到账的付款，并核对税费、附加费用或调整项。\n4. **后续安排**：确认剩余款项的到期日、付款方式，并留存收据和对账记录。\n\n当前演示快照没有发票和付款流水，无法替你核实某笔交易的实际余额。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4231,
+            "output_tokens": 238
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询发票未结余额。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6092,
+        "errors": [],
+        "output": {
+          "answer": "目前有 1 张发票，未结余额 **CAD 83.00**。该发票总额 CAD 113.00，已登记收款 CAD 30.00；到期日为 2026-10-25。已登记收款不代表银行到账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "截至 2026-10-16；来源：已登记发票及人工收款记录。",
+          "queries": [
+            {
+              "entity": "finance",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "finance",
+              "queryId": "q1",
+              "summary": {
+                "currency": "CAD",
+                "invoiceCount": 1,
+                "invoicedCents": 11300,
+                "receivedCents": 3000,
+                "outstandingCents": 8300,
+                "note": "发票与人工登记收款；不代表净利润或银行对账 / Invoices and manually recorded receipts"
+              },
+              "invoices": [
+                {
+                  "id": "e2c888c0-9188-419e-a1d1-0c7f8afd0a53",
+                  "customerId": "c0",
+                  "quoteId": "c9547d9f-9ca1-41a9-89c7-c867900fb0b0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "issued",
+                  "issuedDate": "2026-10-16",
+                  "dueDate": "2026-10-25",
+                  "version": 2,
+                  "paidCents": 3000,
+                  "balanceCents": 8300
+                }
+              ],
+              "quotes": [
+                {
+                  "id": "c9547d9f-9ca1-41a9-89c7-c867900fb0b0",
+                  "customerId": "c0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "accepted",
+                  "expiresDate": null,
+                  "version": 1,
+                  "createdDate": "2026-10-16",
+                  "createdBy": "fixture"
+                }
+              ],
+              "payments": [
+                {
+                  "id": "e6cd0f66-cd0d-4d95-835a-f2cd31363156",
+                  "customerId": "c0",
+                  "invoiceId": "e2c888c0-9188-419e-a1d1-0c7f8afd0a53",
+                  "currency": "CAD",
+                  "amountCents": 3000,
+                  "date": "2026-10-16",
+                  "reference": "FICTIONAL-RECEIPT",
+                  "status": "succeeded",
+                  "method": "other",
+                  "recordedBy": "fixture",
+                  "version": 1
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9339,
+            "output_tokens": 139
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "部分付款后还需要核对什么？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5388,
+        "errors": [],
+        "output": {
+          "answer": "这张发票已人工登记部分收款 CAD 30.00，账面仍未结 CAD 83.00。接下来建议核对：\n\n1. **付款凭证与银行流水**：确认 CAD 30.00 是否实际到账、金额和日期是否一致；人工登记不等于银行已到账。\n2. **归属与余额**：确认这笔款对应此发票，剩余 CAD 83.00 无重复收款或漏记。\n3. **后续安排**：确认余款付款约定，并留意 2026-10-25 到期日；如有后续付款，再核对凭证并更新登记。\n\n目前不能仅凭系统记录断定已完成银行对账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "截至 2026-10-16 的已登记发票及人工收款记录；非银行流水。",
+          "queries": [
+            {
+              "entity": "finance",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "finance",
+              "queryId": "q1",
+              "summary": {
+                "currency": "CAD",
+                "invoiceCount": 1,
+                "invoicedCents": 11300,
+                "receivedCents": 3000,
+                "outstandingCents": 8300,
+                "note": "发票与人工登记收款；不代表净利润或银行对账 / Invoices and manually recorded receipts"
+              },
+              "invoices": [
+                {
+                  "id": "2c6b06ce-4b96-49b8-9de1-b16784175b2d",
+                  "customerId": "c0",
+                  "quoteId": "eec9ac96-1d8d-48fb-bc3e-8ee4d6b5c7c8",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "issued",
+                  "issuedDate": "2026-10-16",
+                  "dueDate": "2026-10-25",
+                  "version": 2,
+                  "paidCents": 3000,
+                  "balanceCents": 8300
+                }
+              ],
+              "quotes": [
+                {
+                  "id": "eec9ac96-1d8d-48fb-bc3e-8ee4d6b5c7c8",
+                  "customerId": "c0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "accepted",
+                  "expiresDate": null,
+                  "version": 1,
+                  "createdDate": "2026-10-16",
+                  "createdBy": "fixture"
+                }
+              ],
+              "payments": [
+                {
+                  "id": "cb1ac8c8-7a41-465c-97fd-81ba1217fddc",
+                  "customerId": "c0",
+                  "invoiceId": "2c6b06ce-4b96-49b8-9de1-b16784175b2d",
+                  "currency": "CAD",
+                  "amountCents": 3000,
+                  "date": "2026-10-16",
+                  "reference": "FICTIONAL-RECEIPT",
+                  "status": "succeeded",
+                  "method": "other",
+                  "recordedBy": "fixture",
+                  "version": 1
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9556,
+            "output_tokens": 295
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}
