@@ -32,10 +32,11 @@ export function duplicateGroups(customers) {
 }
 export function customerTimeline(db,customerId) {
   if(!db.customers.some(c=>c.id===customerId))throw Error('Customer not found');
-  const c=db.customers.find(c=>c.id===customerId),events=[{id:'created:'+c.id,type:'created',date:c.created,title:'客户建立 / Customer created',text:c.notes||''}];
-  for(const i of db.interactions.filter(i=>i.customerId===customerId))events.push({id:i.id,type:'interaction',date:i.date,title:i.kind||'沟通 / Interaction',text:i.note||'',owner:i.owner});
-  for(const s of db.sales.filter(s=>s.customerId===customerId))events.push({id:s.id,type:'sale',date:s.date,title:'已成交 / Sale recorded',amount:s.price,vehicleId:s.vehicleId});
+  const c=db.customers.find(c=>c.id===customerId),events=[{id:'created:'+c.id,type:'created',date:c.created,title:'客户建立',text:''}];
+  for(const i of db.interactions.filter(i=>i.customerId===customerId))events.push({id:i.id,type:'interaction',date:i.date,title:i.kind||'沟通',text:i.note||'',owner:i.owner});
+  for(const s of db.sales.filter(s=>s.customerId===customerId))events.push({id:s.id,type:'sale',date:s.date,title:'已成交',amount:s.price,vehicleId:s.vehicleId});
   for(const t of db.crm?.tasks||[])if(t.customerId===customerId)events.push({id:t.id,type:'task',date:t.dueDate,title:t.title,status:t.status});
+  for(const [key,type,title,amountKey] of [['quotes','quote','报价','totalCents'],['invoices','invoice','发票','totalCents'],['payments','payment','收款','amountCents'],['services','service','服务',null]])for(const r of db[key]||[])if(r.customerId===customerId)events.push({id:r.id,type,date:r.date||r.issuedDate||r.createdDate,title:r.title||title,status:r.status,...(amountKey?{amount:r[amountKey]/100}:{} )});
   return events.sort((a,b)=>(b.date||'').localeCompare(a.date||'')||a.id.localeCompare(b.id));
 }
 export function crmState(db){return {tasks:[],runs:[],fields:[],...db.crm};}

@@ -12,7 +12,7 @@
   const key = 'memora-demo-language';
   const query = new URLSearchParams(location.search).get('lang');
   let language = query === 'zh' || query === 'en' ? query : 'zh';
-  if (!query) { try { language = localStorage.getItem(key) === 'zh' ? 'zh' : 'zh'; } catch {} }
+  if (!query) { try { language = localStorage.getItem(key) === 'en' ? 'en' : 'zh'; } catch {} }
   const escape = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const keys = Object.keys(catalog).filter(Boolean).sort((a,b) => b.length-a.length);
   const pattern = new RegExp(keys.map(escape).join('|'), 'g');
