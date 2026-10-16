@@ -1,0 +1,120 @@
+{
+  "id": "T03",
+  "name": "英文交流",
+  "messages": [
+    "Please answer in English. What can you help me with?",
+    "Keep speaking English and use one sentence."
+  ],
+  "check": "english",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "Please answer in English. What can you help me with?",
+        "expected": {
+          "check": "english",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 9786,
+        "errors": [],
+        "output": {
+          "answer": "I can help you explore the dealership snapshot: find customers due for follow-up, review customer timelines and tasks, compare leads and sales over time, spot inventory that’s been sitting, and make charts when you ask. I can also help think through next steps. If you ask to update a customer or create a task, I’ll prepare a review card for your confirmation—not save it automatically.",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4160,
+            "output_tokens": 109
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "Keep speaking English and use one sentence.",
+        "expected": {
+          "check": "english",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2381,
+        "errors": [],
+        "output": {
+          "answer": "I’ll keep speaking English and use one sentence.",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4256,
+            "output_tokens": 41
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "Please answer in English. What can you help me with?",
+        "expected": {
+          "check": "english",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2303,
+        "errors": [],
+        "output": {
+          "answer": "I can help you explore your dealership records—sales trends, customer interest, inventory age, follow-ups, and customer timelines. I can also look up recorded invoices and balances, talk through business questions, and prepare review cards for customer updates, tasks, services, or quotes when you ask. I can’t send messages or make changes without confirmation.",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4420,
+            "output_tokens": 100
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "Keep speaking English and use one sentence.",
+        "expected": {
+          "check": "english",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1781,
+        "errors": [],
+        "output": {
+          "answer": "I’ll keep speaking English and use one sentence per reply.",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4507,
+            "output_tokens": 43
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

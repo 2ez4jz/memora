@@ -1,0 +1,120 @@
+{
+  "id": "T04",
+  "name": "中文保持",
+  "messages": [
+    "我只想用中文交流。",
+    "把刚才的意思讲得更简单些。"
+  ],
+  "check": "chat",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "我只想用中文交流。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 8917,
+        "errors": [],
+        "output": {
+          "answer": "好的，之后我会用中文和你交流。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4157,
+            "output_tokens": 43
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "把刚才的意思讲得更简单些。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1816,
+        "errors": [],
+        "output": {
+          "answer": "好，以后我都用中文说。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4189,
+            "output_tokens": 41
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "我只想用中文交流。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2499,
+        "errors": [],
+        "output": {
+          "answer": "好的，之后我会用中文和你交流。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4417,
+            "output_tokens": 43
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "把刚才的意思讲得更简单些。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2026,
+        "errors": [],
+        "output": {
+          "answer": "好，我只用中文和你聊。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4449,
+            "output_tokens": 41
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

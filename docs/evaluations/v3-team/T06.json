@@ -1,0 +1,343 @@
+{
+  "id": "T06",
+  "name": "成交总额",
+  "messages": [
+    "查全部历史成交收入，给出准确金额。",
+    "这个金额等于实际收款吗？"
+  ],
+  "check": "sales",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查全部历史成交收入，给出准确金额。",
+        "expected": {
+          "check": "sales",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4820,
+        "errors": [],
+        "output": {
+          "answer": "截至 2026 年 10 月 16 日，全部已记录的 81 笔成交收入合计 **CAD 2,745,800**。这是按成交日期统计的成交价总额，不代表实际到账金额。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；统计截至 2026-10-16 的全部已记录成交。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 2745800,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 8707,
+            "output_tokens": 203
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这个金额等于实际收款吗？",
+        "expected": {
+          "check": "sales",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5727,
+        "errors": [],
+        "output": {
+          "answer": "不等于。刚核对过，全部已记录的 81 笔成交价合计为 **CAD 2,745,800**；这代表成交收入，不是实际到账金额。现有成交记录不足以核实已收款总额，还需要对照收款和银行入账记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "浏览器演示快照；截至 2026-10-16 的全部已记录成交。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 2745800,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8709,
+            "output_tokens": 223
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查全部历史成交收入，给出准确金额。",
+        "expected": {
+          "check": "sales",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3515,
+        "errors": [],
+        "output": {
+          "answer": "全部已记录历史成交收入为 **CAD 2,745,800**，共 81 笔成交。这里按成交价合计，不代表已收款或净利润。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "成交记录；成交日期截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 2745800,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [
+            "finance"
+          ],
+          "usage": {
+            "input_tokens": 9196,
+            "output_tokens": 151
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这个金额等于实际收款吗？",
+        "expected": {
+          "check": "sales",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7526,
+        "errors": [],
+        "output": {
+          "answer": "不等于。刚才的 **CAD 2,745,800** 是全部已记录成交的成交价合计，不是实际收款。财务记录目前只显示一笔 **CAD 30.00 的人工登记收款**，且该笔对应检测服务发票；不能据此判断车辆成交款已收多少，也不能把人工登记视为银行到账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "截至 2026-10-16；成交记录与财务登记记录。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            },
+            {
+              "entity": "finance",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "sum",
+              "value": 2745800,
+              "rows": [
+                {
+                  "id": "s0",
+                  "customerId": "c4",
+                  "vehicleId": "sold-s0",
+                  "date": "2026-10-15",
+                  "price": 29900,
+                  "cost": 26300,
+                  "owner": "Priya",
+                  "month": "2026-10",
+                  "vehicleModel": "CX-5",
+                  "vehicleMake": "Mazda",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 29900,
+                  "customerName": "Sarah Patel",
+                  "source": "AutoTrader",
+                  "customerCreated": "2026-10-02",
+                  "profit": 3600
+                }
+              ],
+              "truncated": true
+            },
+            {
+              "entity": "finance",
+              "queryId": "q2",
+              "summary": {
+                "currency": "CAD",
+                "invoiceCount": 1,
+                "invoicedCents": 11300,
+                "receivedCents": 3000,
+                "outstandingCents": 8300,
+                "note": "发票与人工登记收款；不代表净利润或银行对账 / Invoices and manually recorded receipts"
+              },
+              "invoices": [
+                {
+                  "id": "d574ceb5-b5d6-4d2e-89f4-705ac2b8e754",
+                  "customerId": "c0",
+                  "quoteId": "b52c80f1-a31d-4e4e-8a0e-aef24e45a193",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "issued",
+                  "issuedDate": "2026-10-16",
+                  "dueDate": "2026-10-25",
+                  "version": 2,
+                  "paidCents": 3000,
+                  "balanceCents": 8300
+                }
+              ],
+              "quotes": [
+                {
+                  "id": "b52c80f1-a31d-4e4e-8a0e-aef24e45a193",
+                  "customerId": "c0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "accepted",
+                  "expiresDate": null,
+                  "version": 1,
+                  "createdDate": "2026-10-16",
+                  "createdBy": "fixture"
+                }
+              ],
+              "payments": [
+                {
+                  "id": "6a092825-a76f-44a5-8e93-8b6faff2cc4c",
+                  "customerId": "c0",
+                  "invoiceId": "d574ceb5-b5d6-4d2e-89f4-705ac2b8e754",
+                  "currency": "CAD",
+                  "amountCents": 3000,
+                  "date": "2026-10-16",
+                  "reference": "FICTIONAL-RECEIPT",
+                  "status": "succeeded",
+                  "method": "other",
+                  "recordedBy": "fixture",
+                  "version": 1
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14522,
+            "output_tokens": 299
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

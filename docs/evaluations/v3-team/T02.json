@@ -1,0 +1,120 @@
+{
+  "id": "T02",
+  "name": "简短回答",
+  "messages": [
+    "用一句话介绍你能帮我做什么。",
+    "再短一点。"
+  ],
+  "check": "chat",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "用一句话介绍你能帮我做什么。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7952,
+        "errors": [],
+        "output": {
+          "answer": "我可以帮你查询和分析演示车行数据、梳理客户跟进，并在你明确提出时准备待确认的客户更新或任务卡片。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4161,
+            "output_tokens": 68
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "再短一点。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1995,
+        "errors": [],
+        "output": {
+          "answer": "帮你查数据、理客户、准备跟进任务。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4211,
+            "output_tokens": 45
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "用一句话介绍你能帮我做什么。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2779,
+        "errors": [],
+        "output": {
+          "answer": "我能帮你查询和分析客户、库存与成交记录，梳理跟进事项，并为需要修改的内容准备待确认卡片。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4421,
+            "output_tokens": 64
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "再短一点。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1691,
+        "errors": [],
+        "output": {
+          "answer": "帮你查记录、看经营、理跟进。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4467,
+            "output_tokens": 44
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

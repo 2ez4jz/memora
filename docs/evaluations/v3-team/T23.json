@@ -1,0 +1,120 @@
+{
+  "id": "T23",
+  "name": "日期跨年",
+  "messages": [
+    "今天如果是2026-12-31，明天是哪天？先只回答日期，不改记录。",
+    "需要确认具体客户才能建任务吗？"
+  ],
+  "check": "chat",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "今天如果是2026-12-31，明天是哪天？先只回答日期，不改记录。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1936,
+        "errors": [],
+        "output": {
+          "answer": "2027-01-01",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4173,
+            "output_tokens": 59
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "需要确认具体客户才能建任务吗？",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2227,
+        "errors": [],
+        "output": {
+          "answer": "需要。建任务前要先确定具体客户；如果姓名有重名，我会请你确认是哪一位。确认后可以生成待确认卡片，不会直接保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4198,
+            "output_tokens": 94
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "今天如果是2026-12-31，明天是哪天？先只回答日期，不改记录。",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1451,
+        "errors": [],
+        "output": {
+          "answer": "2027-01-01",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4433,
+            "output_tokens": 38
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "需要确认具体客户才能建任务吗？",
+        "expected": {
+          "check": "chat",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1975,
+        "errors": [],
+        "output": {
+          "answer": "是的。建任务前需要确认对应的具体客户；如果姓名有重名或身份不明确，我会先请你澄清。生成的任务确认卡也不会自动保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4458,
+            "output_tokens": 73
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

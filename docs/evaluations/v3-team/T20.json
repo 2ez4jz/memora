@@ -1,0 +1,268 @@
+{
+  "id": "T20",
+  "name": "每日摘要",
+  "messages": [
+    "查询今天的工作摘要和待办。",
+    "没有待办是否代表所有工作完成？"
+  ],
+  "check": "digest",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询今天的工作摘要和待办。",
+        "expected": {
+          "check": "digest",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4079,
+        "errors": [],
+        "output": {
+          "answer": "今天（10月16日）的工作摘要：目前没有未完成、今日到期或逾期的待办，也没有未分配任务。另有 1 组疑似重复客户记录（c79、c80），建议人工核对；目前尚未合并。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c79",
+            "c80"
+          ],
+          "sourceNote": "截至 2026-10-16；虚构演示浏览器快照中的工作摘要与待办。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "fictional_demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": []
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8444,
+            "output_tokens": 142
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "没有待办是否代表所有工作完成？",
+        "expected": {
+          "check": "digest",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5081,
+        "errors": [],
+        "output": {
+          "answer": "不代表。今天的摘要只显示**系统里没有未完成、今日到期或逾期的待办**；它不能证明所有客户跟进和其他工作都已完成。建议再核对未成交客户的跟进日期、近期未联系的线索，以及是否有尚未录入的工作。另有一组疑似重复客户记录待人工核对，不能自动视为已处理。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c79",
+            "c80"
+          ],
+          "sourceNote": "虚构演示数据；2026-10-16 工作摘要与待办快照。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "fictional_demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": []
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8643,
+            "output_tokens": 264
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询今天的工作摘要和待办。",
+        "expected": {
+          "check": "digest",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4032,
+        "errors": [],
+        "output": {
+          "answer": "今天（10月16日）的工作摘要：目前没有未完成、今日到期或逾期的待办，也没有未分配任务。另有 1 组客户重复候选（c79、c80，邮箱相同）可人工核查；系统尚未合并记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c79",
+            "c80"
+          ],
+          "sourceNote": "来源：CRM 今日工作摘要与待办，2026-10-16。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": []
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8974,
+            "output_tokens": 151
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "没有待办是否代表所有工作完成？",
+        "expected": {
+          "check": "digest",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4543,
+        "errors": [],
+        "output": {
+          "answer": "不代表。今天的待办列表确实没有未完成、到期或逾期任务，但这只说明**当前没有记录在待办系统里的开放任务**，不能证明所有工作都已完成。工作摘要还提示有 1 组客户重复候选（c79、c80）可人工核查，记录尚未合并。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c79",
+            "c80"
+          ],
+          "sourceNote": "2026-10-16 CRM 工作摘要与待办。",
+          "queries": [
+            {
+              "entity": "crm",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "crm",
+              "queryId": "q1",
+              "scope": "demo",
+              "digest": {
+                "today": "2026-10-16",
+                "open": 0,
+                "due": 0,
+                "overdue": 0,
+                "unassigned": 0,
+                "byRule": {},
+                "duplicates": 1
+              },
+              "duplicates": [
+                {
+                  "field": "email",
+                  "value": "buyer80@example.com",
+                  "ids": [
+                    "c79",
+                    "c80"
+                  ],
+                  "confidence": "strong",
+                  "action": "review_only"
+                }
+              ],
+              "tasks": [],
+              "timeline": []
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9164,
+            "output_tokens": 206
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

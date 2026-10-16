@@ -1,0 +1,502 @@
+{
+  "id": "T08",
+  "name": "来源柱图",
+  "messages": [
+    "将全部客户按来源做柱状图。",
+    "指出最常见的来源。"
+  ],
+  "check": "chart",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "将全部客户按来源做柱状图。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5518,
+        "errors": [],
+        "output": {
+          "answer": "已按来源绘制全部客户的柱状图。共 300 位客户，五个来源各 60 位。",
+          "proposals": [],
+          "chart": {
+            "id": "q1",
+            "title": "source",
+            "metric": "count",
+            "unit": "条",
+            "data": [
+              {
+                "label": "Facebook Marketplace",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "Referral",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "Website",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "Walk-in",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "AutoTrader",
+                "value": 60,
+                "sampleSize": 60
+              }
+            ],
+            "total": 300,
+            "partial": false,
+            "type": "bar"
+          },
+          "customerIds": [],
+          "sourceNote": "浏览器演示快照；按客户创建日期统计截至 2026-10-16 的全部客户。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Referral",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Website",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 60,
+                    "sampleSize": 60
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Referral",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Website",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 60,
+                  "sampleSize": 60
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8603,
+            "output_tokens": 148
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "指出最常见的来源。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5806,
+        "errors": [],
+        "output": {
+          "answer": "没有单一最常见的来源：Facebook Marketplace、Referral、Website、Walk-in 和 AutoTrader 并列第一，各有 60 位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "全部已记录客户；来源：虚构演示浏览器快照。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Referral",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Website",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 60,
+                    "sampleSize": 60
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Referral",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Website",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 60,
+                  "sampleSize": 60
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8686,
+            "output_tokens": 142
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "将全部客户按来源做柱状图。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3752,
+        "errors": [],
+        "output": {
+          "answer": "全部 300 位客户按来源分布均匀：Facebook Marketplace、Referral、Website、Walk-in 和 AutoTrader 各 60 位。",
+          "proposals": [],
+          "chart": {
+            "id": "q1",
+            "title": "source",
+            "metric": "count",
+            "unit": "条",
+            "data": [
+              {
+                "label": "Facebook Marketplace",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "Referral",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "Website",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "Walk-in",
+                "value": 60,
+                "sampleSize": 60
+              },
+              {
+                "label": "AutoTrader",
+                "value": 60,
+                "sampleSize": 60
+              }
+            ],
+            "total": 300,
+            "partial": false,
+            "type": "bar"
+          },
+          "customerIds": [],
+          "sourceNote": "来源：客户记录；统计全部已记录客户，按来源计数。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Referral",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Website",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 60,
+                    "sampleSize": 60
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Referral",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Website",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 60,
+                  "sampleSize": 60
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9105,
+            "output_tokens": 127
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "指出最常见的来源。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4051,
+        "errors": [],
+        "output": {
+          "answer": "没有单一最常见的来源：Facebook Marketplace、Referral、Website、Walk-in 和 AutoTrader 并列第一，各有 60 位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "全部已记录客户；按来源统计客户数。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "source",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "source",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "Facebook Marketplace",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Referral",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Website",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "Walk-in",
+                    "value": 60,
+                    "sampleSize": 60
+                  },
+                  {
+                    "label": "AutoTrader",
+                    "value": 60,
+                    "sampleSize": 60
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "Facebook Marketplace",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Referral",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Website",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "Walk-in",
+                  "value": 60,
+                  "sampleSize": 60
+                },
+                {
+                  "label": "AutoTrader",
+                  "value": 60,
+                  "sampleSize": 60
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9225,
+            "output_tokens": 146
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

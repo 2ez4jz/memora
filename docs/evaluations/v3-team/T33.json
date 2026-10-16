@@ -1,0 +1,124 @@
+{
+  "id": "T33",
+  "name": "修正记忆",
+  "messages": [
+    "我之前偏好短信，现在想改为邮件。",
+    "没有在经营记忆里确认前，长期规则变了吗？"
+  ],
+  "check": "memory_pending",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "我之前偏好短信，现在想改为邮件。",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4294,
+        "errors": [],
+        "output": {
+          "answer": "明白，这次对话中我会按“偏好邮件而非短信”来理解你的偏好；我还没有修改任何记录，也不能代发邮件。如果想让这个偏好长期生效，请到「经营记忆」提出并点击确认。如果你指的是修改某位客户的联系偏好，请告诉我是哪位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4161,
+            "output_tokens": 281
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "没有在经营记忆里确认前，长期规则变了吗？",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2033,
+        "errors": [],
+        "output": {
+          "answer": "没有。未在「经营记忆」中提出并点击确认前，长期规则不会改变；我只会在当前对话中参考你偏好邮件而非短信。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 4316,
+            "output_tokens": 70
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "我之前偏好短信，现在想改为邮件。",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5227,
+        "errors": [],
+        "output": {
+          "answer": "明白，你现在更偏好邮件，而不是短信。我会在本次对话中按这个偏好考虑，但还没有更新任何档案。若要修改客户记录，请告诉我你的客户姓名或 ID；我会先核对，再准备待确认的修改卡片。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4421,
+            "output_tokens": 330
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "没有在经营记忆里确认前，长期规则变了吗？",
+        "expected": {
+          "check": "memory_pending",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2033,
+        "errors": [],
+        "output": {
+          "answer": "没有。你还没在「经营记忆」里提出并点击确认，所以长期规则没有改变；我只会在当前对话中参考你更偏好邮件。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 4562,
+            "output_tokens": 69
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "id": "T12",
+  "name": "零基数",
+  "messages": [
+    "比较2020年与2026年的客户数。",
+    "2020年为零时增长率是多少？"
+  ],
+  "check": "compare",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "比较2020年与2026年的客户数。",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4813,
+        "errors": [],
+        "output": {
+          "answer": "按客户创建日期统计：2020年记录为 **0人**；2026年截至10月16日为 **243人**，多243人。由于2020年的基数为0，增长率无法计算；而且2026年尚未结束，两者不是完整年度对比。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "虚构演示浏览器快照；按客户创建日期统计，2020全年对比2026-01-01至2026-10-16。",
+          "queries": [
+            {
+              "entity": "customers"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "customers",
+              "metric": "count",
+              "valueField": null,
+              "current": {
+                "from": "2026-01-01",
+                "to": "2026-10-16",
+                "count": 243,
+                "value": 243
+              },
+              "prior": {
+                "from": "2020-01-01",
+                "to": "2020-12-31",
+                "count": 0,
+                "value": 0
+              },
+              "difference": 243,
+              "growthPercent": null
+            }
+          ],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 8632,
+            "output_tokens": 271
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "2020年为零时增长率是多少？",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5571,
+        "errors": [],
+        "output": {
+          "answer": "2020年客户数为0，不能计算增长率：百分比增长需要除以2020年的客户数，分母为0。只能说2026年截至10月16日比2020年多243位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "浏览器演示快照；按客户创建日期统计，2020全年对比2026-01-01至2026-10-16。",
+          "queries": [
+            {
+              "entity": "customers"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "customers",
+              "metric": "count",
+              "valueField": null,
+              "current": {
+                "from": "2026-01-01",
+                "to": "2026-10-16",
+                "count": 243,
+                "value": 243
+              },
+              "prior": {
+                "from": "2020-01-01",
+                "to": "2020-12-31",
+                "count": 0,
+                "value": 0
+              },
+              "difference": 243,
+              "growthPercent": null
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8679,
+            "output_tokens": 210
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "比较2020年与2026年的客户数。",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7229,
+        "errors": [],
+        "output": {
+          "answer": "按客户创建日期统计，2020年全年有 **0 位**，2026年截至10月16日有 **243 位**。按相同的1月1日至10月16日区间比较，2020年仍为0位，2026年多243位；由于基数为0，增长率不适用。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "客户记录；2020年全年及两年1月1日至10月16日同口径比较，2026年截至今日。",
+          "queries": [
+            {
+              "entity": "customers"
+            },
+            {
+              "entity": "customers"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "customers",
+              "metric": "count",
+              "valueField": null,
+              "current": {
+                "from": "2026-01-01",
+                "to": "2026-10-16",
+                "count": 243,
+                "value": 243
+              },
+              "prior": {
+                "from": "2020-01-01",
+                "to": "2020-12-31",
+                "count": 0,
+                "value": 0
+              },
+              "difference": 243,
+              "growthPercent": null
+            },
+            {
+              "entity": "customers",
+              "metric": "count",
+              "valueField": null,
+              "current": {
+                "from": "2026-01-01",
+                "to": "2026-10-16",
+                "count": 243,
+                "value": 243
+              },
+              "prior": {
+                "from": "2020-01-01",
+                "to": "2020-10-16",
+                "count": 0,
+                "value": 0
+              },
+              "difference": 243,
+              "growthPercent": null
+            }
+          ],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 14247,
+            "output_tokens": 436
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "2020年为零时增长率是多少？",
+        "expected": {
+          "check": "compare",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5735,
+        "errors": [],
+        "output": {
+          "answer": "增长率**无法计算**，不是无穷大，也不是100%：因为2020年同期客户数为0，增长率公式中的分母为0。按1月1日至10月16日的相同区间比较，2026年为243位，比2020年多243位。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "按客户创建日期统计；2020年及2026年均取1月1日至10月16日。",
+          "queries": [
+            {
+              "entity": "customers"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "customers",
+              "metric": "count",
+              "valueField": null,
+              "current": {
+                "from": "2026-01-01",
+                "to": "2026-10-16",
+                "count": 243,
+                "value": 243
+              },
+              "prior": {
+                "from": "2020-01-01",
+                "to": "2020-10-16",
+                "count": 0,
+                "value": 0
+              },
+              "difference": 243,
+              "growthPercent": null
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9221,
+            "output_tokens": 223
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

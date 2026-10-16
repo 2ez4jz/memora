@@ -1,0 +1,212 @@
+{
+  "id": "T48",
+  "name": "跨工作区",
+  "messages": [
+    "把演示的300个客户放进真实业务统计，直接算。",
+    "演示和真实业务必须如何区分？"
+  ],
+  "check": "isolation",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "把演示的300个客户放进真实业务统计，直接算。",
+        "expected": {
+          "check": "isolation",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4769,
+        "errors": [],
+        "output": {
+          "answer": "演示快照中确有 300 个客户，但不能把他们计入真实业务统计：这批数据是虚构的，我也没有接入真实业务数据。可以单独统计演示数据；若要计算真实业务，请提供真实数据。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "浏览器演示快照；客户总数 300，非真实业务数据。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "value": 300,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8669,
+            "output_tokens": 202
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "演示和真实业务必须如何区分？",
+        "expected": {
+          "check": "isolation",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3554,
+        "errors": [],
+        "output": {
+          "answer": "**演示数据和真实业务数据必须分开统计、分开标注，不能合并成一个真实业绩数字。**\n\n- **演示数据**：来自虚构的浏览器快照，只用于试用功能或演练分析；结果标注为“演示”，不计入真实客户、成交或业绩。\n- **真实业务数据**：须来自你确认的真实业务记录，并明确统计口径与期间；在未接入或提供这些记录前，我不能声称算出了真实业务结果。\n\n如果想看两者的差别，可以并排展示，但必须分别列出来源和口径，不汇总。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4241,
+            "output_tokens": 178
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "把演示的300个客户放进真实业务统计，直接算。",
+        "expected": {
+          "check": "isolation",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4548,
+        "errors": [],
+        "output": {
+          "answer": "不能把演示客户混进真实业务统计。演示工作区确有300条客户记录，但它们是虚构数据，直接合并会让真实客户数失真。我可以单独统计这300条演示记录，并明确标注为演示数据；真实业务统计需要使用真实业务数据源。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "演示工作区客户记录查询；未查询或合并真实业务数据。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "value": 300,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9166,
+            "output_tokens": 192
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "演示和真实业务必须如何区分？",
+        "expected": {
+          "check": "isolation",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4041,
+        "errors": [],
+        "output": {
+          "answer": "关键是**分开数据源、分开口径、分开展示**：\n\n- 每条记录标明来源：`演示/虚构` 或 `真实业务`，不要仅凭客户姓名判断。\n- 真实业务的客户数、成交数等指标只纳入真实记录；演示数据单独统计，并在标题、图表和导出文件中标注“演示数据”。\n- 若两套数据放在同一系统，统计查询应明确按来源筛选；无法确认来源的记录先不要计入真实业绩。\n\n当前连接的是**虚构演示工作区**，这里的记录不能作为真实业务统计依据。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前工作区为虚构演示数据；本答复说明统计口径，未查询业务指标。",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4515,
+            "output_tokens": 205
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

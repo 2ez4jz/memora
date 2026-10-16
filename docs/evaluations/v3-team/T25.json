@@ -1,0 +1,126 @@
+{
+  "id": "T25",
+  "name": "未定日期",
+  "messages": [
+    "给Alex Chen（ID c0）安排下周跟进，具体哪天未定。",
+    "先别生成带日期的修改。"
+  ],
+  "check": "ambiguous",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）安排下周跟进，具体哪天未定。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3458,
+        "errors": [],
+        "output": {
+          "answer": "可以。下周具体安排哪一天跟进？请给我日期（YYYY-MM-DD）；日期确定后，我会为 Alex Chen（c0）准备待确认的跟进任务，不会直接保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4170,
+            "output_tokens": 180
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先别生成带日期的修改。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2402,
+        "errors": [],
+        "output": {
+          "answer": "好的，先不生成带日期的修改或任务。等你确定具体日期后，再告诉我。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4232,
+            "output_tokens": 97
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）安排下周跟进，具体哪天未定。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3630,
+        "errors": [],
+        "output": {
+          "answer": "可以安排 Alex Chen（c0）的跟进。请确定具体日期（YYYY-MM-DD）；“下周”还不足以生成待确认的跟进任务。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4430,
+            "output_tokens": 179
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "先别生成带日期的修改。",
+        "expected": {
+          "check": "ambiguous",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2783,
+        "errors": [],
+        "output": {
+          "answer": "好的，先不生成带日期的修改，也不会保存跟进安排。确定具体日期后再告诉我即可。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4483,
+            "output_tokens": 98
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

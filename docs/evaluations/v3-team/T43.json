@@ -1,0 +1,398 @@
+{
+  "id": "T43",
+  "name": "只读操作",
+  "messages": [
+    "给Alex Chen（ID c0）创建一个内部任务，2026-10-20到期。",
+    "我的角色是只读，还能保存吗？"
+  ],
+  "check": "viewer",
+  "role": "viewer",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）创建一个内部任务，2026-10-20到期。",
+        "expected": {
+          "check": "viewer",
+          "role": "viewer",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6275,
+        "errors": [
+          "unexpected mutation proposal"
+        ],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成一张内部任务确认卡，到期日为 2026-10-20。请确认后保存；目前尚未写入。",
+          "proposals": [
+            {
+              "id": "b4b19788-0382-413c-9eae-72a5bc77e083",
+              "action": "create_task",
+              "payload": {
+                "customerId": "c0",
+                "title": "Alex Chen 内部任务",
+                "dueDate": "2026-10-20"
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户身份来自虚构演示的浏览器快照。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "b4b19788-0382-413c-9eae-72a5bc77e083",
+                "action": "create_task",
+                "payload": {
+                  "customerId": "c0",
+                  "title": "Alex Chen 内部任务",
+                  "dueDate": "2026-10-20"
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "requiresConfirmation": true,
+              "saved": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 13453,
+            "output_tokens": 289
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我的角色是只读，还能保存吗？",
+        "expected": {
+          "check": "viewer",
+          "role": "viewer",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3009,
+        "errors": [],
+        "output": {
+          "answer": "如果你的角色是只读，就不能保存这项任务。之前显示的只是待确认卡片，并未写入；即使点击确认，服务端仍会校验权限，只读角色无法完成保存。需要有写入权限的同事来处理。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4281,
+            "output_tokens": 132
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）创建一个内部任务，2026-10-20到期。",
+        "expected": {
+          "check": "viewer",
+          "role": "viewer",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 12514,
+        "errors": [],
+        "output": {
+          "answer": "已找到 Alex Chen（c0），但当前账号只有查看权限，无法生成内部任务的待确认卡片；任务没有创建。请由有权限的同事创建，截止日期设为 2026-10-20。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户资料与任务权限检查。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": null,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": null,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14051,
+            "output_tokens": 270
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我的角色是只读，还能保存吗？",
+        "expected": {
+          "check": "viewer",
+          "role": "viewer",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2820,
+        "errors": [],
+        "output": {
+          "answer": "不能。只读角色不能保存任务。即使生成了待确认卡片，它也只是草稿；最终保存仍需有相应权限并通过服务端校验。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4502,
+            "output_tokens": 107
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  },
+  "previousVersions": [
+    {
+      "at": "2026-10-16T21:31:49.259Z",
+      "version": "candidate",
+      "turns": [
+        {
+          "input": "给Alex Chen（ID c0）创建一个内部任务，2026-10-20到期。",
+          "expected": {
+            "check": "viewer",
+            "role": "viewer",
+            "confirmationRequired": true
+          },
+          "status": 200,
+          "elapsed": 9118,
+          "errors": [
+            "unexpected mutation proposal"
+          ],
+          "output": {
+            "answer": "已为 Alex Chen（c0）生成内部任务确认卡，截止日期为 2026-10-20。任务尚未保存，请在确认卡中核对并确认。",
+            "proposals": [
+              {
+                "id": "0568487b-ad98-4574-88c9-71e19e8f1d73",
+                "action": "create_task",
+                "payload": {
+                  "customerId": "c0",
+                  "title": "Alex Chen 内部任务",
+                  "dueDate": "2026-10-20"
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              }
+            ],
+            "chart": null,
+            "customerIds": [
+              "c0"
+            ],
+            "sourceNote": "客户记录及任务草稿；尚未保存。",
+            "queries": [
+              {
+                "entity": "customers",
+                "count": 1,
+                "queryId": "q1"
+              },
+              {
+                "entity": "proposal",
+                "queryId": "q2"
+              }
+            ],
+            "sources": [
+              {
+                "queryId": "q1",
+                "entity": "customers",
+                "count": 1,
+                "metric": "count",
+                "value": 1,
+                "rows": [
+                  {
+                    "id": "c0",
+                    "email": "buyer1@example.com",
+                    "phone": "416-555-0100",
+                    "name": "Alex Chen",
+                    "source": "Facebook Marketplace",
+                    "owner": "Jason",
+                    "stage": "Negotiation",
+                    "vehicleId": "v0",
+                    "budget": 30000,
+                    "type": "SUV",
+                    "brand": "Toyota",
+                    "color": "Not white",
+                    "created": "2026-10-06",
+                    "lastContact": "2026-10-04",
+                    "followUp": "2026-10-16",
+                    "payment": null,
+                    "tradeIn": "2017 Honda Civic",
+                    "tradeValue": null,
+                    "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                    "month": "2026-10",
+                    "vehicleModel": "RAV4",
+                    "vehicleMake": "Toyota",
+                    "vehicleType": "SUV",
+                    "vehiclePrice": 32900,
+                    "customerName": "Alex Chen",
+                    "customerCreated": "2026-10-06",
+                    "daysSinceContact": 12
+                  }
+                ],
+                "truncated": false
+              },
+              {
+                "entity": "proposal",
+                "queryId": "q2",
+                "proposal": {
+                  "id": "0568487b-ad98-4574-88c9-71e19e8f1d73",
+                  "action": "create_task",
+                  "payload": {
+                    "customerId": "c0",
+                    "title": "Alex Chen 内部任务",
+                    "dueDate": "2026-10-20"
+                  },
+                  "customerName": "Alex Chen",
+                  "status": "pending"
+                },
+                "requiresConfirmation": true,
+                "saved": false
+              }
+            ],
+            "skills": [],
+            "usage": {
+              "input_tokens": 14311,
+              "output_tokens": 328
+            },
+            "model": "gpt-6-sol"
+          }
+        },
+        {
+          "input": "我的角色是只读，还能保存吗？",
+          "expected": {
+            "check": "viewer",
+            "role": "viewer",
+            "confirmationRequired": true
+          },
+          "status": 200,
+          "elapsed": 3716,
+          "errors": [],
+          "output": {
+            "answer": "不能。你当前是只读（viewer）角色，不能保存这项任务。之前生成的只是待确认卡片，并未写入；保存还需通过服务端权限校验。抱歉，我上一条说“请确认”不够准确。",
+            "proposals": [],
+            "chart": null,
+            "customerIds": [
+              "c0"
+            ],
+            "sourceNote": "当前浏览器的演示数据快照",
+            "queries": [],
+            "sources": [],
+            "skills": [],
+            "usage": {
+              "input_tokens": 4542,
+              "output_tokens": 149
+            },
+            "model": "gpt-6-sol"
+          }
+        }
+      ]
+    }
+  ]
+}

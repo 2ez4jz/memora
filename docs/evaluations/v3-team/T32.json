@@ -1,0 +1,120 @@
+{
+  "id": "T32",
+  "name": "确认知识",
+  "messages": [
+    "已确认的业务记忆里，报价前应该做什么？",
+    "这条规则能授权退款吗？"
+  ],
+  "check": "memory_active",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "已确认的业务记忆里，报价前应该做什么？",
+        "expected": {
+          "check": "memory_active",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2030,
+        "errors": [],
+        "output": {
+          "answer": "报价前必须检查车辆状况。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4183,
+            "output_tokens": 57
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这条规则能授权退款吗？",
+        "expected": {
+          "check": "memory_active",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2013,
+        "errors": [],
+        "output": {
+          "answer": "不能。这条已确认的业务记忆只要求报价前检查车辆状况，不涉及退款授权；我也不能办理退款。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4209,
+            "output_tokens": 60
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "已确认的业务记忆里，报价前应该做什么？",
+        "expected": {
+          "check": "memory_active",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2050,
+        "errors": [],
+        "output": {
+          "answer": "报价前必须检查车辆状况。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4443,
+            "output_tokens": 58
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这条规则能授权退款吗？",
+        "expected": {
+          "check": "memory_active",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2114,
+        "errors": [],
+        "output": {
+          "answer": "不能。这条已确认的业务记忆只要求报价前检查车辆状况，不构成退款授权；我也不能办理退款。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4469,
+            "output_tokens": 61
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

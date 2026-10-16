@@ -1,0 +1,251 @@
+{
+  "id": "T16",
+  "name": "收款统计",
+  "messages": [
+    "查询已经登记的收款。",
+    "这能证明银行已经到账吗？"
+  ],
+  "check": "finance",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询已经登记的收款。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5205,
+        "errors": [],
+        "output": {
+          "answer": "当前快照没有收款流水或已付款状态，因此我无法查询或确认“已登记收款”。客户资料中的 payment 字段有 600 和 750 两档，但它不能作为实际收款凭证。如果你要查某位客户的付款偏好，可以告诉我姓名；实际到账请以收款系统或银行记录为准。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "来源：虚构演示浏览器快照；查询客户 payment 字段，不含收款流水。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "groupBy": "payment",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "payment",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "750",
+                    "value": 199,
+                    "sampleSize": 199
+                  },
+                  {
+                    "label": "600",
+                    "value": 101,
+                    "sampleSize": 101
+                  }
+                ],
+                "total": 300,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "750",
+                  "value": 199,
+                  "sampleSize": 199
+                },
+                {
+                  "label": "600",
+                  "value": 101,
+                  "sampleSize": 101
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8561,
+            "output_tokens": 273
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这能证明银行已经到账吗？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2632,
+        "errors": [],
+        "output": {
+          "answer": "不能。客户资料中的 payment 字段不是银行到账记录，不能证明款项已到账。请以银行流水或收款系统中的到账记录核实。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4250,
+            "output_tokens": 66
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询已经登记的收款。",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3869,
+        "errors": [],
+        "output": {
+          "answer": "已登记的收款共 1 笔：2026-10-16，CAD 30.00，关联发票 e035989e-4805-49fd-b077-9fa6d5b1d2ce，参考号 FICTIONAL-RECEIPT。该发票总额 CAD 113.00，尚有 CAD 83.00 未结。这是人工登记的收款记录，不代表银行已到账。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "来源：已登记的发票与人工收款记录；未限定日期。",
+          "queries": [
+            {
+              "entity": "finance",
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "entity": "finance",
+              "queryId": "q1",
+              "summary": {
+                "currency": "CAD",
+                "invoiceCount": 1,
+                "invoicedCents": 11300,
+                "receivedCents": 3000,
+                "outstandingCents": 8300,
+                "note": "发票与人工登记收款；不代表净利润或银行对账 / Invoices and manually recorded receipts"
+              },
+              "invoices": [
+                {
+                  "id": "e035989e-4805-49fd-b077-9fa6d5b1d2ce",
+                  "customerId": "c0",
+                  "quoteId": "29fe7a6b-abcb-42a1-9703-6c80ab2fb077",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "issued",
+                  "issuedDate": "2026-10-16",
+                  "dueDate": "2026-10-25",
+                  "version": 2,
+                  "paidCents": 3000,
+                  "balanceCents": 8300
+                }
+              ],
+              "quotes": [
+                {
+                  "id": "29fe7a6b-abcb-42a1-9703-6c80ab2fb077",
+                  "customerId": "c0",
+                  "currency": "CAD",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300,
+                  "subtotalCents": 10000,
+                  "taxCents": 1300,
+                  "totalCents": 11300,
+                  "status": "accepted",
+                  "expiresDate": null,
+                  "version": 1,
+                  "createdDate": "2026-10-16",
+                  "createdBy": "fixture"
+                }
+              ],
+              "payments": [
+                {
+                  "id": "c5b5548e-095e-4152-9381-211cc1fc51e7",
+                  "customerId": "c0",
+                  "invoiceId": "e035989e-4805-49fd-b077-9fa6d5b1d2ce",
+                  "currency": "CAD",
+                  "amountCents": 3000,
+                  "date": "2026-10-16",
+                  "reference": "FICTIONAL-RECEIPT",
+                  "status": "succeeded",
+                  "method": "other",
+                  "recordedBy": "fixture",
+                  "version": 1
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9342,
+            "output_tokens": 184
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这能证明银行已经到账吗？",
+        "expected": {
+          "check": "finance",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3283,
+        "errors": [],
+        "output": {
+          "answer": "不能。已登记的人工收款只说明系统里有这条记录，不能证明银行已到账。要确认到账，需要核对银行流水或支付平台的结算记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4532,
+            "output_tokens": 126
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

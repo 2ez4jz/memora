@@ -1,0 +1,208 @@
+{
+  "id": "T42",
+  "name": "新客户",
+  "messages": [
+    "新建客户“测试新客户”，邮箱new@example.test，关联产品ID v0，先生成确认卡。",
+    "我还没确认，客户已经保存了吗？"
+  ],
+  "check": "customer",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "新建客户“测试新客户”，邮箱new@example.test，关联产品ID v0，先生成确认卡。",
+        "expected": {
+          "check": "customer",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3503,
+        "errors": [
+          "expected review card create_customer"
+        ],
+        "output": {
+          "answer": "目前不能新建客户或生成新客户确认卡；现有确认卡只支持更新已有客户或创建内部任务。邮箱 new@example.test 和车辆 ID v0 我可以在本次对话中参考，但没有保存。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4174,
+            "output_tokens": 205
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我还没确认，客户已经保存了吗？",
+        "expected": {
+          "check": "customer",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2091,
+        "errors": [
+          "pending card history contradicted"
+        ],
+        "output": {
+          "answer": "没有保存。我没有生成确认卡，也没有创建客户记录；邮箱和车辆 ID 只在这次对话中提到。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4242,
+            "output_tokens": 91
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "新建客户“测试新客户”，邮箱new@example.test，关联产品ID v0，先生成确认卡。",
+        "expected": {
+          "check": "customer",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 9278,
+        "errors": [],
+        "output": {
+          "answer": "已生成新客户确认卡：姓名“测试新客户”，邮箱 new@example.test，关联车辆 v0（2023 Toyota RAV4）。目前尚未保存，请在确认卡中核对并确认。",
+          "proposals": [
+            {
+              "id": "a54eb91a-22fa-426b-88d5-d9b38ba33121",
+              "action": "create_customer",
+              "payload": {
+                "name": "测试新客户",
+                "email": "new@example.test",
+                "phone": "",
+                "vehicleId": "v0"
+              },
+              "customerName": "测试新客户",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "已核对车辆 ID；确认卡待确认。",
+          "queries": [
+            {
+              "entity": "vehicles",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "customers",
+              "count": 0,
+              "queryId": "q2"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q3"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "vehicles",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "v0",
+                  "stock": "A173",
+                  "make": "Toyota",
+                  "model": "RAV4",
+                  "trim": "XLE",
+                  "year": 2023,
+                  "price": 32900,
+                  "cost": 28700,
+                  "km": 43000,
+                  "color": "Grey",
+                  "type": "SUV",
+                  "drive": "AWD",
+                  "arrival": "2026-09-09",
+                  "sold": false,
+                  "month": "2026-09",
+                  "daysInStock": 37
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "queryId": "q2",
+              "entity": "customers",
+              "count": 0,
+              "metric": "count",
+              "value": 0,
+              "rows": [],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q3",
+              "proposal": {
+                "id": "a54eb91a-22fa-426b-88d5-d9b38ba33121",
+                "action": "create_customer",
+                "payload": {
+                  "name": "测试新客户",
+                  "email": "new@example.test",
+                  "phone": "",
+                  "vehicleId": "v0"
+                },
+                "customerName": "测试新客户",
+                "status": "pending"
+              },
+              "saved": false,
+              "requiresConfirmation": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 18848,
+            "output_tokens": 344
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "我还没确认，客户已经保存了吗？",
+        "expected": {
+          "check": "customer",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2617,
+        "errors": [],
+        "output": {
+          "answer": "没有。上一条确认卡的状态是 pending_confirmation，表示卡片已生成，但客户尚未保存；需要你确认后才会提交。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4547,
+            "output_tokens": 93
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

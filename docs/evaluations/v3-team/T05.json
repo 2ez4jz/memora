@@ -1,0 +1,216 @@
+{
+  "id": "T05",
+  "name": "全部客户",
+  "messages": [
+    "查询这个演示工作区一共有多少客户。",
+    "这些是真实经营客户吗？"
+  ],
+  "check": "count",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查询这个演示工作区一共有多少客户。",
+        "expected": {
+          "check": "count",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3224,
+        "errors": [],
+        "output": {
+          "answer": "这个演示工作区共有 300 位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "来源：演示工作区浏览器快照；客户记录总数。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "value": 300,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8609,
+            "output_tokens": 106
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这些是真实经营客户吗？",
+        "expected": {
+          "check": "count",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2039,
+        "errors": [],
+        "output": {
+          "answer": "不是。这是虚构演示工作区的数据，来自浏览器快照，不能当作真实经营客户记录。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 4246,
+            "output_tokens": 57
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查询这个演示工作区一共有多少客户。",
+        "expected": {
+          "check": "count",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3931,
+        "errors": [],
+        "output": {
+          "answer": "这个演示工作区共有 300 位客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "来源：演示工作区客户记录总数。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "value": 300,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9129,
+            "output_tokens": 101
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "这些是真实经营客户吗？",
+        "expected": {
+          "check": "count",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 1747,
+        "errors": [],
+        "output": {
+          "answer": "不是。这是虚构的演示工作区，客户记录是合成数据，不代表真实经营客户。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 4506,
+            "output_tokens": 55
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

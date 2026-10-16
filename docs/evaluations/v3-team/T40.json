@@ -1,0 +1,217 @@
+{
+  "id": "T40",
+  "name": "报价草稿",
+  "messages": [
+    "给Alex Chen（ID c0）建立报价草稿：检测服务1次，单价100加元，税率13%，先给确认卡。",
+    "你已经发给客户了吗？"
+  ],
+  "check": "quote",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "给Alex Chen（ID c0）建立报价草稿：检测服务1次，单价100加元，税率13%，先给确认卡。",
+        "expected": {
+          "check": "quote",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3869,
+        "errors": [
+          "expected review card create_quote"
+        ],
+        "output": {
+          "answer": "目前我不能建立报价草稿或生成报价确认卡；现有确认卡只支持客户资料更新和内部任务。你提供的报价内容是：Alex Chen（c0），检测服务 1 次，单价 CAD 100，税率 13%，含税合计 CAD 113。以上仅是本次对话中的整理，未保存为报价。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4183,
+            "output_tokens": 196
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "你已经发给客户了吗？",
+        "expected": {
+          "check": "quote",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2336,
+        "errors": [],
+        "output": {
+          "answer": "没有。我没有发给客户，也没有生成或保存报价草稿；上一条只是整理了你提供的报价内容。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4279,
+            "output_tokens": 58
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "给Alex Chen（ID c0）建立报价草稿：检测服务1次，单价100加元，税率13%，先给确认卡。",
+        "expected": {
+          "check": "quote",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 13259,
+        "errors": [],
+        "output": {
+          "answer": "已为 Alex Chen（c0）生成报价确认卡：检测服务 1 次，单价 CAD 100.00，税率 13%，含税合计 CAD 113.00。**尚未保存或发送**，请核对确认卡后再确认。",
+          "proposals": [
+            {
+              "id": "7416e470-7cb1-4275-9e0d-3b200ac3a822",
+              "action": "create_quote",
+              "payload": {
+                "customerId": "c0",
+                "lines": [
+                  {
+                    "description": "检测服务",
+                    "quantity": 1,
+                    "unitCents": 10000
+                  }
+                ],
+                "taxBps": 1300
+              },
+              "customerName": "Alex Chen",
+              "status": "pending"
+            }
+          ],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "客户身份来自客户记录；报价为待确认草稿。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 1,
+              "queryId": "q1"
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 1,
+              "metric": "count",
+              "value": 1,
+              "rows": [
+                {
+                  "id": "c0",
+                  "email": "buyer1@example.com",
+                  "phone": "416-555-0100",
+                  "name": "Alex Chen",
+                  "source": "Facebook Marketplace",
+                  "owner": "Jason",
+                  "stage": "Negotiation",
+                  "vehicleId": "v0",
+                  "budget": 30000,
+                  "type": "SUV",
+                  "brand": "Toyota",
+                  "color": "Not white",
+                  "created": "2026-10-06",
+                  "lastContact": "2026-10-04",
+                  "followUp": "2026-10-16",
+                  "payment": 600,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "试驾过灰色 RAV4，觉得价格偏高。预计本月奖金到账后再决定，希望月供低于 $600。",
+                  "month": "2026-10",
+                  "vehicleModel": "RAV4",
+                  "vehicleMake": "Toyota",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 32900,
+                  "customerName": "Alex Chen",
+                  "customerCreated": "2026-10-06",
+                  "daysSinceContact": 12
+                }
+              ],
+              "truncated": false
+            },
+            {
+              "entity": "proposal",
+              "queryId": "q2",
+              "proposal": {
+                "id": "7416e470-7cb1-4275-9e0d-3b200ac3a822",
+                "action": "create_quote",
+                "payload": {
+                  "customerId": "c0",
+                  "lines": [
+                    {
+                      "description": "检测服务",
+                      "quantity": 1,
+                      "unitCents": 10000
+                    }
+                  ],
+                  "taxBps": 1300
+                },
+                "customerName": "Alex Chen",
+                "status": "pending"
+              },
+              "saved": false,
+              "requiresConfirmation": true
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 14267,
+            "output_tokens": 350
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "你已经发给客户了吗？",
+        "expected": {
+          "check": "quote",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4167,
+        "errors": [],
+        "output": {
+          "answer": "没有发给客户。之前显示的是待确认的报价卡片，并非已保存或已发送；我也不能代你发送消息。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c0"
+          ],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4571,
+            "output_tokens": 124
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

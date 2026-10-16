@@ -1,0 +1,548 @@
+{
+  "id": "T37",
+  "name": "预算排序",
+  "messages": [
+    "查预算最高的三个客户。",
+    "预算高代表一定更有钱吗？"
+  ],
+  "check": "budget",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "查预算最高的三个客户。",
+        "expected": {
+          "check": "budget",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 6358,
+        "errors": [],
+        "output": {
+          "answer": "按已记录的客户预算排序，最高的三位并列，预算均为 **CAD 49,900**：\n\n| 客户 | 客户 ID | 阶段 |\n|---|---|---|\n| Cameron Ali 114 | c114 | Sold |\n| Cameron Wang 204 | c204 | Sold |\n| Cameron Brown 294 | c294 | Sold |\n\n预算是记录中的意向金额，不代表实际购买力。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c114",
+            "c204",
+            "c294"
+          ],
+          "sourceNote": "来源：虚构演示的浏览器客户快照；按全部已记录客户的预算排序。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            },
+            {
+              "entity": "customers",
+              "count": 3,
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "value": 300,
+              "rows": [
+                {
+                  "id": "c114",
+                  "email": "buyer114@example.com",
+                  "phone": "416-555-1114",
+                  "name": "Cameron Ali 114",
+                  "source": "AutoTrader",
+                  "owner": "Priya",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s114",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2026-04-11",
+                  "lastContact": "2026-04-11",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2026-04",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Ali 114",
+                  "customerCreated": "2026-04-11",
+                  "daysSinceContact": 188
+                },
+                {
+                  "id": "c204",
+                  "email": "buyer204@example.com",
+                  "phone": "416-555-1204",
+                  "name": "Cameron Wang 204",
+                  "source": "AutoTrader",
+                  "owner": "Daniel",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s204",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2025-12-02",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Wang 204",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 318
+                },
+                {
+                  "id": "c294",
+                  "email": "buyer294@example.com",
+                  "phone": "416-555-1294",
+                  "name": "Cameron Brown 294",
+                  "source": "AutoTrader",
+                  "owner": "Jason",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s294",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2026-07-10",
+                  "followUp": null,
+                  "payment": 600,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Brown 294",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 98
+                }
+              ],
+              "truncated": true
+            },
+            {
+              "queryId": "q2",
+              "entity": "customers",
+              "count": 3,
+              "metric": "count",
+              "value": 3,
+              "rows": [
+                {
+                  "id": "c114",
+                  "email": "buyer114@example.com",
+                  "phone": "416-555-1114",
+                  "name": "Cameron Ali 114",
+                  "source": "AutoTrader",
+                  "owner": "Priya",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s114",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2026-04-11",
+                  "lastContact": "2026-04-11",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2026-04",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Ali 114",
+                  "customerCreated": "2026-04-11",
+                  "daysSinceContact": 188
+                },
+                {
+                  "id": "c204",
+                  "email": "buyer204@example.com",
+                  "phone": "416-555-1204",
+                  "name": "Cameron Wang 204",
+                  "source": "AutoTrader",
+                  "owner": "Daniel",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s204",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2025-12-02",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Wang 204",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 318
+                },
+                {
+                  "id": "c294",
+                  "email": "buyer294@example.com",
+                  "phone": "416-555-1294",
+                  "name": "Cameron Brown 294",
+                  "source": "AutoTrader",
+                  "owner": "Jason",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s294",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2026-07-10",
+                  "followUp": null,
+                  "payment": 600,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Brown 294",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 98
+                }
+              ],
+              "truncated": false
+            }
+          ],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 14591,
+            "output_tokens": 326
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "预算高代表一定更有钱吗？",
+        "expected": {
+          "check": "budget",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2938,
+        "errors": [],
+        "output": {
+          "answer": "不一定。客户填写的预算只是购车意向信号，可能受贷款方案、置换车估值或当时看中的车型影响；它不能证明客户更有钱，也不能保证会按这个金额成交。更稳妥的是结合付款计划和实际沟通，确认预算是否仍适用。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 4324,
+            "output_tokens": 101
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "查预算最高的三个客户。",
+        "expected": {
+          "check": "budget",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7427,
+        "errors": [],
+        "output": {
+          "answer": "按记录的预算排序，最高的三位客户并列第一，预算均为 **CAD 49,900**：\n\n1. Cameron Ali 114（c114）— 已成交\n2. Cameron Wang 204（c204）— 已成交\n3. Cameron Brown 294（c294）— 已成交\n\n预算是客户记录中的金额，不代表实际支付金额。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [
+            "c114",
+            "c204",
+            "c294"
+          ],
+          "sourceNote": "客户记录；截至 2026-10-16，按全部已记录客户预算排序。",
+          "queries": [
+            {
+              "entity": "customers",
+              "count": 300,
+              "queryId": "q1"
+            },
+            {
+              "entity": "customers",
+              "count": 3,
+              "queryId": "q2"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "customers",
+              "count": 300,
+              "metric": "count",
+              "value": 300,
+              "rows": [
+                {
+                  "id": "c114",
+                  "email": "buyer114@example.com",
+                  "phone": "416-555-1114",
+                  "name": "Cameron Ali 114",
+                  "source": "AutoTrader",
+                  "owner": "Priya",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s114",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2026-04-11",
+                  "lastContact": "2026-04-11",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2026-04",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Ali 114",
+                  "customerCreated": "2026-04-11",
+                  "daysSinceContact": 188
+                },
+                {
+                  "id": "c204",
+                  "email": "buyer204@example.com",
+                  "phone": "416-555-1204",
+                  "name": "Cameron Wang 204",
+                  "source": "AutoTrader",
+                  "owner": "Daniel",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s204",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2025-12-02",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Wang 204",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 318
+                },
+                {
+                  "id": "c294",
+                  "email": "buyer294@example.com",
+                  "phone": "416-555-1294",
+                  "name": "Cameron Brown 294",
+                  "source": "AutoTrader",
+                  "owner": "Jason",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s294",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2026-07-10",
+                  "followUp": null,
+                  "payment": 600,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Brown 294",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 98
+                }
+              ],
+              "truncated": true
+            },
+            {
+              "queryId": "q2",
+              "entity": "customers",
+              "count": 3,
+              "metric": "count",
+              "value": 3,
+              "rows": [
+                {
+                  "id": "c114",
+                  "email": "buyer114@example.com",
+                  "phone": "416-555-1114",
+                  "name": "Cameron Ali 114",
+                  "source": "AutoTrader",
+                  "owner": "Priya",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s114",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2026-04-11",
+                  "lastContact": "2026-04-11",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2026-04",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Ali 114",
+                  "customerCreated": "2026-04-11",
+                  "daysSinceContact": 188
+                },
+                {
+                  "id": "c204",
+                  "email": "buyer204@example.com",
+                  "phone": "416-555-1204",
+                  "name": "Cameron Wang 204",
+                  "source": "AutoTrader",
+                  "owner": "Daniel",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s204",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2025-12-02",
+                  "followUp": null,
+                  "payment": 750,
+                  "tradeIn": "2017 Honda Civic",
+                  "tradeValue": 8000,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Wang 204",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 318
+                },
+                {
+                  "id": "c294",
+                  "email": "buyer294@example.com",
+                  "phone": "416-555-1294",
+                  "name": "Cameron Brown 294",
+                  "source": "AutoTrader",
+                  "owner": "Jason",
+                  "stage": "Sold",
+                  "vehicleId": "sold-s294",
+                  "budget": 49900,
+                  "type": "SUV",
+                  "brand": "Lexus",
+                  "color": "Flexible",
+                  "created": "2025-12-02",
+                  "lastContact": "2026-07-10",
+                  "followUp": null,
+                  "payment": 600,
+                  "tradeIn": "None",
+                  "tradeValue": null,
+                  "notes": "偏好 Lexus SUV，希望先比较价格和车辆状况。",
+                  "month": "2025-12",
+                  "vehicleModel": "NX",
+                  "vehicleMake": "Lexus",
+                  "vehicleType": "SUV",
+                  "vehiclePrice": 46900,
+                  "customerName": "Cameron Brown 294",
+                  "customerCreated": "2025-12-02",
+                  "daysSinceContact": 98
+                }
+              ],
+              "truncated": false
+            }
+          ],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 15350,
+            "output_tokens": 287
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "预算高代表一定更有钱吗？",
+        "expected": {
+          "check": "budget",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2775,
+        "errors": [],
+        "output": {
+          "answer": "不一定。预算高只说明客户记录中填写的购车预算较高，可能受贷款额度、置换计划或个人偏好影响，不能据此判断实际资产或支付能力。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [
+            "business"
+          ],
+          "usage": {
+            "input_tokens": 4573,
+            "output_tokens": 74
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

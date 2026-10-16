@@ -1,0 +1,120 @@
+{
+  "id": "T36",
+  "name": "预测限制",
+  "messages": [
+    "保证下个月一定成交20单，可以吗？",
+    "给一个可验证的跟进实验。"
+  ],
+  "check": "forecast",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "保证下个月一定成交20单，可以吗？",
+        "expected": {
+          "check": "forecast",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2898,
+        "errors": [],
+        "output": {
+          "answer": "不能保证下个月一定成交 20 单。成交取决于客户决策、库存和交付等因素。可以把 20 单作为目标，先盘点在谈客户、试驾和待跟进机会，再制定每周推进计划；如果你愿意，我可以用演示数据帮你评估目标是否合理。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4160,
+            "output_tokens": 104
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "给一个可验证的跟进实验。",
+        "expected": {
+          "check": "forecast",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 8110,
+        "errors": [],
+        "output": {
+          "answer": "可以做一个**两周随机对照实验**，检验“更及时的个性化跟进”是否比现有做法更容易促成预约，而不是承诺成交。\n\n1. **对象**：从未成交、已到跟进日期且允许联系的客户中，每位客户只纳入一次；先排除已有预约或明确拒绝联系的人。\n2. **分组**：随机分成 A、B 两组。A 组按现有流程跟进；B 组在到期后 1 个工作日内，由负责人根据客户已表达的车型或顾虑进行一次针对性跟进。两组使用相同的联系渠道和最多联系次数，不额外轰炸客户。\n3. **时间**：2026-10-19 至 11-01 纳入客户；每位客户从首次应跟进日起观察 7 天。\n4. **预先定好判定标准**：主要看“7 天内确认预约的客户数 ÷ 该组纳入客户数”。同时记录实际联系率、回复率，以及 30 天内成交数；不要把回复当成成交。\n5. **复盘**：保留分组、应跟进日期、实际联系日期和结果，按最初分组比较，即使有人没联系上也计入。若样本很少或两组差距不明显，就延长实验，不宣称方法有效。\n\n这检验的是跟进方法能否改善预约，不是验证下个月一定能成交 20 单。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4251,
+            "output_tokens": 537
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "保证下个月一定成交20单，可以吗？",
+        "expected": {
+          "check": "forecast",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 2614,
+        "errors": [],
+        "output": {
+          "answer": "不能保证下个月一定成交 20 单。我们可以把 20 单作为目标，先核对现有线索、预约和历史成交，再拆成每周的跟进计划；但成交结果受客户决定等因素影响，不能承诺必达。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4420,
+            "output_tokens": 89
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "给一个可验证的跟进实验。",
+        "expected": {
+          "check": "forecast",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 8577,
+        "errors": [],
+        "output": {
+          "answer": "可以做一个**四周的随机跟进实验**，检验更有结构的跟进是否带来更多预约，而不是承诺一定成交。\n\n- **对象**：2026 年 10 月 19 日至 11 月 15 日进入的、新线索或已联系但尚未成交的客户；每位客户只入组一次。\n- **分组**：随机各分一半。A 组按现有方式跟进；B 组在首次联系后第 2 天和第 7 天各安排一次针对客户需求的跟进。两组使用相同的报价权限，不额外给 B 组优惠。\n- **主要指标**：入组后 14 天内，实际预约到店或试驾的客户占比。按**客户人数**统计，不按沟通次数统计；取消的预约不算。\n- **次要指标**：入组后 30 天内的成交客户数，并记录各组实际完成了多少次计划跟进。\n- **判读**：到期后比较两组的预约率，同时检查执行率和客户退订、投诉情况。如果 B 组预约率更高，再决定是否扩大试行；样本少或差异不明显，就继续测试，不宣称有效。\n\n这是实验方案，**尚未创建任务或联系客户**。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "当前浏览器的演示数据快照",
+          "queries": [],
+          "sources": [],
+          "skills": [],
+          "usage": {
+            "input_tokens": 4496,
+            "output_tokens": 486
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}

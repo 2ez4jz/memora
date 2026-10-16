@@ -1,0 +1,852 @@
+{
+  "id": "T09",
+  "name": "按月收入",
+  "messages": [
+    "将全部历史成交按月做柱状图。",
+    "只解释这些记录，不推测市场。"
+  ],
+  "check": "chart",
+  "role": "owner",
+  "versions": {
+    "baseline": [
+      {
+        "input": "将全部历史成交按月做柱状图。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 3965,
+        "errors": [],
+        "output": {
+          "answer": "已按成交日期绘制全部历史成交的月度柱状图，共 81 笔。2026 年 10 月仅统计至 10 月 16 日。",
+          "proposals": [],
+          "chart": {
+            "id": "q1",
+            "title": "month",
+            "metric": "count",
+            "unit": "条",
+            "data": [
+              {
+                "label": "2025-11",
+                "value": 8,
+                "sampleSize": 8
+              },
+              {
+                "label": "2025-12",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-01",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-02",
+                "value": 7,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-03",
+                "value": 4,
+                "sampleSize": 4
+              },
+              {
+                "label": "2026-04",
+                "value": 7,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-05",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-06",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-07",
+                "value": 9,
+                "sampleSize": 9
+              },
+              {
+                "label": "2026-08",
+                "value": 5,
+                "sampleSize": 5
+              },
+              {
+                "label": "2026-09",
+                "value": 7,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-10",
+                "value": 10,
+                "sampleSize": 10
+              }
+            ],
+            "total": 81,
+            "partial": false,
+            "type": "bar"
+          },
+          "customerIds": [],
+          "sourceNote": "浏览器演示快照；成交日期为 2025-11 至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "groupBy": "month",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "month",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "2025-11",
+                    "value": 8,
+                    "sampleSize": 8
+                  },
+                  {
+                    "label": "2025-12",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-01",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-02",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-03",
+                    "value": 4,
+                    "sampleSize": 4
+                  },
+                  {
+                    "label": "2026-04",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-05",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-06",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-07",
+                    "value": 9,
+                    "sampleSize": 9
+                  },
+                  {
+                    "label": "2026-08",
+                    "value": 5,
+                    "sampleSize": 5
+                  },
+                  {
+                    "label": "2026-09",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-10",
+                    "value": 10,
+                    "sampleSize": 10
+                  }
+                ],
+                "total": 81,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "2025-11",
+                  "value": 8,
+                  "sampleSize": 8
+                },
+                {
+                  "label": "2025-12",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-01",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-02",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-03",
+                  "value": 4,
+                  "sampleSize": 4
+                },
+                {
+                  "label": "2026-04",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-05",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-06",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-07",
+                  "value": 9,
+                  "sampleSize": 9
+                },
+                {
+                  "label": "2026-08",
+                  "value": 5,
+                  "sampleSize": 5
+                },
+                {
+                  "label": "2026-09",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-10",
+                  "value": 10,
+                  "sampleSize": 10
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8882,
+            "output_tokens": 189
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "只解释这些记录，不推测市场。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 7174,
+        "errors": [],
+        "output": {
+          "answer": "这些记录覆盖 2025 年 11 月至 2026 年 10 月 16 日，共 81 笔成交。按月看，2026 年 3 月最少，为 4 笔；已结束的月份中，2026 年 7 月最多，为 9 笔。2026 年 10 月截至 16 日有 10 笔，但不是完整月份，不能直接当作整月与其他月份比较。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "浏览器快照；按 sales.date 统计全部已记录成交，截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "groupBy": "month",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "month",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "2025-11",
+                    "value": 8,
+                    "sampleSize": 8
+                  },
+                  {
+                    "label": "2025-12",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-01",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-02",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-03",
+                    "value": 4,
+                    "sampleSize": 4
+                  },
+                  {
+                    "label": "2026-04",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-05",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-06",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-07",
+                    "value": 9,
+                    "sampleSize": 9
+                  },
+                  {
+                    "label": "2026-08",
+                    "value": 5,
+                    "sampleSize": 5
+                  },
+                  {
+                    "label": "2026-09",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-10",
+                    "value": 10,
+                    "sampleSize": 10
+                  }
+                ],
+                "total": 81,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "2025-11",
+                  "value": 8,
+                  "sampleSize": 8
+                },
+                {
+                  "label": "2025-12",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-01",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-02",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-03",
+                  "value": 4,
+                  "sampleSize": 4
+                },
+                {
+                  "label": "2026-04",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-05",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-06",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-07",
+                  "value": 9,
+                  "sampleSize": 9
+                },
+                {
+                  "label": "2026-08",
+                  "value": 5,
+                  "sampleSize": 5
+                },
+                {
+                  "label": "2026-09",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-10",
+                  "value": 10,
+                  "sampleSize": 10
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 8989,
+            "output_tokens": 279
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "input": "将全部历史成交按月做柱状图。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 4136,
+        "errors": [],
+        "output": {
+          "answer": "已按成交月份生成柱状图。全部已记录历史共 81 笔成交；2026 年 10 月的数据截至 10 月 16 日，尚非完整月份。",
+          "proposals": [],
+          "chart": {
+            "id": "q1",
+            "title": "month",
+            "metric": "count",
+            "unit": "条",
+            "data": [
+              {
+                "label": "2025-11",
+                "value": 8,
+                "sampleSize": 8
+              },
+              {
+                "label": "2025-12",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-01",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-02",
+                "value": 7,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-03",
+                "value": 4,
+                "sampleSize": 4
+              },
+              {
+                "label": "2026-04",
+                "value": 7,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-05",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-06",
+                "value": 6,
+                "sampleSize": 6
+              },
+              {
+                "label": "2026-07",
+                "value": 9,
+                "sampleSize": 9
+              },
+              {
+                "label": "2026-08",
+                "value": 5,
+                "sampleSize": 5
+              },
+              {
+                "label": "2026-09",
+                "value": 7,
+                "sampleSize": 7
+              },
+              {
+                "label": "2026-10",
+                "value": 10,
+                "sampleSize": 10
+              }
+            ],
+            "total": 81,
+            "partial": false,
+            "type": "bar"
+          },
+          "customerIds": [],
+          "sourceNote": "来源：成交记录；按 sales.date 归入月份，统计截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "groupBy": "month",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "month",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "2025-11",
+                    "value": 8,
+                    "sampleSize": 8
+                  },
+                  {
+                    "label": "2025-12",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-01",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-02",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-03",
+                    "value": 4,
+                    "sampleSize": 4
+                  },
+                  {
+                    "label": "2026-04",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-05",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-06",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-07",
+                    "value": 9,
+                    "sampleSize": 9
+                  },
+                  {
+                    "label": "2026-08",
+                    "value": 5,
+                    "sampleSize": 5
+                  },
+                  {
+                    "label": "2026-09",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-10",
+                    "value": 10,
+                    "sampleSize": 10
+                  }
+                ],
+                "total": 81,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "2025-11",
+                  "value": 8,
+                  "sampleSize": 8
+                },
+                {
+                  "label": "2025-12",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-01",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-02",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-03",
+                  "value": 4,
+                  "sampleSize": 4
+                },
+                {
+                  "label": "2026-04",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-05",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-06",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-07",
+                  "value": 9,
+                  "sampleSize": 9
+                },
+                {
+                  "label": "2026-08",
+                  "value": 5,
+                  "sampleSize": 5
+                },
+                {
+                  "label": "2026-09",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-10",
+                  "value": 10,
+                  "sampleSize": 10
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9399,
+            "output_tokens": 188
+          },
+          "model": "gpt-6-sol"
+        }
+      },
+      {
+        "input": "只解释这些记录，不推测市场。",
+        "expected": {
+          "check": "chart",
+          "role": "owner",
+          "confirmationRequired": true
+        },
+        "status": 200,
+        "elapsed": 5838,
+        "errors": [],
+        "output": {
+          "answer": "这些成交记录覆盖 2025 年 11 月至 2026 年 10 月 16 日，共 81 笔。按月看，2026 年 3 月最少，为 4 笔；2026 年 7 月有 9 笔；10 月截至 16 日已有 10 笔，是记录中数量最多的月份，但它还不是完整月份，不能直接与完整月份比较。其余月份各有 5–8 笔。这些只是已记录成交的分布，不代表市场变化。",
+          "proposals": [],
+          "chart": null,
+          "customerIds": [],
+          "sourceNote": "来源：全部已记录成交，按 sales.date 的月份统计；数据截至 2026-10-16。",
+          "queries": [
+            {
+              "entity": "sales",
+              "count": 81,
+              "queryId": "q1"
+            }
+          ],
+          "sources": [
+            {
+              "queryId": "q1",
+              "entity": "sales",
+              "count": 81,
+              "metric": "count",
+              "groupBy": "month",
+              "valueField": null,
+              "chartId": "q1",
+              "chart": {
+                "id": "q1",
+                "title": "month",
+                "metric": "count",
+                "unit": "条",
+                "data": [
+                  {
+                    "label": "2025-11",
+                    "value": 8,
+                    "sampleSize": 8
+                  },
+                  {
+                    "label": "2025-12",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-01",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-02",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-03",
+                    "value": 4,
+                    "sampleSize": 4
+                  },
+                  {
+                    "label": "2026-04",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-05",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-06",
+                    "value": 6,
+                    "sampleSize": 6
+                  },
+                  {
+                    "label": "2026-07",
+                    "value": 9,
+                    "sampleSize": 9
+                  },
+                  {
+                    "label": "2026-08",
+                    "value": 5,
+                    "sampleSize": 5
+                  },
+                  {
+                    "label": "2026-09",
+                    "value": 7,
+                    "sampleSize": 7
+                  },
+                  {
+                    "label": "2026-10",
+                    "value": 10,
+                    "sampleSize": 10
+                  }
+                ],
+                "total": 81,
+                "partial": false
+              },
+              "rows": [
+                {
+                  "label": "2025-11",
+                  "value": 8,
+                  "sampleSize": 8
+                },
+                {
+                  "label": "2025-12",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-01",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-02",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-03",
+                  "value": 4,
+                  "sampleSize": 4
+                },
+                {
+                  "label": "2026-04",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-05",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-06",
+                  "value": 6,
+                  "sampleSize": 6
+                },
+                {
+                  "label": "2026-07",
+                  "value": 9,
+                  "sampleSize": 9
+                },
+                {
+                  "label": "2026-08",
+                  "value": 5,
+                  "sampleSize": 5
+                },
+                {
+                  "label": "2026-09",
+                  "value": 7,
+                  "sampleSize": 7
+                },
+                {
+                  "label": "2026-10",
+                  "value": 10,
+                  "sampleSize": 10
+                }
+              ]
+            }
+          ],
+          "skills": [],
+          "usage": {
+            "input_tokens": 9533,
+            "output_tokens": 356
+          },
+          "model": "gpt-6-sol"
+        }
+      }
+    ]
+  }
+}
