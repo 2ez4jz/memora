@@ -45,9 +45,9 @@ export function workflowCandidates(db,{today=businessDate(),staleDays=14}={}) {
   const result=[],terminal=new Set(industryTemplates.dealer.terminal);
   for(const c of db.customers){
     if(terminal.has(c.stage))continue;
-    if(validISODate(c.followUp)&&c.followUp<=today)result.push({key:'followup:'+c.id+':'+c.followUp,rule:'followup_due',customerId:c.id,dueDate:c.followUp,title:'跟进客户 / Follow up · '+c.name,reason:'已记录的跟进日期已到 / Recorded follow-up is due',evidence:{followUp:c.followUp,stage:c.stage}});
+    if(validISODate(c.followUp)&&c.followUp<=today)result.push({key:'followup:'+c.id+':'+c.followUp,rule:'followup_due',customerId:c.id,dueDate:c.followUp,title:'跟进客户 · '+c.name,reason:'已记录的跟进日期已到',evidence:{followUp:c.followUp,stage:c.stage}});
     const last=c.lastContact||c.created;
-    if(validISODate(last)&&last<=today&&(Date.parse(today+'T12:00:00Z')-Date.parse(last+'T12:00:00Z'))/86400000>=staleDays)result.push({key:'stale:'+c.id+':'+last,rule:'stale_contact',customerId:c.id,dueDate:today,title:'检查未联系客户 / Review stale lead · '+c.name,reason:`至少 ${staleDays} 天未记录联系 / No contact recorded`,evidence:{lastContact:last,stage:c.stage}});
+    if(validISODate(last)&&last<=today&&(Date.parse(today+'T12:00:00Z')-Date.parse(last+'T12:00:00Z'))/86400000>=staleDays)result.push({key:'stale:'+c.id+':'+last,rule:'stale_contact',customerId:c.id,dueDate:today,title:'检查未联系客户 · '+c.name,reason:`至少 ${staleDays} 天未记录联系`,evidence:{lastContact:last,stage:c.stage}});
   }
   // A missing receipt or a sales/receipt difference is never treated as overdue debt.
   for(const i of db.invoices||[]){
@@ -55,7 +55,7 @@ export function workflowCandidates(db,{today=businessDate(),staleDays=14}={}) {
     const payments=(db.payments||[]).filter(p=>p.invoiceId===i.id&&p.status==='succeeded');
     if(payments.some(p=>p.currency!=='CAD'||!Number.isSafeInteger(p.amountCents)||p.amountCents<0)||!db.customers.some(c=>c.id===i.customerId))continue;
     const paid=payments.reduce((n,p)=>n+p.amountCents,0),balance=i.totalCents-paid;
-    if(balance>0)result.push({key:'invoice:'+i.id+':'+i.dueDate,rule:'invoice_overdue',customerId:i.customerId,dueDate:i.dueDate,title:'核对到期付款 / Review overdue invoice',reason:'有效账单到期且成功付款不足 / Issued invoice has an unpaid balance',evidence:{invoiceId:i.id,totalCents:i.totalCents,paidCents:paid,balanceCents:balance}});
+    if(balance>0)result.push({key:'invoice:'+i.id+':'+i.dueDate,rule:'invoice_overdue',customerId:i.customerId,dueDate:i.dueDate,title:'核对到期付款',reason:'有效账单到期且成功付款不足',evidence:{invoiceId:i.id,totalCents:i.totalCents,paidCents:paid,balanceCents:balance}});
   }
   return result;
 }

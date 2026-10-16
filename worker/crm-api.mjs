@@ -50,7 +50,7 @@ export function previewImport(data,rows){
   const errors=[],valid=[];
   for(const [i,r] of rows.entries()){
     const row={name:String(r.name||'').trim(),email:String(r.email||'').trim(),phone:String(r.phone||'').trim(),vehicleId:String(r.vehicleId||'').trim(),stage:r.stage||'New lead',source:r.source||'Import',owner:r.owner||'Unassigned',budget:r.budget===''||r.budget==null?null:Number(r.budget),notes:String(r.notes||'')};
-    if(!row.name||row.name.length>200||row.email.length>200||row.phone.length>200||row.notes.length>3000||!data.vehicles.some(v=>v.id===row.vehicleId)||!crmStages.includes(row.stage)||row.stage==='Sold'||row.budget!==null&&(!Number.isFinite(row.budget)||row.budget<0||row.budget>1000000))errors.push({row:i+2,error:'姓名、车辆、阶段或预算无效 / Invalid name, vehicle, stage or budget'});
+    if(!row.name||row.name.length>200||row.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(row.email)||row.owner.length>100||row.source.length>100||row.email.length>200||row.phone.length>200||row.notes.length>3000||!data.vehicles.some(v=>v.id===row.vehicleId)||!crmStages.includes(row.stage)||row.stage==='Sold'||row.budget!==null&&(!Number.isFinite(row.budget)||row.budget<0||row.budget>1000000))errors.push({row:i+2,error:'姓名、车辆、阶段或预算无效 / Invalid name, vehicle, stage or budget'});
     valid.push({...row,id:'import:'+i});
   }
   const duplicates=duplicateGroups([...data.customers,...valid]).filter(g=>g.ids.some(id=>id.startsWith('import:')));
